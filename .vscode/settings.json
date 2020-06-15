@@ -1,0 +1,51 @@
+{
+  "files.autoSave": "afterDelay",
+  "window.zoomLevel": 0,
+  "editor.minimap.enabled": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "terminal.integrated.rendererType": "canvas",
+  "search.followSymlinks": false,
+  "git.confirmSync": true,
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "git.showPushSuccessNotification": true,
+  "git.enableStatusBarSync": true,
+  "git.showProgress": true,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "eslint.alwaysShowStatus": true,
+  "eslint.enable": true,
+  "eslint.packageManager": "npm",
+  "eslint.workingDirectories": [
+    {
+      "directory": "./browser",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "./shared",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "./node",
+      "changeProcessCWD": true
+    },
+  ],
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "npm.enableScriptExplorer": false,
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.revealIfOpen": true,
+  "vsicons.dontShowNewVersionMessage": true,
+  "cSpell.words": [
+    "rtcts"
+  ],
+  "cSpell.language": "en,ru"
+}

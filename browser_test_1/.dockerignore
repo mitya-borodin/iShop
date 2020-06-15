@@ -1,0 +1,46 @@
+# Common
+README.md
+CHANGELOG.md
+docker-compose.yml
+Dockerfile
+.editorconfig
+
+# git
+.git
+.gitattributes
+.gitignore
+
+# JetBrains
+.idea
+
+# VSCode
+.vscode
+
+# Node
+## Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+## Dependency directories
+node_modules/
+
+# Project
+dll_bundle
+lib_bundle
+lib
+src
+.readruardrc
+postCssPlugins.js
+
+# Typescript
+tsconfig.json
+tslint.json
+
+# npm
+.npmrc
+package.json
+
+

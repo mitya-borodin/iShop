@@ -1,0 +1,33 @@
+{
+  "recommendations": [
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "aaron-bond.better-comments",
+    "streetsidesoftware.code-spell-checker",
+    "clinyong.vscode-css-modules",
+    "andrewleedham.vscode-css-modules",
+    "ms-azuretools.vscode-docker",
+    "mikestead.dotenv",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "pkief.material-icon-theme",
+    "eg2.vscode-npm-script",
+    "christian-kohler.npm-intellisense",
+    "zhuangtongfa.material-theme",
+    "pnp.polacode",
+    "esbenp.prettier-vscode",
+    "streetsidesoftware.code-spell-checker-russian",
+    "stylelint.vscode-stylelint",
+    "redhat.vscode-yaml"
+  ],
+  "unwantedRecommendations": [
+    "felipecaputo.git-project-manager",
+    "donjayamanne.githistory",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "hookyqr.beautify",
+    "dbaeumer.jshint"
+  ]
+}

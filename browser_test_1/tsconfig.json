@@ -1,0 +1,35 @@
+{
+  "include": [
+    "src",
+    "types"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    // You can't currently define paths in your 'extends' config,
+    // so we have to set 'baseUrl' & 'paths' here.
+    // Don't change these unless you know what you're doing.
+    // See: https://github.com/microsoft/TypeScript/issues/25430
+    "baseUrl": "./",
+    "paths": {
+      "*": [
+        "web_modules/.types/*"
+      ],
+      "shared": [
+        "../shared/src"
+      ]
+    },
+    "types": [
+      "@types/node",
+      "@types/testing-library__dom",
+      "@types/testing-library__jest-dom",
+      "@types/jest",
+      "svelte",
+    ],
+    /* Type declaration files to be included in compilation. */
+    // Feel free to add/edit new config options below:
+    // ...
+  }
+}
