@@ -1,5 +1,8 @@
 {
   "files.autoSave": "afterDelay",
+  "files.associations": {
+    "*.svelte": "html"
+  },
   "window.zoomLevel": 0,
   "editor.minimap.enabled": true,
   "editor.formatOnSave": true,
@@ -23,18 +26,9 @@
   "eslint.enable": true,
   "eslint.packageManager": "npm",
   "eslint.workingDirectories": [
-    {
-      "directory": "./browser",
-      "changeProcessCWD": true
-    },
-    {
-      "directory": "./shared",
-      "changeProcessCWD": true
-    },
-    {
-      "directory": "./node",
-      "changeProcessCWD": true
-    },
+    "./browser",
+    "./shared",
+    "./node",
   ],
   "css.validate": false,
   "less.validate": false,
