@@ -4,8 +4,6 @@ const app = new App({
   target: document.body,
 });
 
-console.log(app, 111);
-
 export default app;
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.

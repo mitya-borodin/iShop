@@ -1,7 +1,16 @@
+const path = require("path");
+const fs = require("fs");
+
+const tempBuildManifest = JSON.parse(
+  fs.readFileSync(path.join(process.cwd(), "package.json"), {
+    encoding: "utf-8",
+  }),
+);
+const browsersList =
+  tempBuildManifest.browsersList || ">0.75%, not ie 11, not UCAndroid >0, not OperaMini all";
+
 module.exports = {
   plugins: [
-    // require("tailwindcss"),
-
     // Transfer @import rule by inlining content, e.g. @import 'normalize.css'
     // https://github.com/postcss/postcss-import
     require("postcss-import")({ path: "resources/css" }),
@@ -28,12 +37,14 @@ module.exports = {
       },
       autoprefixer: {
         flexbox: "no-2009",
+        overridebrowsersList: browsersList,
       },
       stage: 3,
+      browsers: browsersList,
     }),
 
     // https://github.com/csstools/postcss-normalize
-    require("postcss-normalize")(),
+    require("postcss-normalize")({ browsers: browsersList }),
 
     ...(process.env.NODE_ENV === "production" ? [require("cssnano")] : []),
   ],

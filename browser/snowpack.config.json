@@ -1,6 +1,7 @@
 {
   "extends": "@snowpack/app-scripts-svelte",
   "scripts": {
+    "build:css": "postcss",
     "run:tsc": "tsc --noEmit",
     "run:tsc::watch": "$1 --watch",
     "run:lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",

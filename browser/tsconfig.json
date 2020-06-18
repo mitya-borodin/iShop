@@ -4,7 +4,8 @@
     "types"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "postcss.config.js"
   ],
   "extends": "../tsconfig.json",
   "compilerOptions": {
@@ -20,11 +21,14 @@
       "shared": [
         "../shared/src"
       ],
+      "stores": [
+        "src/stores"
+      ],
+      "components": [
+        "src/components"
+      ],
       "pages": [
         "src/pages"
-      ],
-      "units": [
-        "src/units"
       ],
     },
     "types": [
