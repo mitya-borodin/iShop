@@ -16,7 +16,9 @@
     "baseUrl": "./",
     "paths": {
       "*": [
-        "web_modules/.types/*"
+        "web_modules/.types/*",
+        "src/*",
+        "node_modules/*"
       ],
       "shared": [
         "../shared/src"
