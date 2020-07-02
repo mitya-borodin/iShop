@@ -5,7 +5,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "svelte": "^3.23.2"
+    "history": "^5.0.0",
+    "svelte": "^3.23.2",
+    "universal-router": "^9.0.1"
   },
   "devDependencies": {
     "@snowpack/app-scripts-svelte": "^1.2.0",
