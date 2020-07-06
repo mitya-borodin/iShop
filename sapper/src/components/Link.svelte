@@ -7,5 +7,5 @@
 </script>
 
 <a on:click|preventDefault="{() => browserHistory.push(href)}" href="{href}">
-  <slot>link name</slot>
+  <slot>Link name</slot>
 </a>

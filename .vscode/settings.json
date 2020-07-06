@@ -26,8 +26,8 @@
   "eslint.enable": true,
   "eslint.packageManager": "yarn",
   "eslint.workingDirectories": [
-    "./browser",
-    "./node",
+    "./sapper",
+    "./strapi",
     "./shared",
   ],
   "css.validate": false,
