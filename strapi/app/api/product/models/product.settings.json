@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product",
+  "info": {
+    "name": "Product"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "richtext",
+      "required": true
+    },
+    "catalog": {
+      "model": "catalog",
+      "via": "products"
+    }
+  }
+}

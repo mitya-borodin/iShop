@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cartalog",
+  "info": {
+    "name": "Catalog"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "catalogs": {
+      "collection": "catalog"
+    },
+    "products": {
+      "via": "catalog",
+      "collection": "product"
+    }
+  }
+}
