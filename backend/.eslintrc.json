@@ -1,0 +1,32 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module" // Allows for the use of imports
+  },
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "svelte3"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.svelte"
+      ],
+      "processor": "svelte3/svelte3"
+    }
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "../../.eslintrc.json"
+  ],
+  "rules": {}
+}

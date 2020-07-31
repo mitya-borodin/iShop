@@ -1,0 +1,29 @@
+{
+  "include": [
+    "src",
+    "types"
+  ],
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "baseUrl": "./",
+    "paths": {
+      // Define either ONE of these...
+      // 1. General support: matches everything relative to the project directory
+      "*": [
+        "*"
+      ],
+      // 2. Explicit support: match only your mounted directories (Recommended!)
+      "src/*": [
+        "src/*"
+      ],
+    },
+    "types": [
+      "@types/jest",
+      "@types/mocha",
+      "@testing-library/jest-dom",
+      "@testing-library/svelte",
+      "svelte",
+    ],
+  }
+}

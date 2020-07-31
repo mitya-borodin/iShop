@@ -1,0 +1,19 @@
+{
+  "install": ["history", "svelte"],
+  "extends": "@snowpack/app-scripts-svelte",
+  "scripts": {
+    "build:css": "postcss"
+  },
+  "plugins": [
+    ["@snowpack/plugin-webpack", {}],
+    ["@snowpack/plugin-run-script", { "cmd": "tsc --noEmit", "watch": "$1 --watch" }],
+    [
+      "@snowpack/plugin-run-script",
+      { "cmd": "eslint 'src/**/*.{js,jsx,ts,tsx}'", "watch": "watch \"$1\" src" }
+    ],
+    [
+      "@snowpack/plugin-run-script",
+      { "cmd": "stylelint --allow-empty-input 'src/**/*.css'", "watch": "watch \"$1\" src" }
+    ]
+  ]
+}
