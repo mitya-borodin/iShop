@@ -1,4 +1,5 @@
 <script>
+  import "./TailwindStyles.svelte";
   import * as history from "history";
   import { onMount, setContext } from "svelte";
   import { router } from "./router";

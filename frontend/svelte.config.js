@@ -1,10 +1,14 @@
 const sveltePreprocess = require("svelte-preprocess");
-const postcssConfig = require("./postcss.config.js");
+const postCSSConfig = require("./postcss.config.js");
+
+const preprocess = sveltePreprocess({
+  postcss: {
+    // Проверить работают или нет эти плагины, можно при помощи
+    // отключения tailwindcss сразу пропадут CSS свойства.
+    plugins: [require("tailwindcss"), ...postCSSConfig.plugins],
+  },
+});
 
 module.exports = {
-  preprocess: sveltePreprocess({
-    postcss: {
-      configFilePath: "./postcss.config.js",
-    },
-  }),
+  preprocess,
 };
