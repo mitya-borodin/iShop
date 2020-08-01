@@ -1,21 +1,18 @@
 {
-  "include": [
-    "src",
-    "types"
-  ],
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "src",
+    "target": "ES6",
+    "rootDir": "./src",
     "baseUrl": "./",
     "paths": {
-      // Define either ONE of these...
-      // 1. General support: matches everything relative to the project directory
       "*": [
-        "*"
+        "web_modules/.types/*"
       ],
-      // 2. Explicit support: match only your mounted directories (Recommended!)
       "src/*": [
         "src/*"
+      ],
+      "shared": [
+        "../shared/src"
       ],
     },
     "types": [
@@ -25,5 +22,12 @@
       "@testing-library/svelte",
       "svelte",
     ],
-  }
+  },
+  "include": [
+    "src",
+    "types"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -1,5 +1,8 @@
 <script>
   import Link from "../components/Link.svelte";
+  import { data } from "../stores/store";
+
+  console.log(data);
 </script>
 
 <div>

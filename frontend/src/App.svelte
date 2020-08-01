@@ -1,7 +1,6 @@
 <script>
   import * as history from "history";
-  import UniversalRouter from "universal-router";
-  import { setContext, onMount } from "svelte";
+  import { onMount, setContext } from "svelte";
   import { router } from "./router";
 
   const browserHistory = history.createBrowserHistory();
@@ -22,5 +21,5 @@
 </script>
 
 <div>
-  <svelte:component this="{component}" />
+  <svelte:component this={component} />
 </div>
