@@ -1,8 +1,50 @@
 {
   "scripts": {
-    "start": "echo \"Error: no test specified\" && exit 1",
-    "lint": "echo \"Error: no test specified\" && exit 1",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Error: no test specified\" && exit 1"
+    "compile": "del dist && tsc",
+    "dev": "nodemon src/entry.ts",
+    "dev:debug": "nodemon --inspect src/entry.ts",
+    "fmt": "prettier --write '**/*.{js,ts}'",
+    "fmt:pkg": "prettier-package-json --write",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "test": "jest --no-cache"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.8",
+    "@types/mocha": "^8.0.1",
+    "@types/node": "^14.0.27",
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
+    "del-cli": "^3.0.1",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "jest": "^26.2.2",
+    "lint-staged": "^10.2.11",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "prettier-package-json": "^2.1.3",
+    "pretty-quick": "^2.0.1",
+    "ts-jest": "^26.1.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(ts|json)": [
+      "npm run fmt:p",
+      "npm run fmt",
+      "git add"
+    ],
+    "*.ts": [
+      "npm run lint:fix",
+      "npm run lint"
+    ]
   }
 }

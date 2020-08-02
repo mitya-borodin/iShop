@@ -6,6 +6,6 @@
   const browserHistory = getContext("browserHistory");
 </script>
 
-<a on:click|preventDefault="{() => browserHistory.push(href)}" href="{href}">
+<a on:click|preventDefault={() => browserHistory.push(href)} {href}>
   <slot>Link name</slot>
 </a>

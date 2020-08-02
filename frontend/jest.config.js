@@ -9,4 +9,5 @@ module.exports = {
     ...configuration.transform,
     "^.+\\.svelte$": ["jest-transform-svelte", { preprocess: undefined }],
   },
+  collectCoverage: true,
 };
