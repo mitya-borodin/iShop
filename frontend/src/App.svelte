@@ -1,8 +1,8 @@
 <script>
-  import "./TailwindStyles.svelte";
   import * as history from "history";
   import { onMount, setContext } from "svelte";
   import { router } from "./router";
+  import "./TailwindStyles.svelte";
 
   const browserHistory = history.createBrowserHistory();
 

@@ -4,15 +4,10 @@
   "plugins": [
     ["@snowpack/plugin-dotenv"],
     ["@snowpack/plugin-webpack", {}],
-    ["@snowpack/plugin-build-script", { "cmd": "postcss", "input": [".css"], "output": [".css"] }],
     ["@snowpack/plugin-run-script", { "cmd": "tsc --noEmit", "watch": "$1 --watch" }],
     [
       "@snowpack/plugin-run-script",
       { "cmd": "eslint 'src/**/*.{js,jsx,ts,tsx}'", "watch": "watch \"$1\" src" }
-    ],
-    [
-      "@snowpack/plugin-run-script",
-      { "cmd": "stylelint --allow-empty-input 'src/**/*.css'", "watch": "watch \"$1\" src" }
     ]
   ]
 }
