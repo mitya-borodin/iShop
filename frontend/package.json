@@ -47,7 +47,7 @@
   },
   "lint-staged": {
     "*.(ts|json|svelte)": [
-      "npm run fmt:p",
+      "npm run fmt:pkg",
       "npm run fmt",
       "git add"
     ],

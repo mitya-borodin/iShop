@@ -38,7 +38,7 @@
   },
   "lint-staged": {
     "*.(ts|json)": [
-      "npm run fmt:p",
+      "npm run fmt:pkg",
       "npm run fmt",
       "git add"
     ],
