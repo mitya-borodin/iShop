@@ -1,9 +1,9 @@
 {
-  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "sourceRoot": "src"
   },
-  "typeRoots": ["node_module/@types"],
+  "exclude": ["dist", "node_modules", "**/*.test.ts"],
+  "extends": "./tsconfig.base.json",
   "include": ["src/**/*"],
-  "exclude": ["dist", "node_modules", "**/*.test.ts"]
+  "typeRoots": ["node_module/@types"]
 }
