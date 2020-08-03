@@ -1,6 +1,8 @@
 {
   "recommendations": [
     "eamodio.gitlens",
+    "vivaxy.vscode-conventional-commits",
+    "adam-bender.commit-message-editor",
     "zhuangtongfa.material-theme",
     "pkief.material-icon-theme",
     "svelte.svelte-vscode",
