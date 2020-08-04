@@ -1,18 +1,21 @@
 {
+  "private": true,
+  "name": "ishop-backend",
+  "license": "UNLICENSED",
   "scripts": {
-    "compile": "del dist && tsc",
-    "dev": "nodemon src/entry.ts",
-    "dev:debug": "nodemon --inspect src/entry.ts",
+    "build": "del dist && tsc --build",
     "fmt": "prettier --write '**/*.{js,ts}'",
     "fmt:pkg": "prettier-package-json --write",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
+    "start": "nodemon src/entry.ts",
+    "start:debug": "nodemon --inspect src/entry.ts",
     "test": "jest --no-cache"
   },
   "dependencies": {
-    "@rtcts/isomorphic": "^1.3.1",
-    "@rtcts/node": "^1.3.1",
-    "@rtcts/utils": "^1.3.1",
+    "@rtcts/isomorphic": "^1.3.3",
+    "@rtcts/node": "^1.3.3",
+    "@rtcts/utils": "^1.3.2",
     "bson": "^4.0.4",
     "chalk": "^4.1.0",
     "co-body": "^6.0.0",

@@ -6,7 +6,7 @@ import path from "path";
 const rootDir = path.resolve(__dirname, "../../..");
 
 if (process.env.NODE_ENV !== "production") {
-  dotenv.config({ path: path.resolve(rootDir, ".env") });
+  dotenv.config({ path: path.resolve(rootDir, ".env"), debug: true });
 }
 
 export class Config extends ConfigBase {

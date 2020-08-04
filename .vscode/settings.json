@@ -48,5 +48,8 @@
   "cSpell.words": [
     "rtcts"
   ],
-  "cSpell.language": "en,ru"
+  "cSpell.language": "en,ru",
+  "conventionalCommits.scopes": [
+    "settings"
+  ]
 }

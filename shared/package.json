@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "name": "ishop-shared",
+  "license": "UNLICENSED",
+  "scripts": {
+    "fmt": "prettier --write '**/*.{js,ts}'",
+    "fmt:pkg": "prettier-package-json --write",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "peerDependencies": {
+    "@rtcts/isomorphic": "^1.3.3",
+    "@rtcts/utils": "^1.3.2",
+    "lodash.omit": "^4.5.0",
+    "lodash.pick": "^4.4.0",
+    "moment": "^2.27.0"
+  },
+  "devDependencies": {
+    "@rtcts/isomorphic": "^1.3.3",
+    "@rtcts/utils": "^1.3.2",
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "lodash.omit": "^4.5.0",
+    "lodash.pick": "^4.4.0",
+    "moment": "^2.27.0",
+    "prettier": "^2.0.5",
+    "prettier-package-json": "^2.1.3"
+  }
+}

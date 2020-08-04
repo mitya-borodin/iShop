@@ -55,5 +55,8 @@
       "npm run lint:fix",
       "npm run lint"
     ]
-  }
+  },
+  "name": "ishop-front",
+  "private": true,
+  "license": "UNLICENSED"
 }

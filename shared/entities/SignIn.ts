@@ -25,11 +25,6 @@ export class SignIn implements ValueObject {
     }
   }
   isInsert(): boolean {
-    throw new Error("Method not implemented.");
-  }
-
-  // The canBeInsert method ensures that all mandatory noSecureFields are filled in and have the correct data type.
-  public canBeInsert<SignInData>(): this is Required<SignInData> {
     for (const field of fields) {
       if (!isString(this[field])) {
         throw new Error(`${this.constructor.name}.${field} should be String`);
@@ -38,8 +33,6 @@ export class SignIn implements ValueObject {
 
     return true;
   }
-
-  // The validate method allows you to implement the logic of checking the entered values in the object and to minimize the object describing the result of the check
   public validation(): ValidationResult {
     const validates: Validation[] = [];
 

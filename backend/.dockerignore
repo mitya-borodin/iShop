@@ -37,6 +37,4 @@ tslint.json
 
 # npm
 .npmrc
-package.json
-
 

@@ -113,3 +113,9 @@ typings/
 .build
 build
 web_modules
+
+#mongodb
+data
+
+#files
+uploadedFiles
