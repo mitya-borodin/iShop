@@ -1,19 +1,21 @@
 import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/isomorphic";
 import { isString } from "@rtcts/utils";
 
-export interface ChangePasswordData {
+export interface SignUpData {
+  readonly login?: string;
   readonly password?: string;
   readonly passwordConfirm?: string;
 }
 
-const fields: string[] = ["password", "passwordConfirm"];
+const fields: string[] = ["login", "password", "passwordConfirm"];
 
-export class ChangePassword implements ValueObject {
+export class SignUp implements ValueObject {
+  readonly login?: string;
   readonly password?: string;
   readonly passwordConfirm?: string;
 
   // The check in the constructor ensures that the correct noSecureFields will be written into the object
-  constructor(data: Partial<ChangePasswordData>) {
+  constructor(data: Partial<SignUpData>) {
     if (data) {
       for (const field of fields) {
         if (isString(data[field])) {
@@ -24,18 +26,31 @@ export class ChangePassword implements ValueObject {
       throw new Error(`${this.constructor.name}(data) data should be defined`);
     }
   }
-  isInsert(): this is Required<ChangePasswordData> {
+
+  // The canBeInsert method ensures that all mandatory noSecureFields are filled in and have the correct data type.
+  public isInsert<SignUpData>(): this is Required<SignUpData> {
     for (const field of fields) {
       if (!isString(this[field])) {
-        throw new Error(`${this.constructor.name}.${field} should be string`);
+        throw new Error(`${this.constructor.name}.${field} should be String`);
       }
     }
 
     return true;
   }
 
+  // The validate method allows you to implement the logic of checking the entered values in the object and to minimize the object describing the result of the check
   public validation(): ValidationResult {
     const validates: Validation[] = [];
+
+    if (!isString(this.login)) {
+      validates.push(
+        new Validation({
+          field: "login",
+          message: `Login should be typed`,
+          type: logTypeEnum.error,
+        }),
+      );
+    }
 
     if (!isString(this.password)) {
       validates.push(
@@ -78,18 +93,17 @@ export class ChangePassword implements ValueObject {
     return new ValidationResult(validates);
   }
 
-  toObject(): ChangePasswordData {
+  toObject(): SignUpData {
     return {
+      login: this.login,
       password: this.password,
       passwordConfirm: this.passwordConfirm,
     };
   }
-
-  toJSON() {
-    this.toObject();
+  toJSON(): SignUpData {
+    return this.toObject();
   }
-
-  toJS() {
-    this.toObject();
+  toJS(): SignUpData {
+    return this.toObject();
   }
 }

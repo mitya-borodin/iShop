@@ -1,23 +1,8 @@
 # don't ever lint node_modules
 node_modules
+# don't lint nyc coverage output
+coverage
 
-# /node_modules/* in the project root is ignored by default
-# build artefacts
-dist/*
-.build
-build
-coverage/*
-
-# data definition files
-**/*.d.ts
-
-# 3rd party libs
-/src/public/
-
-# custom definition files
-/src/types/
-
-jest.config.js
-jest.setup.js
-nodemon.json
-
+dist
+node_modules
+test

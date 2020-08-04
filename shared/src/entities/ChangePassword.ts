@@ -1,21 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/isomorphic";
 import { isString } from "@rtcts/utils";
 
-export interface SignUpData {
-  readonly login?: string;
+export interface ChangePasswordData {
   readonly password?: string;
   readonly passwordConfirm?: string;
 }
 
-const fields: string[] = ["login", "password", "passwordConfirm"];
+const fields: string[] = ["password", "passwordConfirm"];
 
-export class SignUp implements ValueObject {
-  readonly login?: string;
+export class ChangePassword implements ValueObject {
   readonly password?: string;
   readonly passwordConfirm?: string;
 
   // The check in the constructor ensures that the correct noSecureFields will be written into the object
-  constructor(data: Partial<SignUpData>) {
+  constructor(data: Partial<ChangePasswordData>) {
     if (data) {
       for (const field of fields) {
         if (isString(data[field])) {
@@ -26,31 +25,18 @@ export class SignUp implements ValueObject {
       throw new Error(`${this.constructor.name}(data) data should be defined`);
     }
   }
-
-  // The canBeInsert method ensures that all mandatory noSecureFields are filled in and have the correct data type.
-  public isInsert<SignUpData>(): this is Required<SignUpData> {
+  isInsert(): this is Required<ChangePasswordData> {
     for (const field of fields) {
       if (!isString(this[field])) {
-        throw new Error(`${this.constructor.name}.${field} should be String`);
+        throw new Error(`${this.constructor.name}.${field} should be string`);
       }
     }
 
     return true;
   }
 
-  // The validate method allows you to implement the logic of checking the entered values in the object and to minimize the object describing the result of the check
   public validation(): ValidationResult {
     const validates: Validation[] = [];
-
-    if (!isString(this.login)) {
-      validates.push(
-        new Validation({
-          field: "login",
-          message: `Login should be typed`,
-          type: logTypeEnum.error,
-        }),
-      );
-    }
 
     if (!isString(this.password)) {
       validates.push(
@@ -93,17 +79,18 @@ export class SignUp implements ValueObject {
     return new ValidationResult(validates);
   }
 
-  toObject(): SignUpData {
+  toObject(): ChangePasswordData {
     return {
-      login: this.login,
       password: this.password,
       passwordConfirm: this.passwordConfirm,
     };
   }
-  toJSON() {
+
+  toJSON(): ChangePasswordData {
     return this.toObject();
   }
-  toJS() {
+
+  toJS(): ChangePasswordData {
     return this.toObject();
   }
 }

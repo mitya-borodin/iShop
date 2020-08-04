@@ -65,10 +65,10 @@ export class SignIn implements ValueObject {
       password: this.password,
     };
   }
-  toJSON() {
+  toJSON(): SignInData {
     return this.toObject();
   }
-  toJS() {
+  toJS(): SignInData {
     return this.toObject();
   }
 }

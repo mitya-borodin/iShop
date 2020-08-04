@@ -1,5 +1,11 @@
-import { Entity, EntityId, logTypeEnum, Validation, ValidationResult } from "@rtcts/isomorphic";
-import { isString } from "@rtcts/utils";
+import {
+  Entity,
+  EntityId,
+  logTypeEnum,
+  Validation,
+  ValidationResult,
+} from "@rtcts/isomorphic/dist";
+import { isString } from "@rtcts/utils/dist";
 
 // * Для сущности Customer необходимо сделать сущность CustomerCache.
 

@@ -1,17 +1,16 @@
 import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/isomorphic";
 import { isString } from "@rtcts/utils";
 
-export interface ChangeLoginData {
+export interface PasswordRecoveryData {
   readonly login?: string;
 }
 
 const fields: string[] = ["login"];
 
-export class ChangeLogin implements ValueObject {
+export class PasswordRecovery implements ValueObject {
   readonly login?: string;
 
-  // The check in the constructor ensures that the correct noSecureFields will be written into the object
-  constructor(data: Partial<ChangeLoginData>) {
+  constructor(data: Partial<PasswordRecoveryData>) {
     if (data) {
       for (const field of fields) {
         if (isString(data[field])) {
@@ -23,7 +22,7 @@ export class ChangeLogin implements ValueObject {
     }
   }
 
-  isInsert(): this is Required<ChangeLoginData> {
+  isInsert(): this is Required<PasswordRecoveryData> {
     for (const field of fields) {
       if (!isString(this[field])) {
         throw new Error(`${this.constructor.name}.${field} should be String`);
@@ -33,7 +32,7 @@ export class ChangeLogin implements ValueObject {
     return true;
   }
 
-  public validation(): ValidationResult {
+  validation(): ValidationResult {
     const validates: Validation[] = [];
 
     if (!isString(this.login)) {
@@ -48,21 +47,18 @@ export class ChangeLogin implements ValueObject {
 
     return new ValidationResult(validates);
   }
-  protected eject(): ChangeLoginData {
+
+  toObject(): PasswordRecoveryData {
     return {
       login: this.login,
     };
   }
 
-  toObject(): ChangeLoginData {
-    return {
-      login: this.login,
-    };
-  }
-  toJSON() {
+  toJSON(): PasswordRecoveryData {
     return this.toObject();
   }
-  toJS() {
+
+  toJS(): PasswordRecoveryData {
     return this.toObject();
   }
 }

@@ -50,6 +50,7 @@
   ],
   "cSpell.language": "en,ru",
   "conventionalCommits.scopes": [
-    "settings"
+    "settings",
+    "shared"
   ]
 }

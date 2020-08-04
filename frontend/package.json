@@ -1,4 +1,7 @@
 {
+  "private": true,
+  "name": "ishop-front",
+  "license": "UNLICENSED",
   "scripts": {
     "build": "snowpack build",
     "fmt": "prettier --write '**/*.{js,ts,svelte}'",
@@ -55,8 +58,5 @@
       "npm run lint:fix",
       "npm run lint"
     ]
-  },
-  "name": "ishop-front",
-  "private": true,
-  "license": "UNLICENSED"
+  }
 }
