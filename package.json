@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "bootstrap": "lerna bootstrap --ignore-prepublish",
+    "lint": "lerna run lint",
+    "test": "lerna run test",
+    "build": "lerna run build",
+    "start:backend": "cd ./packages/backend && npm start",
+    "start:frontend": "cd ./packages/frontend && npm start",
+    "start:shared": "cd ./packages/shared && npm start",
+    "link:shared": "cd ./packages/shared && npm link && cd ../backend && npm link @rtcts/ishop-shared && cd ../frontend && npm link @rtcts/ishop-shared"
+  },
+  "name": "ishop",
+  "private": true,
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}
