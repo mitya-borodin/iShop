@@ -6,7 +6,6 @@
       "ES2019"
     ],
     "module": "commonjs",
-    "composite": true,
     "baseUrl": "./",
     "paths": {
       "*": [
