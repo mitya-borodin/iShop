@@ -53,6 +53,7 @@
   "cSpell.language": "en,ru",
   "conventionalCommits.scopes": [
     "settings",
-    "shared"
+    "shared",
+    "frontend"
   ]
 }

@@ -23,5 +23,7 @@
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "../../.eslintrc.json"
   ],
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/no-unsafe-assignment": "off"
+  }
 }

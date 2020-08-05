@@ -1,8 +1,5 @@
 <script>
   import Link from "../components/Link.svelte";
-  import { data } from "../stores/store";
-
-  console.log(data);
 </script>
 
 <div class="text-center font-serif">
@@ -19,7 +16,7 @@
         </li>
       </ul>
     </div>
-    <p class="text-orange-500">
+    <p class="text-orange-500 ">
       Edit
       <code>src/App.svelte</code>
       and save to reload.
