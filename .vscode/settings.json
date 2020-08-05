@@ -34,9 +34,9 @@
   ],
   "eslint.packageManager": "yarn",
   "eslint.workingDirectories": [
-    "./frontend",
-    "./backend",
-    "./shared",
+    "./packages/frontend",
+    "./packages/backend",
+    "./packages/shared",
   ],
   "css.validate": false,
   "less.validate": false,
