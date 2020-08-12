@@ -12,7 +12,7 @@
           <Link href="/products">Products</Link>
         </li>
         <li class="text-orange-500">
-          <Link href="/products/1111">Product (1111)</Link>
+          <Link href="/products/1111">Product (4444)</Link>
         </li>
       </ul>
     </div>

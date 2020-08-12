@@ -54,6 +54,7 @@
   "conventionalCommits.scopes": [
     "settings",
     "shared",
-    "frontend"
+    "frontend",
+    "dependecies"
   ]
 }
