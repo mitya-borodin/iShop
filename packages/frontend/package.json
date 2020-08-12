@@ -4,7 +4,7 @@
     "build": "snowpack build",
     "test": "jest --no-cache",
     "lint": "eslint . --ext .ts --fix",
-    "fmt": "prettier --write **/*.{js,ts,svelte}"
+    "fmt": "prettier --write '**/*.{js,ts,svelte}'"
   },
   "dependencies": {
     "@rtcts/browser": "^1.3.6",

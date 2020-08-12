@@ -4,7 +4,7 @@
     "build": "del dist && tsc --build",
     "test": "jest --no-cache",
     "lint": "eslint . --ext .ts --fix",
-    "fmt": "prettier --write **/*.{js,ts,json}"
+    "fmt": "prettier --write '**/*.{js,ts,json}'"
   },
   "dependencies": {
     "@rtcts/ishop-shared": "^1.0.1",
