@@ -3,6 +3,7 @@ import Home from "./pages/Home.svelte";
 import Product from "./pages/Product.svelte";
 import Products from "./pages/Products.svelte";
 import SignIn from "./pages/SignIn.svelte";
+import SystemAdmin from "./pages/SystemAdmin.svelte";
 
 export const router = new UniversalRouter([
   {
@@ -20,5 +21,9 @@ export const router = new UniversalRouter([
   {
     path: "/signIn",
     action: () => SignIn,
+  },
+  {
+    path: "/system-admin",
+    action: () => SystemAdmin,
   },
 ]);
