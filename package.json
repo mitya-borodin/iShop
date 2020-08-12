@@ -4,6 +4,7 @@
     "lint": "lerna run lint",
     "test": "lerna run test",
     "build": "lerna run build",
+    "fmt": "lerna run fmt",
     "start:backend": "cd ./packages/backend && npm start",
     "start:frontend": "cd ./packages/frontend && npm start",
     "start:shared": "cd ./packages/shared && npm start",

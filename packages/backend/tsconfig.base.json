@@ -2,20 +2,13 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "ES2019",
-    "lib": [
-      "ES2019"
-    ],
+    "lib": ["ES2019"],
     "module": "commonjs",
     "outDir": "dist",
     "baseUrl": "./",
     "paths": {
-      "*": [
-        "node_modules/*",
-        "src/types/*"
-      ],
-      "src/*": [
-        "src/*"
-      ]
+      "*": ["node_modules/*", "src/types/*"],
+      "src/*": ["src/*"]
     },
     "noEmitOnError": true,
     "noImplicitAny": true,
