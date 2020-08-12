@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const sveltePreprocess = require("./node_modules/svelte-preprocess/dist");
+const sveltePreprocess = require("svelte-preprocess");
 const postcss = require("./postcss.config.js");
 
 module.exports = {
