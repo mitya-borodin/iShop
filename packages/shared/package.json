@@ -19,7 +19,7 @@
     "lint": "tsdx lint src",
     "lint:fix": "tsdx lint src --fix",
     "lint:report": "tsdx lint src --report-file report.json",
-    "fmt": "prettier --write '**/*.{js,ts}'",
+    "fmt": "prettier --write **/*.{js,ts}",
     "prepare": "tsdx build"
   },
   "peerDependencies": {
