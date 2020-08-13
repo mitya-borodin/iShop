@@ -1,4 +1,7 @@
 import UniversalRouter from "universal-router";
+import CreateUser from "./pages/CreateUser.svelte";
+import EditUserLogin from "./pages/EditUserLogin.svelte";
+import EditUserPassword from "./pages/EditUserPassword.svelte";
 import Home from "./pages/Home.svelte";
 import Product from "./pages/Product.svelte";
 import Products from "./pages/Products.svelte";
@@ -24,6 +27,23 @@ export const router = new UniversalRouter([
   },
   {
     path: "/system-admin",
-    action: () => SystemAdmin,
+    children: [
+      {
+        path: "",
+        action: () => SystemAdmin,
+      },
+      {
+        path: "/create-user",
+        action: () => CreateUser,
+      },
+      {
+        path: "/edit-user",
+        action: () => EditUserLogin,
+      },
+      {
+        path: "/edit-password",
+        action: () => EditUserPassword,
+      },
+    ],
   },
 ]);

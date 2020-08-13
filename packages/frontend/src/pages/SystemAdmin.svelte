@@ -1,6 +1,7 @@
 <script>
-  import Select from "../components/Select.svelte";
   import Button from "../components/Button.svelte";
+  import Link from "../components/Link.svelte";
+  import Select from "../components/Select.svelte";
   import UserItem from "../components/UserItem.svelte";
 
   let selectedUsers = new Set();
@@ -23,7 +24,9 @@
       <h1 class="font-bold text-4xl">iShop Admin</h1>
       <Select className="mt-3" disabled={selectedUsers.size === 0} />
       <div class="flex justify-between mt-3">
-        <Button className="mr-2">Create user</Button>
+        <Button className="mr-2">
+          <Link href="/system-admin/create-user">Create user</Link>
+        </Button>
         <Button disabled={selectedUsers.size === 0}>Apply group</Button>
       </div>
     </div>

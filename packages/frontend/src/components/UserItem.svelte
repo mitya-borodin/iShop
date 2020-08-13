@@ -1,5 +1,6 @@
 <script lang="ts">
   import Button from "../components/Button.svelte";
+  import Link from "../components/Link.svelte";
 
   export let id: string;
   export let checked: boolean;
@@ -27,8 +28,12 @@
     </div>
   </div>
   <div class="flex justify-end mr-3">
-    <Button type="link">remove</Button>
-    <Button type="link">change password</Button>
-    <Button type="link">edit</Button>
+    <Button type="link">Remove</Button>
+    <Button type="link">
+      <Link href="/system-admin/edit-password">Change password</Link>
+    </Button>
+    <Button type="link">
+      <Link href="/system-admin/edit-user">Edit</Link>
+    </Button>
   </div>
 </li>
