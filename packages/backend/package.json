@@ -7,10 +7,10 @@
     "fmt": "prettier --write **/*.{js,ts,json}"
   },
   "dependencies": {
-    "@rtcts/ishop-shared": "^1.0.1",
-    "@rtcts/isomorphic": "^1.3.3",
-    "@rtcts/node": "^1.3.3",
-    "@rtcts/utils": "^1.3.2",
+    "@rtcts/ishop-shared": "^1.0.2",
+    "@rtcts/isomorphic": "^1.4.0",
+    "@rtcts/node": "^1.4.0",
+    "@rtcts/utils": "^1.4.0",
     "bson": "^4.0.4",
     "chalk": "^4.1.0",
     "co-body": "^6.0.0",
@@ -24,7 +24,6 @@
     "koa-router": "^9.1.0",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
-    "moment": "^2.27.0",
     "mongodb": "^3.6.0",
     "ms": "^2.1.2",
     "type-is": "^1.6.18",
