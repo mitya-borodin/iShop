@@ -1,48 +1,40 @@
 import UniversalRouter from "universal-router";
-import CreateUser from "./pages/CreateUser.svelte";
-import EditUserLogin from "./pages/EditUserLogin.svelte";
-import EditUserPassword from "./pages/EditUserPassword.svelte";
-import Home from "./pages/Home.svelte";
-import Product from "./pages/Product.svelte";
-import Products from "./pages/Products.svelte";
-import SignIn from "./pages/SignIn.svelte";
-import SystemAdmin from "./pages/SystemAdmin.svelte";
 
 export const router = new UniversalRouter([
   {
     path: "/",
-    action: () => Home,
+    action: async () => (await import("./pages/Home.svelte")).default,
   },
   {
     path: "/products",
-    action: () => Products,
+    action: async () => (await import("./pages/Products.svelte")).default,
   },
   {
     path: "/products/:id",
-    action: () => Product,
+    action: async () => (await import("./pages/Product.svelte")).default,
   },
   {
     path: "/signIn",
-    action: () => SignIn,
+    action: async () => (await import("./pages/SignIn.svelte")).default,
   },
   {
     path: "/system-admin",
     children: [
       {
         path: "",
-        action: () => SystemAdmin,
+        action: async () => (await import("./pages/SystemAdmin.svelte")).default,
       },
       {
         path: "/create-user",
-        action: () => CreateUser,
+        action: async () => (await import("./pages/CreateUser.svelte")).default,
       },
       {
         path: "/edit-user/:id",
-        action: () => EditUserLogin,
+        action: async () => (await import("./pages/EditUserLogin.svelte")).default,
       },
       {
         path: "/edit-password/:id",
-        action: () => EditUserPassword,
+        action: async () => (await import("./pages/EditUserPassword.svelte")).default,
       },
     ],
   },

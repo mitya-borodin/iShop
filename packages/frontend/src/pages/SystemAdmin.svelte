@@ -27,9 +27,9 @@
         <option>Admin</option>
       </Select>
       <div class="flex justify-between mt-3">
-        <Button className="mr-2">
-          <Link href="/system-admin/create-user">Create user</Link>
-        </Button>
+        <Link href="/system-admin/create-user">
+          <Button className="mr-2">Create user</Button>
+        </Link>
         <Button disabled={selectedUsers.size === 0}>Apply group</Button>
       </div>
     </div>

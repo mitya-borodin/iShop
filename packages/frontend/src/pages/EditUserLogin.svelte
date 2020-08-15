@@ -16,9 +16,9 @@
       <Input id="email" label="Login" placeholder="Please type login" type="email" required />
     </div>
     <div class="flex justify-end mb-6">
-      <Button className="mr-2">
-        <Link href="/system-admin">Cancel</Link>
-      </Button>
+      <Link href="/system-admin">
+        <Button className="mr-2">Cancel</Button>
+      </Link>
       <Button type="primary" className="mr-2">Change</Button>
     </div>
   </div>

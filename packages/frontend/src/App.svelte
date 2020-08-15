@@ -7,7 +7,7 @@
 
   setContext("browserHistory", browserHistory);
 
-  $: component = null;
+  let component = null;
 
   onMount(() => {
     const checkPath = async () => {

@@ -15,13 +15,14 @@
         on:click={() => onClick(id)}
         class={`
             inline-block
-            ${checked ? 'bg-indigo-500' : 'bg-gray-200'}
             rounded-full
             px-3
             py-1
+            ${checked ? 'bg-indigo-500' : 'bg-gray-200'}
             text-sm
             font-semibold
             ${checked ? 'text-white' : 'text-gray-700'}
+            cursor-pointer
         `}>
         admin
       </p>
