@@ -30,10 +30,10 @@
   <div class="flex justify-end mr-3">
     <Button type="link">Remove</Button>
     <Button type="link">
-      <Link href="/system-admin/edit-password">Change password</Link>
+      <Link href="/system-admin/edit-password/{id}">Change password</Link>
     </Button>
     <Button type="link">
-      <Link href="/system-admin/edit-user">Edit</Link>
+      <Link href="/system-admin/edit-user/{id}">Edit</Link>
     </Button>
   </div>
 </li>

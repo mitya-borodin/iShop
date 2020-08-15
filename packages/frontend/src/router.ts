@@ -37,11 +37,11 @@ export const router = new UniversalRouter([
         action: () => CreateUser,
       },
       {
-        path: "/edit-user",
+        path: "/edit-user/:id",
         action: () => EditUserLogin,
       },
       {
-        path: "/edit-password",
+        path: "/edit-password/:id",
         action: () => EditUserPassword,
       },
     ],

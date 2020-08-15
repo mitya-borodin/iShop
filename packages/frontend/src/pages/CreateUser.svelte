@@ -29,16 +29,14 @@
         id="passwordConfirm"
         label="Confirm password"
         placeholder="Please type password again"
-        type="paddword"
+        type="password"
         required />
     </div>
     <div class="flex justify-end mb-6">
       <Button className="mr-2">
-        <Link href="/system-admin/create-user">Cancel</Link>
+        <Link href="/system-admin">Cancel</Link>
       </Button>
-      <Button type="primary" className="mr-2">
-        <Link href="/system-admin/create-user">Create</Link>
-      </Button>
+      <Button type="primary" className="mr-2">Create</Button>
     </div>
   </div>
 </div>
