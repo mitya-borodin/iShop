@@ -18,11 +18,14 @@
 </script>
 
 <div class="h-screen bg-gray-100 overflow-hidden flex flex-col">
-  <header
-    class="h-48 mb-6 flex flex-shrink-0 items-end bg-white border-b border-solid border-gray-300">
+  <header class="mb-6 flex flex-shrink-0 items-end bg-white border-b border-solid border-gray-300">
     <div class="flex flex-col justify-center w-full px-6 pb-3">
       <h1 class="font-bold text-4xl">iShop Admin</h1>
-      <Select className="mt-3" disabled={selectedUsers.size === 0} />
+      <Select className="mt-3" disabled={selectedUsers.size === 0}>
+        <option>Manager</option>
+        <option>Observer</option>
+        <option>Admin</option>
+      </Select>
       <div class="flex justify-between mt-3">
         <Button className="mr-2">
           <Link href="/system-admin/create-user">Create user</Link>

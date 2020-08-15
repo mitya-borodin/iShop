@@ -11,6 +11,7 @@
     "@rtcts/ishop-shared": "^1.0.2",
     "@rtcts/isomorphic": "^1.4.0",
     "@rtcts/utils": "^1.4.0",
+    "classnames": "^2.2.6",
     "eventemitter3": "^4.0.4",
     "history": "^5.0.0",
     "lodash.omit": "^4.5.0",

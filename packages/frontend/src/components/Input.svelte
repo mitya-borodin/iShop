@@ -25,7 +25,7 @@
     class={`
       shadow 
       appearance-none
-      border 
+      border
       ${error ? 'border-red-500' : ''}
       rounded 
       w-full 

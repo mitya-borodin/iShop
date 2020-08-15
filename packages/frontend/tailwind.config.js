@@ -13,8 +13,10 @@ module.exports = {
     },
   },
   variants: {
-    backgroundColor: ["responsive", "hover", "focus", "active"],
-    textColor: ["responsive", "hover", "focus", "active"],
+    backgroundColor: ["hover", "focus", "active"],
+    textColor: ["hover", "focus", "active"],
+    borderColor: ["hover", "focus", "active"],
+    boxShadow: ["hover", "focus", "active"],
   },
   plugins: [],
 };

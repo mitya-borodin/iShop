@@ -23,9 +23,11 @@
       leading-tight 
       focus:outline-none  
     `}>
-    <option>Manager</option>
-    <option>Observer</option>
-    <option>Admin</option>
+    <slot>
+      <option>Option 1</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+    </slot>
   </select>
   <div
     class={`
