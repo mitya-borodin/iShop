@@ -1,6 +1,6 @@
 {
   "extends": "@snowpack/app-scripts-svelte",
-  "install": ["history", "svelte"],
+  "install": ["history", "svelte", "mobx"],
   "plugins": [
     ["@snowpack/plugin-dotenv"],
     ["@snowpack/plugin-webpack", {}],
@@ -9,5 +9,12 @@
       "@snowpack/plugin-run-script",
       { "cmd": "eslint 'src/**/*.{js,jsx,ts,tsx}'", "watch": "watch \"$1\" src" }
     ]
-  ]
+  ],
+  "proxy": {
+    "/api": "http://127.0.0.1:10000/api",
+    "/ws": {
+      "target": "http://127.0.0.1:10001/ws",
+      "ws": true
+    }
+  }
 }

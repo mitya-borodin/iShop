@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import * as history from "history";
   import { onMount, setContext } from "svelte";
   import { router } from "./router";
@@ -7,11 +7,29 @@
 
   setContext("browserHistory", browserHistory);
 
-  let component = null;
+  let component: any = null;
 
   onMount(() => {
     const checkPath = async () => {
-      component = await router.resolve(browserHistory.location);
+      const result = await router.resolve(browserHistory.location);
+
+      if (result && typeof result.redirect === "string") {
+        browserHistory.replace(result.redirect);
+        component = null;
+        return;
+      }
+
+      if (result && result.default) {
+        component = result.default;
+        return;
+      }
+
+      if (result) {
+        component = result;
+        return;
+      }
+
+      component = null;
     };
 
     browserHistory.listen(checkPath);

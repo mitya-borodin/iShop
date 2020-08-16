@@ -5,7 +5,7 @@
   export let type: "email" | "password" = "email";
   export let required: boolean;
   export let label: string = "";
-  export let error: string | void;
+  export let error: string | undefined = undefined;
   export let className: string = "";
   export let onInput: (value: string, event: Event) => void = (value, event) => {
     console.log(value, event);

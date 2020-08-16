@@ -15,7 +15,7 @@
           <Link href="/products/100">Product (100)</Link>
         </li>
         <li class="text-orange-500">
-          <Link href="/signIn">Sign In</Link>
+          <Link href="/sign-in">Sign In</Link>
         </li>
         <li class="text-orange-500">
           <Link href="/system-admin">System Admin</Link>

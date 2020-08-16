@@ -14,7 +14,8 @@
       "@testing-library/jest-dom",
       "@testing-library/svelte",
       "svelte"
-    ]
+    ],
+    "experimentalDecorators": true
   },
   "include": ["src", "types"],
   "exclude": ["node_modules"]
