@@ -7,9 +7,9 @@
     "fmt": "prettier --write **/*.{js,ts,json}"
   },
   "dependencies": {
-    "@rtcts/ishop-shared": "^1.0.6",
-    "@rtcts/isomorphic": "^1.4.2",
-    "@rtcts/node": "^1.4.2",
+    "@rtcts/ishop-shared": "^1.0.7",
+    "@rtcts/isomorphic": "^1.4.7",
+    "@rtcts/node": "^1.4.7",
     "@rtcts/utils": "^1.4.1",
     "bson": "^4.0.4",
     "chalk": "^4.1.0",
