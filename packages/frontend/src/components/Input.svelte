@@ -4,6 +4,7 @@
   export let placeholder: string = "placeholder";
   export let type: "email" | "password" = "email";
   export let required: boolean;
+  export let value: string | undefined = "";
   export let label: string = "";
   export let error: string | undefined = undefined;
   export let className: string = "";
@@ -22,6 +23,7 @@
     {placeholder}
     {type}
     {required}
+    {value}
     class={`
       shadow 
       appearance-none

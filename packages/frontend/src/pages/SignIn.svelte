@@ -3,6 +3,28 @@
   import Input from "../components/Input.svelte";
   import { onMount, onDestroy } from "svelte";
   import { signInFormStore } from "../stores/user";
+  import { connect } from "../shared/utils/mobxSvelte";
+
+  const { autorun } = connect();
+
+  let emailValue: string | undefined = "";
+  let emailError: string | undefined = "";
+  let passwordValue: string | undefined = "";
+  let passwordError: string | undefined = "";
+
+  $: autorun(() => {
+    const { validationResult, showValidateResult, form } = signInFormStore;
+
+    if (form) {
+      emailValue = form.login || "";
+      passwordValue = form.password || "";
+    }
+
+    if (showValidateResult) {
+      emailError = validationResult.getFieldMessage("login");
+      passwordError = validationResult.getFieldMessage("password");
+    }
+  });
 
   onMount(() => signInFormStore.open());
   onDestroy(() => signInFormStore.cancel());
@@ -25,6 +47,8 @@
         id="email"
         name="email"
         required
+        value={emailValue}
+        error={emailError}
         placeholder="Email"
         type="email"
         label="Email"
@@ -33,6 +57,8 @@
         id="password"
         name="password"
         required
+        value={passwordValue}
+        error={passwordError}
         placeholder="******************"
         type="password"
         label="Password"

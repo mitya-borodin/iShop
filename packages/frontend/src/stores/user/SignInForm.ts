@@ -23,8 +23,11 @@ export class SignInFormStore extends ValueObjectFormStore<SignIn, SignInData> {
 
     if (validationResult.isValid && submit.isInsert()) {
       await this.repository.signIn(submit.toObject());
+      await this.repository.init();
 
-      browserHistory.replace("/");
+      if (this.repository.isAuthorized) {
+        browserHistory.push("/");
+      }
     }
   }
 }

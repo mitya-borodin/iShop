@@ -7,7 +7,7 @@
     "fmt": "prettier --write **/*.{js,ts,svelte}"
   },
   "dependencies": {
-    "@rtcts/browser": "^1.4.7",
+    "@rtcts/browser": "^1.4.8",
     "@rtcts/ishop-shared": "^1.0.7",
     "@rtcts/isomorphic": "^1.4.7",
     "@rtcts/utils": "^1.4.1",

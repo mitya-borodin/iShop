@@ -1,10 +1,10 @@
-import mobx from "mobx";
+import { autorun, IReactionDisposer } from "mobx";
 import { onDestroy } from "svelte";
 
 type AutorunFn = (view: () => void) => void;
 
 export function connect(): { autorun: AutorunFn } {
-  let disposer: mobx.IReactionDisposer;
+  let disposer: IReactionDisposer;
 
   onDestroy(() => disposer && disposer());
 
@@ -12,7 +12,7 @@ export function connect(): { autorun: AutorunFn } {
     autorun: (view: () => void) => {
       // eslint-disable-next-line no-unused-expressions
       disposer && disposer();
-      disposer = mobx.autorun(view);
+      disposer = autorun(view);
     },
   };
 }

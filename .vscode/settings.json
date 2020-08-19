@@ -55,6 +55,7 @@
     "settings",
     "shared",
     "frontend",
-    "dependecies"
+    "dependecies",
+    "all"
   ]
 }

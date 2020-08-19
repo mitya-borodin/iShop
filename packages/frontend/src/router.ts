@@ -2,58 +2,61 @@
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import UniversalRouter from "universal-router";
+import UniversalRouter, { RouteContext } from "universal-router";
 import { userRepository } from "./stores/user";
 
-const getSecureComponent = async (path: string): Promise<any> => {
+const getSecureComponent = async (importModule: any, context: RouteContext): Promise<any> => {
   try {
     await userRepository.init();
   } catch (error) {
     console.error(error);
   }
 
-  if (!userRepository.isAuthorized) {
+  console.log(userRepository.isAuthorized, context.pathname);
+
+  if (!userRepository.isAuthorized && context.pathname.indexOf("/sign-in") === -1) {
     return { redirect: "/sign-in" };
   }
 
-  if (userRepository.isAdmin) {
+  if (userRepository.isAdmin && context.pathname.indexOf("/system-admin") === -1) {
     return { redirect: "/system-admin" };
   }
 
-  if (userRepository.isManager) {
+  if (userRepository.isManager && context.pathname.indexOf("/content-manager") === -1) {
     return { redirect: "/content-manager" };
   }
 
-  if (userRepository.isClient) {
-    return { redirect: "/" };
-  }
-
-  return await import(path);
+  return importModule();
 };
 
 export const router = new UniversalRouter([
   {
     path: "/",
-    action: (): Promise<any> => import("./pages/Home.svelte"),
+    action: async (context): Promise<any> =>
+      getSecureComponent(() => import("./pages/Home.svelte"), context),
   },
   {
     path: "/products",
-    action: (): Promise<any> => import("./pages/Products.svelte"),
+    action: async (context): Promise<any> =>
+      getSecureComponent(() => import("./pages/Products.svelte"), context),
   },
   {
     path: "/products/:id",
-    action: (): Promise<any> => import("./pages/Product.svelte"),
+    action: async (context): Promise<any> =>
+      getSecureComponent(() => import("./pages/Product.svelte"), context),
   },
   {
     path: "/sign-in",
-    action: (): Promise<any> => import("./pages/SignIn.svelte"),
+    action: async (context): Promise<any> =>
+      getSecureComponent(() => import("./pages/SignIn.svelte"), context),
   },
   {
     path: "/content-manager",
     children: [
       {
         path: "",
-        action: (): Promise<any> => getSecureComponent("./pages/ContentManager.svelte"),
+        action: async (context): Promise<any> =>
+          getSecureComponent(() => import("./pages/ContentManager.svelte"), context),
       },
     ],
   },
@@ -62,19 +65,23 @@ export const router = new UniversalRouter([
     children: [
       {
         path: "",
-        action: async (): Promise<any> => getSecureComponent("./pages/SystemAdmin.svelte"),
+        action: async (context): Promise<any> =>
+          getSecureComponent(() => import("./pages/SystemAdmin.svelte"), context),
       },
       {
         path: "/create-user",
-        action: (): Promise<any> => getSecureComponent("./pages/CreateUser.svelte"),
+        action: async (context): Promise<any> =>
+          getSecureComponent(() => import("./pages/CreateUser.svelte"), context),
       },
       {
         path: "/edit-user/:id",
-        action: (): Promise<any> => getSecureComponent("./pages/EditUserLogin.svelte"),
+        action: async (context): Promise<any> =>
+          getSecureComponent(() => import("./pages/EditUserLogin.svelte"), context),
       },
       {
         path: "/edit-password/:id",
-        action: (): Promise<any> => getSecureComponent("./pages/EditUserPassword.svelte"),
+        action: async (context): Promise<any> =>
+          getSecureComponent(() => import("./pages/EditUserPassword.svelte"), context),
       },
     ],
   },

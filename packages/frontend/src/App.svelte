@@ -1,9 +1,7 @@
 <script lang="ts">
-  import * as history from "history";
   import { onMount, setContext } from "svelte";
   import { router } from "./router";
-
-  const browserHistory = history.createBrowserHistory();
+  import { browserHistory } from "./shared/browserHistory";
 
   setContext("browserHistory", browserHistory);
 
@@ -11,6 +9,7 @@
 
   onMount(() => {
     const checkPath = async () => {
+      console.log(5555555);
       const result = await router.resolve(browserHistory.location);
 
       if (result && typeof result.redirect === "string") {
