@@ -36,6 +36,7 @@
     ]
   },
   "name": "ishop-front",
+  "private": true,
   "license": "MIT",
   "devDependencies": {
     "@babel/preset-typescript": "^7.10.4",

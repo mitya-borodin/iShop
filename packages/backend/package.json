@@ -46,6 +46,7 @@
     ]
   },
   "name": "ishop-backend",
+  "private": true, 
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^26.0.10",
