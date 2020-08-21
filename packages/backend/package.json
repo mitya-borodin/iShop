@@ -45,8 +45,9 @@
       "git add"
     ]
   },
+  "version": "1.0.0",
   "name": "ishop-backend",
-  "private": true, 
+  "private": true,
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^26.0.10",
