@@ -7,7 +7,7 @@
     "fmt": "prettier --write **/*.{js,ts,json}"
   },
   "dependencies": {
-    "@rtcts/ishop-shared": "^1.0.7",
+    "@rtcts/ishop-shared": "^1.0.11",
     "@rtcts/isomorphic": "^1.4.9",
     "@rtcts/node": "^1.4.9",
     "@rtcts/utils": "^1.4.1",
@@ -45,7 +45,6 @@
       "git add"
     ]
   },
-  "version": "1.0.0",
   "name": "ishop-backend",
   "private": true,
   "license": "MIT",

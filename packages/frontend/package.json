@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@rtcts/browser": "^1.4.9",
-    "@rtcts/ishop-shared": "^1.0.7",
+    "@rtcts/ishop-shared": "^1.0.11",
     "@rtcts/isomorphic": "^1.4.9",
     "@rtcts/utils": "^1.4.1",
     "classnames": "^2.2.6",
@@ -35,7 +35,6 @@
       "git add"
     ]
   },
-  "version": "1.0.0",
   "name": "ishop-front",
   "private": true,
   "license": "MIT",

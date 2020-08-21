@@ -7,7 +7,6 @@
     "fmt": "lerna run fmt",
     "ncu": "lerna exec 'ncu -u --semverLevel major'",
     "ncu:check": "lerna exec 'ncu'",
-    "np": "lerna exec 'np'",
     "start:backend": "cd ./packages/backend && npm start",
     "start:frontend": "cd ./packages/frontend && npm start",
     "start:shared": "cd ./packages/shared && npm start",
@@ -19,7 +18,6 @@
     "lerna": "^3.22.1"
   },
   "dependencies": {
-    "np": "^6.4.0",
     "npm-check-updates": "^7.1.1"
   }
 }
