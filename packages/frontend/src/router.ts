@@ -12,8 +12,6 @@ const getSecureComponent = async (importModule: any, context: RouteContext): Pro
     console.error(error);
   }
 
-  console.log(userRepository.isAuthorized, context.pathname);
-
   if (!userRepository.isAuthorized && context.pathname.indexOf("/sign-in") === -1) {
     return { redirect: "/sign-in" };
   }

@@ -8,8 +8,7 @@
   let component: any = null;
 
   onMount(() => {
-    const checkPath = async () => {
-      console.log(5555555);
+    const onHistory = async () => {
       const result = await router.resolve(browserHistory.location);
 
       if (result && typeof result.redirect === "string") {
@@ -31,9 +30,9 @@
       component = null;
     };
 
-    browserHistory.listen(checkPath);
+    browserHistory.listen(onHistory);
 
-    checkPath();
+    onHistory();
   });
 </script>
 
