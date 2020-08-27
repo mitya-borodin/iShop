@@ -1,9 +1,9 @@
 import { Product, userGroupEnum, webSocketChannelsEnum } from "@rtcts/ishop-shared";
 import { pubSub } from "../../shared/pubSub";
 import { wsClient } from "../ws";
+import { ProductFormStore } from "./ProductForm";
 import { ProductHttpTransport } from "./ProductHttpTransport";
 import { ProductRepository } from "./ProductRepository";
-import { ProductFormStore } from "./ProductForm";
 
 export const productHttpTransport = new ProductHttpTransport(
   "product",

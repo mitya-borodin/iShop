@@ -23,7 +23,7 @@
     "prepare": "tsdx build"
   },
   "peerDependencies": {
-    "@rtcts/isomorphic": "^1.5.2",
+    "@rtcts/isomorphic": "^1.5.4",
     "@rtcts/utils": "^1.5.2",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0"
@@ -52,7 +52,7 @@
   },
   "module": "dist/ishop-shared.esm.js",
   "devDependencies": {
-    "@rtcts/isomorphic": "^1.5.2",
+    "@rtcts/isomorphic": "^1.5.4",
     "@rtcts/utils": "^1.5.2",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",

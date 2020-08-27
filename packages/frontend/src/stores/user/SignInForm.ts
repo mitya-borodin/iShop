@@ -1,9 +1,9 @@
 import { ValueObjectFormStore } from "@rtcts/browser";
 import { SignIn, SignInData } from "@rtcts/ishop-shared";
-import { UserRepository } from "./UserRepository";
-import { browserHistory } from "../../shared/browserHistory";
-import { computed } from "mobx";
 import { ValidationResult } from "@rtcts/isomorphic";
+import { computed } from "mobx";
+import { browserHistory } from "../../shared/browserHistory";
+import { UserRepository } from "./UserRepository";
 
 export class SignInFormStore extends ValueObjectFormStore<SignIn, SignInData> {
   protected readonly repository: UserRepository;
@@ -39,6 +39,9 @@ export class SignInFormStore extends ValueObjectFormStore<SignIn, SignInData> {
 
       if (this.repository.isAuthorized) {
         browserHistory.push("/");
+
+        this.hideValidation();
+        this.cancel();
       }
     }
   }

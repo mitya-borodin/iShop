@@ -1,9 +1,9 @@
 import { autorun, IReactionDisposer } from "mobx";
 import { onDestroy } from "svelte";
 
-type AutorunFn = (view: () => void) => void;
+type Autorun = (view: () => void) => void;
 
-export function connect(): { autorun: AutorunFn } {
+export function connect(): { autorun: Autorun } {
   let disposer: IReactionDisposer;
 
   onDestroy(() => disposer && disposer());

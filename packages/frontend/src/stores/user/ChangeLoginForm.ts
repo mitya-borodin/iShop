@@ -1,5 +1,7 @@
 import { ValueObjectFormStore } from "@rtcts/browser";
 import { ChangeLogin, ChangeLoginData } from "@rtcts/ishop-shared";
+import { ValidationResult } from "@rtcts/isomorphic";
+import { computed } from "mobx";
 import { UserRepository } from "./UserRepository";
 
 export class ChangeLoginFormStore extends ValueObjectFormStore<ChangeLogin, ChangeLoginData> {
@@ -9,6 +11,11 @@ export class ChangeLoginFormStore extends ValueObjectFormStore<ChangeLogin, Chan
     super(ChangeLogin);
 
     this.repository = repository;
+  }
+
+  @computed({ name: "ChangeLoginFormStore.externalValidationResult" })
+  get externalValidationResult(): ValidationResult {
+    return this.repository.validationResult;
   }
 
   protected async submitForm(submit: ChangeLogin): Promise<void> {
