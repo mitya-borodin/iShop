@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@rtcts/ishop-shared": "^1.0.11",
-    "@rtcts/isomorphic": "^1.5.4",
-    "@rtcts/node": "^1.5.4",
+    "@rtcts/isomorphic": "^1.5.5",
+    "@rtcts/node": "^1.5.5",
     "@rtcts/utils": "^1.5.2",
     "bson": "^4.1.0",
     "chalk": "^4.1.0",

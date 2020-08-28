@@ -1,6 +1,6 @@
 {
   "extends": "@snowpack/app-scripts-svelte",
-  "install": ["history", "svelte", "mobx"],
+  "install": ["history", "svelte", "mobx", "@rtcts/isomorphic", "@rtcts/ishop-shared"],
   "installOptions": {
     "treeshake": true
   },
