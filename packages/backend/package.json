@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.1.2",
   "scripts": {
     "start": "nodemon --inspect src/entry.ts",
     "build": "del dist && tsc --build",
@@ -8,7 +8,7 @@
     "fmt": "prettier --write **/*.{js,ts,json}"
   },
   "dependencies": {
-    "@rtcts/ishop-shared": "^1.1.1",
+    "@rtcts/ishop-shared": "^1.1.2",
     "@rtcts/isomorphic": "^1.5.7",
     "@rtcts/node": "^1.5.7",
     "@rtcts/utils": "^1.5.2",
