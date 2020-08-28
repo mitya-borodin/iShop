@@ -1,5 +1,6 @@
 import { ValueObjectFormStore } from "@rtcts/browser";
-import { PasswordRecovery, PasswordRecoveryData } from "@rtcts/ishop-shared";
+import { PasswordRecovery } from "@rtcts/ishop-shared";
+import type { PasswordRecoveryData } from "@rtcts/ishop-shared";
 import { ValidationResult } from "@rtcts/isomorphic";
 import { computed } from "mobx";
 import { browserHistory } from "../../shared/browserHistory";

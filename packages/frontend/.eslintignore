@@ -20,5 +20,6 @@ jest.config.js
 jest.setup.js
 tailwind.config.js
 svelte.config.js
+snowpack.config.js
 
 

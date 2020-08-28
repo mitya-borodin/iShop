@@ -1,5 +1,6 @@
 import { ValueObjectFormStore } from "@rtcts/browser";
-import { SignIn, SignInData } from "@rtcts/ishop-shared";
+import { SignIn } from "@rtcts/ishop-shared";
+import type { SignInData } from "@rtcts/ishop-shared";
 import { ValidationResult } from "@rtcts/isomorphic";
 import { computed } from "mobx";
 import { browserHistory } from "../../shared/browserHistory";

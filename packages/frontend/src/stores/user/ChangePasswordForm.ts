@@ -1,5 +1,6 @@
 import { ValueObjectFormStore } from "@rtcts/browser";
-import { ChangePassword, ChangePasswordData } from "@rtcts/ishop-shared";
+import { ChangePassword } from "@rtcts/ishop-shared";
+import type { ChangePasswordData } from "@rtcts/ishop-shared";
 import { ValidationResult } from "@rtcts/isomorphic";
 import { computed } from "mobx";
 import { UserRepository } from "./UserRepository";

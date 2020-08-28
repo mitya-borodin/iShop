@@ -19,4 +19,7 @@ module.exports = {
     boxShadow: ["hover", "focus", "active"],
   },
   plugins: [],
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
 };

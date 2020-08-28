@@ -1,5 +1,6 @@
 import { ValueObjectFormStore } from "@rtcts/browser";
-import { AddUser, AddUserData } from "@rtcts/ishop-shared";
+import { AddUser } from "@rtcts/ishop-shared";
+import type { AddUserData } from "@rtcts/ishop-shared";
 import { ValidationResult } from "@rtcts/isomorphic";
 import { computed } from "mobx";
 import { UserRepository } from "./UserRepository";

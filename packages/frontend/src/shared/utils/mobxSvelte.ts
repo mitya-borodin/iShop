@@ -1,4 +1,5 @@
-import { autorun, IReactionDisposer } from "mobx";
+import { autorun } from "mobx";
+import type { IReactionDisposer } from "mobx";
 import { onDestroy } from "svelte";
 
 type Autorun = (view: () => void) => void;
