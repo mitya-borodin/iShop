@@ -1,4 +1,5 @@
 {
+  "version": "1.0.12",
   "scripts": {
     "start": "nodemon --inspect src/entry.ts",
     "build": "del dist && tsc --build",
