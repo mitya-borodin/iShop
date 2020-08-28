@@ -5,7 +5,8 @@
     "build": "snowpack build",
     "test": "jest --no-cache",
     "lint": "eslint . --ext .ts --fix",
-    "fmt": "prettier --write **/*.{js,ts,svelte}"
+    "fmt": "prettier --write **/*.{js,ts,svelte}",
+    "prepare": "snowpack build"
   },
   "browserslist": ">0.75%, not ie 11, not UCAndroid >0, not OperaMini all",
   "dependencies": {

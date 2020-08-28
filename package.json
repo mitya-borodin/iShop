@@ -1,7 +1,7 @@
 {
   "version": "1.0.12",
   "scripts": {
-    "bootstrap": "lerna bootstrap --ignore-prepublish",
+    "bootstrap": "lerna exec 'del node_modules dist build web_modules && npm i'",
     "lint": "lerna run lint",
     "test": "lerna run test",
     "build": "lerna run build",
@@ -10,15 +10,15 @@
     "ncu:check": "lerna exec 'ncu'",
     "start:backend": "cd ./packages/backend && npm start",
     "start:frontend": "cd ./packages/frontend && npm start",
-    "start:shared": "cd ./packages/shared && npm start",
-    "link:shared": "cd ./packages/shared && npm link && cd ../backend && npm link @rtcts/ishop-shared && cd ../frontend && npm link @rtcts/ishop-shared"
+    "start:shared": "cd ./packages/shared && npm start"
   },
   "name": "ishop",
   "license": "MIT",
   "devDependencies": {
-    "lerna": "^3.22.1"
-  },
-  "dependencies": {
+    "@microsoft/rush": "^5.33.2",
+    "del-cli": "^3.0.1",
+    "lerna": "^3.22.1",
     "npm-check-updates": "^7.1.1"
-  }
+  },
+  "dependencies": {}
 }
