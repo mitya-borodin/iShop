@@ -20,6 +20,14 @@ const getSecureComponent = async (importModule: any, context: RouteContext): Pro
     return { redirect: "/sign-in" };
   }
 
+  if (
+    userRepository.isClient &&
+    (context.pathname.indexOf("/system-admin") !== -1 ||
+      context.pathname.indexOf("/content-manager") !== -1)
+  ) {
+    return { redirect: "/" };
+  }
+
   if (userRepository.isAdmin && context.pathname.indexOf("/system-admin") === -1) {
     return { redirect: "/system-admin" };
   }

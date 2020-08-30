@@ -13,12 +13,12 @@ export class UserRepository extends UserRepositoryBase<
 > {
   @computed({ name: "UserRepository.isManager" })
   get isManager(): boolean {
-    return this.group === userGroupEnum.manager;
+    return this.group?.toLocaleLowerCase() === userGroupEnum.manager;
   }
 
   @computed({ name: "UserRepository.isClient" })
   get isClient(): boolean {
-    return this.group === userGroupEnum.client;
+    return this.group?.toLocaleLowerCase() === userGroupEnum.client;
   }
 
   async signOut(): Promise<void> {

@@ -16,7 +16,7 @@
     users = userRepository.list;
   });
 
-  let selectedGroup: string = "Manager";
+  let selectedGroup: string = "Client";
   let selectedUsers: Set<string> = new Set<string>();
 
   const onSelecteUser = (id: string) => {
@@ -48,8 +48,8 @@
         disabled={selectedUsers.size === 0}
         value={selectedGroup}
         onInput={onChangeGroup}>
+        <option>Client</option>
         <option>Manager</option>
-        <option>Observer</option>
         <option>Admin</option>
       </Select>
       <div class="flex justify-between mt-3">
