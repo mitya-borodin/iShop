@@ -37,6 +37,7 @@ export class ChangeLoginFormStore extends ValueObjectFormStore<ChangeLogin, Chan
 
     return changedForm;
   }
+
   protected async submitForm(submit: ChangeLogin): Promise<void> {
     const { id } = getParams();
 
