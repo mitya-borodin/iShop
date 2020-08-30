@@ -5,8 +5,11 @@
 import UniversalRouter from "universal-router";
 import type { RouteContext } from "universal-router";
 import { userRepository } from "./stores/user";
+import { setRouteContext } from "./stores/routeInfo";
 
 const getSecureComponent = async (importModule: any, context: RouteContext): Promise<any> => {
+  setRouteContext(context);
+
   try {
     await userRepository.init();
   } catch (error) {
