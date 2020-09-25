@@ -1,13 +1,28 @@
 {
-  "files.autoSave": "afterDelay",
   "window.zoomLevel": 0,
-  "editor.minimap.enabled": true,
+  "files.autoSave": "afterDelay",
+  "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
   "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
     "source.fixAll": true,
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.ignoreTrimWhitespace": true,
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
@@ -22,40 +37,28 @@
   "git.showPushSuccessNotification": true,
   "git.enableStatusBarSync": true,
   "git.showProgress": true,
-  "diffEditor.ignoreTrimWhitespace": true,
+  "gitlens.views.search.files.layout": "tree",
+  "gitlens.views.repositories.files.layout": "tree",
+  "conventionalCommits.scopes": ["settings", "shared", "frontend", "dependecies", "all"],
+  "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.updateImportsOnFileMove.enabled": "never",
   "typescript.referencesCodeLens.enabled": true,
   "eslint.alwaysShowStatus": true,
   "eslint.enable": true,
-  "eslint.validate": [
-    "javascript",
-    "typescript"
-  ],
-  "eslint.packageManager": "yarn",
-  "eslint.workingDirectories": [
-    "./packages/frontend",
-    "./packages/backend",
-    "./packages/shared",
-  ],
+  "eslint.validate": ["javascript", "typescript"],
+  "eslint.packageManager": "npm",
+  "eslint.workingDirectories": ["./packages/frontend", "./packages/backend", "./packages/shared"],
+  "stylusSupremacy.insertBraces": false,
+  "stylusSupremacy.insertColons": false,
+  "stylusSupremacy.insertSemicolons": false,
+  "stylusSupremacy.selectorSeparator": "\n",
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "npm.enableScriptExplorer": false,
   "workbench.colorTheme": "One Dark Pro",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.revealIfOpen": true,
-  "cSpell.words": [
-    "borodindmitriy",
-    "rtcts",
-    "Линковка"
-  ],
-  "cSpell.language": "en,ru",
-  "conventionalCommits.scopes": [
-    "settings",
-    "shared",
-    "frontend",
-    "dependecies",
-    "all"
-  ]
+  "cSpell.words": ["borodindmitriy", "rtcts", "Линковка"],
+  "cSpell.language": "en,ru"
 }
