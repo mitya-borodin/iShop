@@ -1,4 +1,4 @@
-export enum sizeEnum {
+export enum sizeValueEnum {
   XXS = "XXS",
   XS = "XS",
   S = "S",

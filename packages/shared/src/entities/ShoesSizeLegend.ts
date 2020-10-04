@@ -2,7 +2,7 @@ import { Entity, EntityId, logTypeEnum, Validation, ValidationResult } from "@rt
 import { isString } from "@rtcts/utils";
 import { SizeLegendItem } from "./SizeLegendItem";
 
-export interface BodySizeLegendData {
+export interface ShoesSizeLegendData {
   readonly id?: string;
 
   readonly title?: string;
@@ -12,10 +12,10 @@ export interface BodySizeLegendData {
   readonly insoleWidth?: SizeLegendItem;
 }
 
-const sizeLegendItemFields: string[] = ["insoleLength", "insoleWidth"];
 const stringFields = ["title", "description"];
+const sizeLegendItemFields: string[] = ["insoleLength", "insoleWidth"];
 
-export class Clothing implements Entity {
+export class ShoesSizeLegend implements Entity {
   readonly id?: string;
   readonly title?: string;
   readonly description?: string;
@@ -23,7 +23,7 @@ export class Clothing implements Entity {
   readonly insoleLength?: SizeLegendItem;
   readonly insoleWidth?: SizeLegendItem;
 
-  constructor(data: Partial<EntityId> & Partial<BodySizeLegendData>) {
+  constructor(data: Partial<EntityId> & Partial<ShoesSizeLegendData>) {
     if (data) {
       if (typeof data.id === "string") {
         this.id = data.id;
@@ -44,7 +44,7 @@ export class Clothing implements Entity {
       throw new Error(`${this.constructor.name}(data) data should be defined`);
     }
   }
-  isEntity(): this is { id: string } {
+  public isEntity(): this is { id: string } {
     this.isInsert();
 
     if (!isString(this.id)) {
@@ -53,11 +53,11 @@ export class Clothing implements Entity {
 
     return true;
   }
-  hasId(): this is { id: string } {
+  public hasId(): this is { id: string } {
     return isString(this.id);
   }
 
-  public isInsert(): this is Required<BodySizeLegendData> {
+  public isInsert(): this is Required<ShoesSizeLegendData> {
     for (const field of stringFields) {
       if (typeof this[field] !== "string") {
         throw new Error(`${this.constructor.name}.${field} should be string`);
@@ -76,23 +76,16 @@ export class Clothing implements Entity {
   public validation(): ValidationResult {
     const validates: Validation[] = [];
 
-    if (!this.title) {
-      validates.push(
-        new Validation({
-          field: "title",
-          message: `Title should be typed`,
-          type: logTypeEnum.error,
-        }),
-      );
-    }
-    if (!this.description) {
-      validates.push(
-        new Validation({
-          field: "description",
-          message: `Description should be typed`,
-          type: logTypeEnum.error,
-        }),
-      );
+    for (const field of stringFields) {
+      if (!this[field]) {
+        validates.push(
+          new Validation({
+            field,
+            message: `${field} should be typed`,
+            type: logTypeEnum.error,
+          }),
+        );
+      }
     }
 
     for (const fieldName of sizeLegendItemFields) {
@@ -113,7 +106,7 @@ export class Clothing implements Entity {
     return new ValidationResult(validates);
   }
 
-  toObject(): BodySizeLegendData {
+  toObject(): ShoesSizeLegendData {
     return {
       ...(typeof this.id === "string" ? { id: this.id } : {}),
       title: this.title,
@@ -123,11 +116,11 @@ export class Clothing implements Entity {
     };
   }
 
-  toJSON(): BodySizeLegendData {
+  toJSON(): ShoesSizeLegendData {
     return this.toObject();
   }
 
-  toJS(): BodySizeLegendData {
+  toJS(): ShoesSizeLegendData {
     return this.toObject();
   }
 }

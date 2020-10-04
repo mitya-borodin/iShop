@@ -28,7 +28,7 @@ const sizeLegendItemFields: string[] = [
 ];
 const stringFields = ["title", "description"];
 
-export class Clothing implements Entity {
+export class BodySizeLegend implements Entity {
   readonly id?: string;
   readonly title?: string;
   readonly description?: string;
