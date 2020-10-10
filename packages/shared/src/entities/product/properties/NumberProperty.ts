@@ -4,15 +4,16 @@ import { propertiesEnum } from "../../../enums/propertiesEnum";
 export interface NumberPropertyData {
   type: propertiesEnum.number;
   name?: string;
-
+  group?: string;
   value?: number;
 }
 
-const stringFields: string[] = ["name"];
+const stringFields: string[] = ["name", "group"];
 const numberFields: string[] = ["value"];
 export class NumberProperty implements ValueObject {
   type: propertiesEnum.number;
   name?: string;
+  group?: string;
   value?: number;
 
   constructor(data: Partial<NumberPropertyData>) {
@@ -79,6 +80,7 @@ export class NumberProperty implements ValueObject {
     return {
       type: this.type,
       name: this.name,
+      group: this.group,
       value: this.value,
     };
   }

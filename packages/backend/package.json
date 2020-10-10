@@ -9,7 +9,7 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@rtcts/ishop-shared": "^1.2.0",
+    "@rtcts/ishop-shared": "^1.2.1",
     "@rtcts/isomorphic": "^1.5.8",
     "@rtcts/node": "^1.5.10",
     "@rtcts/utils": "^1.5.2",
