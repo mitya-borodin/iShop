@@ -1,7 +1,8 @@
 import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/isomorphic";
-import { sizeTypeEnum } from "../enums/sizeTypeEnum";
+import { sizeTypeEnum } from "../../enums/sizeTypeEnum";
 
 export interface ShoesSizeData {
+  readonly legendId?: string;
   readonly title?: string;
   readonly description?: string;
   readonly wearType: sizeTypeEnum.SHOES;
@@ -10,10 +11,11 @@ export interface ShoesSizeData {
   readonly insoleWidth?: number;
 }
 
-const stringFields: string[] = ["title", "description"];
+const stringFields: string[] = ["legendId", "title", "description"];
 const numberFields = ["sizeValue", "insoleLength", "insoleWidth"];
 
 export class ShoesSize implements ValueObject {
+  readonly legendId?: string;
   readonly title?: string;
   readonly description?: string;
   readonly wearType: sizeTypeEnum.SHOES;
@@ -89,6 +91,7 @@ export class ShoesSize implements ValueObject {
 
   toObject(): ShoesSizeData {
     return {
+      legendId: this.legendId,
       title: this.title,
       description: this.description,
       wearType: this.wearType,

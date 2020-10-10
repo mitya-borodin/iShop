@@ -1,20 +1,34 @@
-export { AddUser, AddUserData } from "./entities/AddUser";
-export { BodySize, BodySizeData } from "./entities/BodySize";
-export { BodySizeLegend, BodySizeLegendData } from "./entities/BodySizeLegend";
-export { ChangeLogin, ChangeLoginData } from "./entities/ChangeLogin";
-export { ChangePassword, ChangePasswordData } from "./entities/ChangePassword";
-export { Clothes, ClothesData } from "./entities/Clothes";
-export { Color, ColorData } from "./entities/Color";
-export { PasswordRecovery, PasswordRecoveryData } from "./entities/PasswordRecovery";
-export { Price, PriceData } from "./entities/Price";
-export { ShoesSize, ShoesSizeData } from "./entities/ShoesSize";
-export { ShoesSizeLegend, ShoesSizeLegendData } from "./entities/ShoesSizeLegend";
-export { SignIn, SignInData } from "./entities/SignIn";
-export { SignUp, SignUpData } from "./entities/SignUp";
-export { SizeLegendItem, SizeLegendItemData } from "./entities/SizeLegendItem";
-export { User, UserData } from "./entities/User";
+export { propertiesDictionary } from "./dictionaries/propertiesDictionary";
+export { ClothesSize, ClothesSizeData } from "./entities/product/ClothesSize";
+export { ClothesSizeLegend, ClothesSizeLegendData } from "./entities/product/ClothesSizeLegend";
+export { Color, ColorData } from "./entities/product/Color";
+export { Price, PriceData } from "./entities/product/Price";
+export { Product, ProductData } from "./entities/product/Product";
+export {
+  ClothesSizeProperty,
+  ClothesSizePropertyData,
+} from "./entities/product/properties/ClothesSizeProperty";
+export { ColorProperty, ColorPropertyData } from "./entities/product/properties/ColorProperty";
+export { NumberProperty, NumberPropertyData } from "./entities/product/properties/NumberProperty";
+export { PriceProperty, PricePropertyData } from "./entities/product/properties/PriceProperty";
+export {
+  ShoesSizeProperty,
+  ShoesSizePropertyData,
+} from "./entities/product/properties/ShoesSizeProperty";
+export { StringProperty, StringPropertyData } from "./entities/product/properties/StringProperty";
+export { ShoesSize, ShoesSizeData } from "./entities/product/ShoesSize";
+export { ShoesSizeLegend, ShoesSizeLegendData } from "./entities/product/ShoesSizeLegend";
+export { SizeLegendItem, SizeLegendItemData } from "./entities/product/SizeLegendItem";
+export { AddUser, AddUserData } from "./entities/user/AddUser";
+export { ChangeLogin, ChangeLoginData } from "./entities/user/ChangeLogin";
+export { ChangePassword, ChangePasswordData } from "./entities/user/ChangePassword";
+export { PasswordRecovery, PasswordRecoveryData } from "./entities/user/PasswordRecovery";
+export { SignIn, SignInData } from "./entities/user/SignIn";
+export { SignUp, SignUpData } from "./entities/user/SignUp";
+export { User, UserData } from "./entities/user/User";
 export { currencyEnum } from "./enums/currencyEnum";
 export { priceEnum } from "./enums/priceEnum";
+export { propertiesEnum } from "./enums/propertiesEnum";
 export { sizeTypeEnum } from "./enums/sizeTypeEnum";
 export { sizeValueEnum } from "./enums/sizeValueEnum";
 export { userGroupEnum } from "./enums/userGroupEnum";

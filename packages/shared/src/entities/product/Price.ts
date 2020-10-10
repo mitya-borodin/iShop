@@ -1,8 +1,8 @@
 import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/isomorphic";
-import { currencyEnum } from "../enums/currencyEnum";
-import { priceEnum } from "../enums/priceEnum";
-import { currencySet } from "../sets/currencySet";
-import { priceSet } from "../sets/priceSet";
+import { currencyEnum } from "../../enums/currencyEnum";
+import { priceEnum } from "../../enums/priceEnum";
+import { currencySet } from "../../sets/currencySet";
+import { priceSet } from "../../sets/priceSet";
 
 const numberFields: string[] = ["amount", "discount"];
 

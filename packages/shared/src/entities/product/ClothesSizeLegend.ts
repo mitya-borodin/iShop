@@ -2,7 +2,7 @@ import { Entity, EntityId, logTypeEnum, Validation, ValidationResult } from "@rt
 import { isString } from "@rtcts/utils";
 import { SizeLegendItem } from "./SizeLegendItem";
 
-export interface BodySizeLegendData {
+export interface ClothesSizeLegendData {
   readonly id?: string;
 
   readonly title?: string;
@@ -28,7 +28,7 @@ const sizeLegendItemFields: string[] = [
 ];
 const stringFields = ["title", "description"];
 
-export class BodySizeLegend implements Entity {
+export class ClothesSizeLegend implements Entity {
   readonly id?: string;
   readonly title?: string;
   readonly description?: string;
@@ -41,7 +41,7 @@ export class BodySizeLegend implements Entity {
   readonly innerSeamLength?: SizeLegendItem;
   readonly outerSeamLength?: SizeLegendItem;
 
-  constructor(data: Partial<EntityId> & Partial<BodySizeLegendData>) {
+  constructor(data: Partial<EntityId> & Partial<ClothesSizeLegendData>) {
     if (data) {
       if (typeof data.id === "string") {
         this.id = data.id;
@@ -75,7 +75,7 @@ export class BodySizeLegend implements Entity {
     return isString(this.id);
   }
 
-  public isInsert(): this is Required<BodySizeLegendData> {
+  public isInsert(): this is Required<ClothesSizeLegendData> {
     for (const field of stringFields) {
       if (typeof this[field] !== "string") {
         throw new Error(`${this.constructor.name}.${field} should be string`);
@@ -131,7 +131,7 @@ export class BodySizeLegend implements Entity {
     return new ValidationResult(validates);
   }
 
-  toObject(): BodySizeLegendData {
+  toObject(): ClothesSizeLegendData {
     return {
       ...(typeof this.id === "string" ? { id: this.id } : {}),
       title: this.title,
@@ -146,11 +146,11 @@ export class BodySizeLegend implements Entity {
     };
   }
 
-  toJSON(): BodySizeLegendData {
+  toJSON(): ClothesSizeLegendData {
     return this.toObject();
   }
 
-  toJS(): BodySizeLegendData {
+  toJS(): ClothesSizeLegendData {
     return this.toObject();
   }
 }

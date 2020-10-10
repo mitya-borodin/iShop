@@ -6,7 +6,7 @@
     "test": "lerna run test",
     "build": "lerna run build",
     "fmt": "lerna run fmt",
-    "ncu": "lerna exec \"ncu -u --semverLevel major\"",
+    "ncu": "lerna exec \"ncu --timeout 120000 -u --semverLevel major\"",
     "ncu:check": "lerna exec \"ncu\"",
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "start:backend": "cd ./packages/backend && npm start",

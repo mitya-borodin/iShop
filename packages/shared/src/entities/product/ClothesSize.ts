@@ -1,10 +1,11 @@
 import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/isomorphic";
-import { sizeTypeEnum } from "../enums/sizeTypeEnum";
-import { sizeValueSet } from "../sets/sizeValueSet";
-import { SizeValueType } from "../types/SizeType";
+import { sizeTypeEnum } from "../../enums/sizeTypeEnum";
+import { sizeValueSet } from "../../sets/sizeValueSet";
+import { SizeValueType } from "../../types/SizeType";
 import { SizeLegendItem } from "./SizeLegendItem";
 
-export interface BodySizeData {
+export interface ClothesSizeData {
+  readonly legendId?: string;
   readonly title?: string;
   readonly description?: string;
   readonly wearType: sizeTypeEnum.CLOTHES;
@@ -18,7 +19,7 @@ export interface BodySizeData {
   readonly outerSeamLength?: number;
 }
 
-const stringFields: string[] = ["title", "description"];
+const stringFields: string[] = ["legendId", "title", "description"];
 const numberFields = [
   "shoulders",
   "chestCircumference",
@@ -29,7 +30,8 @@ const numberFields = [
   "outerSeamLength",
 ];
 
-export class BodySize implements ValueObject {
+export class ClothesSize implements ValueObject {
+  readonly legendId?: string;
   readonly title?: string;
   readonly description?: string;
   readonly wearType: sizeTypeEnum.CLOTHES;
@@ -42,7 +44,7 @@ export class BodySize implements ValueObject {
   readonly innerSeamLength?: number;
   readonly outerSeamLength?: number;
 
-  constructor(data: Partial<BodySizeData>) {
+  constructor(data: Partial<ClothesSizeData>) {
     if (data) {
       this.wearType = sizeTypeEnum.CLOTHES;
 
@@ -66,7 +68,7 @@ export class BodySize implements ValueObject {
     }
   }
 
-  public isInsert(): this is Required<BodySizeData> {
+  public isInsert(): this is Required<ClothesSizeData> {
     for (const field of stringFields) {
       if (typeof this[field] !== "string") {
         throw new Error(`${this.constructor.name}.${field} should be String`);
@@ -128,8 +130,9 @@ export class BodySize implements ValueObject {
     return new ValidationResult(validates);
   }
 
-  toObject(): BodySizeData {
+  toObject(): ClothesSizeData {
     return {
+      legendId: this.legendId,
       title: this.title,
       description: this.description,
       wearType: this.wearType,
@@ -144,11 +147,11 @@ export class BodySize implements ValueObject {
     };
   }
 
-  toJSON(): BodySizeData {
+  toJSON(): ClothesSizeData {
     return this.toObject();
   }
 
-  toJS(): BodySizeData {
+  toJS(): ClothesSizeData {
     return this.toObject();
   }
 }
