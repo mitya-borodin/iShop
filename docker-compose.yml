@@ -7,25 +7,30 @@ services:
       dockerfile: "Dockerfile.dev"
     ports:
       - "8080:8080"
-    depends_on:
-      - backend
-    networks:
-      - ishop-network
+    volumes:
+      - /app/node_modules
+      - ./packages/frontend:/app
     environment:
       SERVER_NAME: ishop.ru
       SERVER_HOST: backend
       SERVER_PORT: 10000
       WS_HOST: backend
       WS_PORT: 10001
+    depends_on:
+      - backend
+    networks:
+      - ishop-network
 
   backend:
     restart: "always"
     build: 
       context: "./packages/backend"
       dockerfile: "Dockerfile.dev"
+    ports:
+      - "9229:9229"
     volumes:
       - /app/node_modules
-      - ./:/app
+      - ./packages/backend:/app
       - ./uploadedFiles:/app/uploadedFiles
     environment:
       JWT_SECRET_KEY: xtoLhZqKfmXU2MVjHuu74AvYUeBsswsWFXxzsbNJ4U3iinJjGs9RAxmzcrU3UrHR

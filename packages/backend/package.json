@@ -1,7 +1,7 @@
 {
   "version": "1.1.2",
   "scripts": {
-    "start": "nodemon --inspect src/entry.ts",
+    "start": "nodemon --inspect=0.0.0.0:9229 src/entry.ts",
     "build": "del dist && tsc --build",
     "test": "jest --no-cache",
     "lint": "eslint . --ext .ts --fix",
