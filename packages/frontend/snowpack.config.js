@@ -2,13 +2,13 @@
 
 module.exports = {
   extends: "@snowpack/app-scripts-svelte",
-  install: [],
+  install: ["tslib"],
   installOptions: {
     sourceMap: true,
     treeshake: true,
   },
   devOptions: {
-    open: "chrome",
+    open: "none",
   },
   buildOptions: {
     clean: true,

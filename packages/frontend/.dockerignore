@@ -1,9 +1,10 @@
 # Common
 README.md
 CHANGELOG.md
-docker-compose.yml
-Dockerfile
 .editorconfig
+Dockerfile
+dev.Dockerfile
+docker-compose.yml
 
 # git
 .git
@@ -25,11 +26,13 @@ yarn-debug.log*
 yarn-error.log*
 
 ## Dependency directories
-node_modules/
+node_modules
 
 # Project
 lib
 src
+types
+coverage
 
 # Typescript
 tsconfig.json
@@ -37,6 +40,26 @@ tslint.json
 
 # npm
 .npmrc
-package.json
 
+# ESlint
+.eslintrc.json
+.eslintignore
+
+# Stylelint
+.stylelintrc.json
+.stylelintignore
+
+# Prettier
+.prettierignore
+.prettierrc.js
+
+
+# Tools
+babel.config.json
+snowpack.config.js
+svelte.config.js
+tailwind.config.js
+postcss.config.js
+jest.config.js
+jest.setup.js
 

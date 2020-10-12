@@ -3,20 +3,19 @@ node_modules
 
 # /node_modules/* in the project root is ignored by default
 # build artefacts
-dist/*
-.build
+dist
 build
-coverage/*
+.build
+coverage
+
 # data definition files
 **/*.d.ts
-# 3rd party libs
-/src/public/
-# custom definition files
-/src/types/
 
-web_modules
-postcss.config.js
+# 3rd party libs
+/src/public
+
+# custom definition files
+/src/types
+
 jest.config.js
 jest.setup.js
-tailwind.config.js
-svelte.config.js

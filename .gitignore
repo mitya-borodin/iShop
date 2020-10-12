@@ -118,3 +118,8 @@ data
 
 #files
 uploadedFiles
+
+# SSL
+ssl
+*.key
+*.crt

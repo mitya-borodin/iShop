@@ -25,16 +25,8 @@ yarn-debug.log*
 yarn-error.log*
 
 ## Dependency directories
-node_modules/
+node_modules
 
 # Project
 lib
 src
-
-# Typescript
-tsconfig.json
-tslint.json
-
-# npm
-.npmrc
-

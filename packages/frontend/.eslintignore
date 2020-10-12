@@ -7,19 +7,22 @@ dist/*
 .build
 build
 coverage/*
+
 # data definition files
 **/*.d.ts
+
 # 3rd party libs
-/src/public/
+/src/public
+
 # custom definition files
-/src/types/
+/src/types
 
 web_modules
+
+snowpack.config.js
+svelte.config.js
 postcss.config.js
+tailwind.config.js
+
 jest.config.js
 jest.setup.js
-tailwind.config.js
-svelte.config.js
-snowpack.config.js
-
-
