@@ -32,9 +32,9 @@ module.exports = {
     ],
   ],
   proxy: {
-    "/api": "http://127.0.0.1:10000/api",
+    "/api": `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/api`,
     "/ws": {
-      target: "http://127.0.0.1:10001/ws",
+      target: `http://${process.env.WS_HOST}:${process.env.WS_PORT}/ws`,
       ws: true,
     },
   },
