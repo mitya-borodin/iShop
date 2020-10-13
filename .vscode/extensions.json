@@ -30,7 +30,8 @@
     "streetsidesoftware.code-spell-checker",
     "streetsidesoftware.code-spell-checker-russian",
     "ms-vscode.azure-account",
-    "humao.rest-client"
+    "humao.rest-client",
+    "vscoss.vscode-ansible"
   ],
   "unwantedRecommendations": [
     "felipecaputo.git-project-manager",
