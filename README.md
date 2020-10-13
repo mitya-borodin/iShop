@@ -1,38 +1,59 @@
-# iShop
+# e-commerce-nodejs
 
-iShop - будет реализовывать функциональность интернет магазина. В котором будут автоматизировано создание постов для соц. сетей, выгрузка товаров на  платформы размещения товаров (Яндекс Маркет, Магазин Вконтакте), будут интегрированы платежные системы и платежные платформы как (https://stripe.com), будет реализована поддержка множественных витрин на доменах третьего уровня, и другие функции.  
+e-commerce-nodejs which is powered by modern technology. I selected method for testing technology interested for me through create e-commerce software. I will use [Svelte](https://svelte.dev), [Tailwind](https://tailwindcss.com), [Snowpack](https://www.snowpack.dev/), [Mobx](https://mobx.js.org/README.html), [RTCTS](https://github.com/mitya-borodin/rtcts), [NodeJS](https://nodejs.org/en/), [KoaJS](https://koajs.com), [MongoDB](https://www.mongodb.com/), [Redis](https://redis.io/), [Docker](https://www.docker.com/), [Docker-compose](https://docs.docker.com/compose/), [Nginx](https://nginx.org/), [Kubernetes](https://kubernetes.io/), [Helm](https://helm.sh), [Terraform](https://www.terraform.io/).
 
-## Окружение
+## @rtcts/ishop-shared
 
-- Необходимо установить Docker не старее `Docker version 19.03.12, build 48a66213fe`
-- Необходимо установить NodeJs не старее `v12.13.0`
+It is shared npm package which contains entities, enums, sets, types, dictionaries which will use on back-end and front-end and other sides.
 
-## Установка
+## Environment
+
+- Required `Docker version 19.03.12, build 48a66213fe` or more
+- Required `node@12.13.0` `npm@6.12.0` or more
+
+## Install
+
+There is need to install node_modules to host system which will support lints, type declarations.
 
 ```bash
 npm i
 npm run bootstrap
 ```
 
-## Запуск режима разработки
+## Develop mode
 
-- Запуск базы данных `docker-compose -f ./docker-compose.dev.yml up -d`
-- Линковка пакета shared `npm run link:shared`, эта операция нужна для того, чтобы изменять пакет shared и сразу же видеть изменения в frontend и backend
-- Запуск режима разработки для backend `npm run start:backend`
-- Запуск режима разработки для frontend `npm run start:frontend`
-- Запуск режима разработки для shared `npm run start:shared`
+For launch dev mode you need run only once command.
 
-## Запуск production режима
+```bash
+docker-compose up
+```
 
-Перед тем как запустить production конфигурацию необходимо:
+### Debugging through VSCode
 
-- Собрать образа для backend `docker build --no-cache -f ./deployAssets/Dockerfile -t borodindmitriy/ishop-back-end:X.X.X .`.
-- Собрать образа для frontend `docker build --no-cache -f ./deployAssets/Dockerfile -t borodindmitriy/ishop-front-end:X.X.X .`.
-- Опубликовать образ backend `docker push borodindmitriy/ishop-back-end:X.X.X`
-- Опубликовать образ frontend `docker push borodindmitriy/ishop-front-end:X.X.X`
-- Обновить версии образов в docker-compose.prod.yml
-- Запустить production среду `docker-compose -f ./docker-compose.prod.yml up -d`
+There is need to create `./vscode/launch.json` which contains:
 
-## Пакет Shared
+``` json
+{
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "name": "Remote",
+      "request": "attach",
+      "address": "127.0.0.1",
+      "port": 9229,
+      "localRoot": "/app",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Nodemon",
+      "processId": "${command:PickProcess}",
+      "restart": true,
+      "protocol": "inspector"
+    }
+  ]
+}
 
-Этот пакет опубликован под именем `@rtcts/ishop-shared`, в глобальном репозитории, так как это позволит установить его внутри docker контейнера без организации доступа в приватный репозиторий.
+```
