@@ -105,7 +105,7 @@ jobs:
         run: docker build -t borodindmitriy/e-commerce-nginx ./nginx
 
       - name: Log into Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ github.DOCKER_ID }} --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_ID }} --password-stdin
         
       - name: Push front-end image
         run: docker push borodindmitriy/e-commerce-front
