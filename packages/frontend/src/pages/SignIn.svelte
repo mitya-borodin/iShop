@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { onDestroy, onMount } from "svelte";
   import Button from "../components/Button.svelte";
   import Input from "../components/Input.svelte";
-  import { onMount, onDestroy } from "svelte";
-  import { signInFormStore } from "../stores/user";
   import { connect } from "../shared/utils/mobxSvelte";
+  import { signInFormStore } from "../stores/user";
 
   const { autorun } = connect();
 
@@ -40,9 +40,9 @@
   };
 </script>
 
-<div class="h-screen mx-auto flex justify-center items-center bg-gray-200">
+<div class="flex items-center justify-center h-screen mx-auto bg-gray-200">
   <div class="w-full max-w-xs">
-    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
       <Input
         id="email"
         name="email"
@@ -67,6 +67,6 @@
         <Button type="primary" onClick={onSignIn}>Sign In</Button>
       </div>
     </form>
-    <p class="text-center text-gray-500 text-xs">&copy;2020 iShop Corp. All rights reserved.</p>
+    <p class="text-xs text-center text-gray-500">&copy;2020 iShop Corp. All rights reserved.</p>
   </div>
 </div>

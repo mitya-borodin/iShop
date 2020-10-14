@@ -39,7 +39,7 @@
       "git add"
     ]
   },
-  "name": "ishop-front",
+  "name": "e-commerce-front",
   "private": true,
   "license": "MIT",
   "devDependencies": {

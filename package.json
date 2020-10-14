@@ -13,7 +13,7 @@
     "start:frontend": "cd ./packages/frontend && npm start",
     "start:shared": "cd ./packages/shared && npm start"
   },
-  "name": "ishop",
+  "name": "e-commerce-nodejs",
   "license": "MIT",
   "devDependencies": {
     "@microsoft/rush": "^5.33.2",

@@ -28,6 +28,8 @@ For launch dev mode you need run only once command.
 docker-compose up
 ```
 
+You will have access to web page through `https://localhost`
+
 ### Debugging through VSCode
 
 There is need to create `./vscode/launch.json` which contains:

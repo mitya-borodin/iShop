@@ -48,7 +48,7 @@
       "git add"
     ]
   },
-  "name": "ishop-backend",
+  "name": "e-commerce-backend",
   "private": true,
   "license": "MIT",
   "devDependencies": {
