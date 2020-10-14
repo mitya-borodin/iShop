@@ -2,8 +2,6 @@ FROM node:lts-alpine
 
 LABEL maintainer="dmitriy@borodin.site"
 
-ENV NODE_ENV=production
-
 WORKDIR '/app'
 
 COPY ./package.json ./
