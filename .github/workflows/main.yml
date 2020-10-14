@@ -4,7 +4,8 @@ jobs:
   docker_validation:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Begin CI...
+        uses: actions/checkout@v2
 
       - name: Build front-end image
         run: docker build -t borodindmitriy/e-commerce-front -f ./packages/frontend/Dockerfile.dev ./packages/frontend
@@ -91,6 +92,9 @@ jobs:
       - nodejs_validation
     runs-on: ubuntu-latest
     steps:
+      - name: Begin CI...
+        uses: actions/checkout@v2
+
       - name: Build production front-end image
         run: docker build -t borodindmitriy/e-commerce-front ./packages/frontend
 
