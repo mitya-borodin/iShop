@@ -1,0 +1,47 @@
+name: Docker CI
+on:
+  push:
+    # Publish `$default-branch` as Docker `latest` image.
+    branches:
+      - $default-branch
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
+  # Run tests for any PRs.
+  pull_request:
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build front-end image
+        run: docker build -t borodindmitriy/e-commerce-front -f ./frontend/Dockerfile.dev ./frontend
+
+      - name: Build back-end image
+        run: docker build -t borodindmitriy/e-commerce-back -f ./backend/Dockerfile.dev /backend
+
+      - name: Checking code formatting  for front-end
+        run: docker run borodindmitriy/e-commerce-front npm run fmt
+
+      - name: Linting code for front-end
+        run: docker run borodindmitriy/e-commerce-front npm run lint
+
+      - name: Testing code for front-end
+        run: docker run borodindmitriy/e-commerce-front npm run test
+
+      - name: Build code for front-end
+        run: docker run borodindmitriy/e-commerce-front npm run build
+
+      - name: Checking code formatting  for back-end
+        run: docker run borodindmitriy/e-commerce-back npm run fmt
+
+      - name: Linting code for back-end
+        run: docker run borodindmitriy/e-commerce-back npm run lint
+
+      - name: Testing code for back-end
+        run: docker run borodindmitriy/e-commerce-back npm run test
+
+      - name: Build code for back-end
+        run: docker run borodindmitriy/e-commerce-back npm run build
