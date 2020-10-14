@@ -5,9 +5,7 @@
     "build": "del dist && tsc --build",
     "test": "jest --no-cache",
     "lint": "eslint . --ext .ts --fix",
-    "fmt": "prettier --write **/*.{js,ts,json}",
-    "start:docker": "docker build -f ./Dockerfile.dev -t borodindmitriy/local-ishop-back-end . && docker run -it -p 10000:10000 -p 10001:10001 -p 9229:9229 -v \"/app/node_modules\" -v \"$(pwd):/app\" borodindmitriy/local-ishop-back-end",
-    "test:docker": "docker build -f ./Dockerfile.dev -t borodindmitriy/local-ishop-back-end . && docker run -it -p 9229:9229 -v \"/app/node_modules\" -v \"$(pwd):/app\" borodindmitriy/local-ishop-back-end npm run test"
+    "fmt": "prettier --write **/*.{js,ts,json}"
   },
   "dependencies": {
     "@rtcts/ishop-shared": "^1.2.1",

@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:lts-alpine
 
 LABEL maintainer="dmitriy@borodin.site"
 
@@ -12,6 +12,7 @@ COPY ./ ./
 
 RUN npm run build
 
-FROM nginx
-EXPOSE 80
+FROM nginx:alpine
+EXPOSE 3000
 COPY --from=0 /app/build /usr/share/nginx/html
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.config

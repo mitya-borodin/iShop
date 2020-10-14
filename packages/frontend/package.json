@@ -5,9 +5,7 @@
     "build": "snowpack build --verbose",
     "test": "jest --no-cache",
     "lint": "eslint . --ext .ts --fix",
-    "fmt": "prettier --write **/*.{js,ts,svelte}",
-    "start:docker": "docker build -f ./Dockerfile.dev -t borodindmitriy/local-ishop-front-end . && docker run -it -p 8080:8080 -v \"/app/node_modules\" -v \"$(pwd):/app\" borodindmitriy/local-ishop-front-end",
-    "test:docker": "docker build -f ./Dockerfile.dev -t borodindmitriy/local-ishop-front-end . && docker run -it -p 8080:8080 -v \"/app/node_modules\" -v \"$(pwd):/app\" borodindmitriy/local-ishop-front-end npm run test"
+    "fmt": "prettier --write **/*.{js,ts,svelte}"
   },
   "browserslist": ">0.75%, not ie 11, not UCAndroid >0, not OperaMini all",
   "dependencies": {
