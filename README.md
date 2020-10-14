@@ -28,7 +28,7 @@ For launch dev mode you need run only once command.
 docker-compose up
 ```
 
-You will have access to web page through `https://localhost`
+You will have access to web page through `https://localhost:3050`
 
 ### Debugging through VSCode
 
