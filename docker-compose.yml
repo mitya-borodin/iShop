@@ -7,11 +7,6 @@ services:
      dockerfile: "Dockerfile.dev"
     ports:
       - "127.0.0.1:3050:443"
-    depends_on:
-      - frontend
-      - backend
-    networks:
-      - e-commerce-nodejs-network
     environment:
       FRONTEND_HOST: frontend
       FRONTEND_PORT: 8080
@@ -21,7 +16,12 @@ services:
       WS_HOST: backend
       WS_PORT: 10001
     command: /bin/bash -c "envsubst '\$$FRONTEND_HOST \$$FRONTEND_PORT \$$SERVER_NAME \$$SERVER_HOST \$$SERVER_PORT \$$WS_HOST \$$WS_PORT' < /etc/nginx/conf.d/default.config.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
-
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - e-commerce-nodejs-network
+      
   frontend:
     restart: always
     build: 
