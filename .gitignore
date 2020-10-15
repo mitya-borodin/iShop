@@ -120,6 +120,6 @@ data
 uploadedFiles
 
 # SSL
-#ssl
-#*.key
-#*.crt
+ssl
+*.key
+*.crt
