@@ -4,7 +4,7 @@
     {
       "name": "nginx-ssl",
       "host": {
-        "sourcePath": "/var/app/current/ssl"
+        "sourcePath": "/ssl"
       }
     }
   ],

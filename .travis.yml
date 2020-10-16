@@ -1,0 +1,42 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t borodindmitriy/e-commerce-front -f ./packages/frontend/Dockerfile.dev ./packages/frontend
+  - docker build -t borodindmitriy/e-commerce-back -f ./packages/backend/Dockerfile.dev ./packages/backend
+
+script:
+  - docker run borodindmitriy/e-commerce-front npm run fmt
+  - docker run borodindmitriy/e-commerce-front npm run lint
+  - docker run borodindmitriy/e-commerce-front npm run test
+  - docker run borodindmitriy/e-commerce-front npm run build
+  - docker run borodindmitriy/e-commerce-back npm run fmt
+  - docker run borodindmitriy/e-commerce-back npm run lint
+  - docker run borodindmitriy/e-commerce-back npm run test
+  - docker run borodindmitriy/e-commerce-back npm run build
+
+after_success:
+  - docker build -t borodindmitriy/e-commerce-front ./packages/frontend
+  - docker build -t borodindmitriy/e-commerce-back ./packages/backend
+  - docker build -t borodindmitriy/e-commerce-nginx ./nginx
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push borodindmitriy/e-commerce-front
+  - docker push borodindmitriy/e-commerce-back
+  - docker push borodindmitriy/e-commerce-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'e-commerce-nodejs'
+  env: 'ECommerceNodejs-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-561604264745'
+  bucket_path: 'e-commerce-nodejs'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
