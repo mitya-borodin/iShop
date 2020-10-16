@@ -1,13 +1,5 @@
 {
   "AWSEBDockerrunVersion": "2",
-  "volumes": [
-    {
-      "name": "nginx-ssl",
-      "host": {
-        "sourcePath": "/ssl"
-      }
-    }
-  ],
   "containerDefinitions": [
     {
       "name": "nginx",
@@ -18,17 +10,6 @@
         {
           "hostPort": 80,
           "containerPort": 80
-        },
-        {
-          "hostPort": 443,
-          "containerPort": 443
-        }
-      ],
-      "mountPoints": [
-        {
-          "sourceVolume": "nginx-ssl",
-          "containerPath": "/usr/share/nginx/ssl",
-          "readOnly": true
         }
       ],
       "links": ["frontend", "backend"],

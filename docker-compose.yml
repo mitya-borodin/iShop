@@ -6,7 +6,7 @@ services:
      context: "./nginx"
      dockerfile: "Dockerfile.dev"
     ports:
-      - "127.0.0.1:3050:443"
+      - "127.0.0.1:3050:80"
     environment:
       FRONTEND_HOST: frontend
       FRONTEND_PORT: 8080
