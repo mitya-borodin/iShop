@@ -85,33 +85,3 @@ jobs:
         run: npm run build
         env:
           CI: true
-
-  publish_docker_images:
-    needs:
-      - docker_validation
-      - nodejs_validation
-    runs-on: ubuntu-latest
-    steps:
-      - name: Begin CI...
-        uses: actions/checkout@v2
-
-      - name: Build production front-end image
-        run: docker build -t borodindmitriy/e-commerce-front ./packages/frontend
-
-      - name: Build production back-end image
-        run: docker build -t borodindmitriy/e-commerce-back ./packages/backend
-
-      - name: Build production nginx image
-        run: docker build -t borodindmitriy/e-commerce-nginx ./nginx
-
-      - name: Log into Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_ID }} --password-stdin
-        
-      - name: Push front-end image
-        run: docker push borodindmitriy/e-commerce-front
-        
-      - name: Push back-end image
-        run: docker push borodindmitriy/e-commerce-back
-        
-      - name: Push nginx image
-        run: docker push borodindmitriy/e-commerce-nginx
