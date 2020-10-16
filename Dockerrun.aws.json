@@ -1,0 +1,101 @@
+{
+  "AWSEBDockerrunVersion": "2",
+  "volumes": [
+    {
+      "name": "nginx-ssl",
+      "host": {
+        "sourcePath": "/var/app/current/ssl"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "nginx",
+      "image": "borodindmitriy/e-commerce-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "environment": [
+        {
+          "name": "FRONTEND_HOST",
+          "value": "frontend"
+        },
+        {
+          "name": "FRONTEND_PORT",
+          "value": 3000
+        },
+        {
+          "name": "SERVER_NAME",
+          "value": "e-commerce-nodejs.ru"
+        },
+        {
+          "name": "SERVER_HOST",
+          "value": "backend"
+        },
+        {
+          "name": "SERVER_PORT",
+          "value": 10000
+        },
+        {
+          "name": "WS_HOST",
+          "value": "backend"
+        },
+        {
+          "name": "WS_PORT",
+          "value": 10001
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "nginx-ssl",
+          "containerPath": "/usr/share/nginx/ssl",
+          "readOnly": true
+        }
+      ],
+      "command": [
+        "/bin/bash",
+        "-c",
+        "\"envsubst '\\$$FRONTEND_HOST \\$$FRONTEND_PORT \\$$SERVER_NAME \\$$SERVER_HOST \\$$SERVER_PORT \\$$WS_HOST \\$$WS_PORT' < /etc/nginx/conf.d/default.config.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'\" || exit 1"
+      ],
+      "links": ["frontend", "backend"],
+      "memory": 128
+    },
+    {
+      "name": "frontend",
+      "image": "borodindmitriy/e-commerce-front",
+      "hostname": "frontend",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "backend",
+      "image": "borodindmitriy/e-commerce-back",
+      "hostname": "backend",
+      "essential": false,
+      "environment": [
+        {
+          "name": "SERVER_HOST",
+          "value": "0.0.0.0"
+        },
+        {
+          "name": "SERVER_PORT",
+          "value": 10000
+        },
+        {
+          "name": "WS_HOST",
+          "value": "backend"
+        },
+        {
+          "name": "WS_PORT",
+          "value": 10001
+        }
+      ],
+      "memory": 128
+    }
+  ]
+}
