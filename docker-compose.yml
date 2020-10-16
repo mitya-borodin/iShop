@@ -15,7 +15,7 @@ services:
       SERVER_PORT: 10000
       WS_HOST: backend
       WS_PORT: 10001
-    command: /bin/bash -c "envsubst '\$$FRONTEND_HOST \$$FRONTEND_PORT \$$SERVER_NAME \$$SERVER_HOST \$$SERVER_PORT \$$WS_HOST \$$WS_PORT' < /etc/nginx/conf.d/default.config.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+    command: /bin/bash -c "envsubst '\$$FRONTEND_HOST \$$FRONTEND_PORT \$$SERVER_NAME \$$SERVER_HOST \$$SERVER_PORT \$$WS_HOST \$$WS_PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
     depends_on:
       - frontend
       - backend
