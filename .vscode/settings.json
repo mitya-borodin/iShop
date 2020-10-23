@@ -39,7 +39,14 @@
   "git.showProgress": true,
   "gitlens.views.search.files.layout": "tree",
   "gitlens.views.repositories.files.layout": "tree",
-  "conventionalCommits.scopes": ["settings", "shared", "frontend", "dependecies", "all"],
+  "conventionalCommits.scopes": [
+    "settings",
+    "shared",
+    "frontend",
+    "dependecies",
+    "all",
+    "deployment"
+  ],
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.updateImportsOnFileMove.enabled": "never",
