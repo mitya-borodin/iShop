@@ -29,14 +29,14 @@ after_success:
   - docker push borodindmitriy/e-commerce-back
   - docker push borodindmitriy/e-commerce-nginx
 
-deploy:
-  provider: elasticbeanstalk
-  region: 'us-east-2'
-  app: 'e-commerce-nodejs'
-  env: 'ECommerceNodejs-env'
-  bucket_name: 'elasticbeanstalk-us-east-2-561604264745'
-  bucket_path: 'e-commerce-nodejs'
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+#deploy:
+#  provider: elasticbeanstalk
+#  region: 'us-east-2'
+#  app: 'e-commerce-nodejs'
+#  env: 'ECommerceNodejs-env'
+#  bucket_name: 'elasticbeanstalk-us-east-2-561604264745'
+#  bucket_path: 'e-commerce-nodejs'
+#  on:
+#    branch: master
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key: $AWS_SECRET_KEY
