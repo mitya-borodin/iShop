@@ -5,6 +5,11 @@ services:
   - docker
 
 before_install:
+  - openssl aes-256-cbc -K $encrypted_9d0e252dab09_key -iv $encrypted_9d0e252dab09_iv -in service-account.json.enc -out service-account.json -d
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud components update kubectl
+  - gcloud auth activate-service-account --key-file service-account.json
   - docker build -t borodindmitriy/e-commerce-front -f ./packages/frontend/Dockerfile.dev ./packages/frontend
   - docker build -t borodindmitriy/e-commerce-back -f ./packages/backend/Dockerfile.dev ./packages/backend
 
@@ -28,15 +33,3 @@ after_success:
   - docker push borodindmitriy/e-commerce-front
   - docker push borodindmitriy/e-commerce-back
   - docker push borodindmitriy/e-commerce-nginx
-
-#deploy:
-#  provider: elasticbeanstalk
-#  region: 'us-east-2'
-#  app: 'e-commerce-nodejs'
-#  env: 'ECommerceNodejs-env'
-#  bucket_name: 'elasticbeanstalk-us-east-2-561604264745'
-#  bucket_path: 'e-commerce-nodejs'
-#  on:
-#    branch: master
-#  access_key_id: $AWS_ACCESS_KEY
-#  secret_access_key: $AWS_SECRET_KEY
