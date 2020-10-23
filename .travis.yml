@@ -14,7 +14,7 @@ before_install:
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
-  - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud auth activate-service-account --key-file service-accosssunt.json
   - gcloud config set project e-commerce-293418
   - gcloud config set compute/zone europe-north1-a
   - gcloud container clusters get-credentials e-commerce-claster
