@@ -59,6 +59,11 @@
   "workbench.colorTheme": "One Dark Pro",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.revealIfOpen": true,
-  "cSpell.words": ["borodindmitriy", "rtcts", "Линковка"],
+  "cSpell.words": [
+    "borodindmitriy",
+    "kubectl",
+    "rtcts",
+    "Линковка"
+  ],
   "cSpell.language": "en,ru"
 }

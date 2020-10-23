@@ -4,16 +4,25 @@ language: generic
 services:
   - docker
 
+env:
+  global:
+    - SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 before_install:
   - openssl aes-256-cbc -K $encrypted_9d0e252dab09_key -iv $encrypted_9d0e252dab09_iv -in service-account.json.enc -out service-account.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
-  - docker build -t borodindmitriy/e-commerce-front -f ./packages/frontend/Dockerfile.dev ./packages/frontend
-  - docker build -t borodindmitriy/e-commerce-back -f ./packages/backend/Dockerfile.dev ./packages/backend
+  - gcloud config set project e-commerce-293418
+  - gcloud config set compute/zone europe-north1-a
+  - gcloud container clusters get-credentials e-commerce-claster
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 script:
+  - docker build -t borodindmitriy/e-commerce-front -f ./packages/frontend/Dockerfile.dev ./packages/frontend
+  - docker build -t borodindmitriy/e-commerce-back -f ./packages/backend/Dockerfile.dev ./packages/backend
   - docker run borodindmitriy/e-commerce-front npm run fmt
   - docker run borodindmitriy/e-commerce-front npm run lint
   - docker run borodindmitriy/e-commerce-front npm run test
@@ -23,13 +32,8 @@ script:
   - docker run borodindmitriy/e-commerce-back npm run test
   - docker run borodindmitriy/e-commerce-back npm run build
 
-after_success:
-  - docker build -t borodindmitriy/e-commerce-front ./packages/frontend
-  - docker build -t borodindmitriy/e-commerce-back ./packages/backend
-  - docker build -t borodindmitriy/e-commerce-nginx ./nginx
-  # Log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Take those images and push them to docker hub
-  - docker push borodindmitriy/e-commerce-front
-  - docker push borodindmitriy/e-commerce-back
-  - docker push borodindmitriy/e-commerce-nginx
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    brunch: master
