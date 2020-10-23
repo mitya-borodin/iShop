@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: 'nginx'
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /static
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10000
+          - path: /api
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10000
+          - path: /ws
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10001
