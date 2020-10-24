@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: e-commerce-nodejs-ru-tls
+spec:
+  secretName: e-commerce-nodejs-ru
+  issuerRef: 
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: e-commerce-nodejs.ru
+  dnsNames:
+    - e-commerce-nodejs.ru
+    - www.e-commerce-nodejs.ru
+  acme: 
+    config:
+      - http01: 
+          ingressClass: nginx
+        domains:
+          - e-commerce-nodejs.ru
+          - www.e-commerce-nodejs.ru
