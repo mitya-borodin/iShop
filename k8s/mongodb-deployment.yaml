@@ -27,8 +27,8 @@ spec:
               subPath: mongodb
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "500m"
-            limits:
               memory: "256Mi"
-              cpu: "1000m"
+              cpu: "256m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
