@@ -9,5 +9,5 @@ docker push borodindmitriy/e-commerce-back:$SHA
 
 kubectl apply -f k8s
 
-kubectl set image deployement/client-deployment client=borodindmitriy/e-commerce-front:$SHA
-kubectl set image deployement/server-deployment server=borodindmitriy/e-commerce-back:$SHA
+kubectl set image deployments/client-deployment client=borodindmitriy/e-commerce-front:$SHA
+kubectl set image deployments/server-deployment server=borodindmitriy/e-commerce-back:$SHA
