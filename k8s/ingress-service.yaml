@@ -13,7 +13,27 @@ spec:
         - www.e-commerce-nodejs.ru
       secretName: e-commerce-nodejs-ru
   rules:
-    - http:
+    - host: e-commerce-nodejs.ru
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /static
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10000
+          - path: /api
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10000
+          - path: /ws
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10001
+    - host: www.e-commerce-nodejs.ru
+      http:
         paths:
           - path: /
             backend:
