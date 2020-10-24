@@ -1,4 +1,4 @@
-docker build -t borodindmitriy/e-commerce-front:latest -t borodindmitriy/e-commerce-front$SHA ./packages/frontend
+docker build -t borodindmitriy/e-commerce-front:latest -t borodindmitriy/e-commerce-front:$SHA ./packages/frontend
 docker push borodindmitriy/e-commerce-front:latest
 docker push borodindmitriy/e-commerce-front:$SHA
 
