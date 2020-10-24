@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/mitya-borodin/e-commerce-nodejs/workflows/CI/badge.svg)
 
-[![Build Status](https://travis-ci.org/mitya-borodin/e-commerce-nodejs.svg?branch=master)](https://travis-ci.org/mitya-borodin/e-commerce-nodejs)
+[![Build Status](https://travis-ci.com/mitya-borodin/e-commerce-nodejs.svg?branch=master)](https://travis-ci.com/mitya-borodin/e-commerce-nodejs)
 
 e-commerce-nodejs which is powered by modern technology. I selected method for testing technology interested for me through create e-commerce software. I will use [Svelte](https://svelte.dev), [Tailwind](https://tailwindcss.com), [Snowpack](https://www.snowpack.dev/), [Mobx](https://mobx.js.org/README.html), [RTCTS](https://github.com/mitya-borodin/rtcts), [NodeJS](https://nodejs.org/en/), [KoaJS](https://koajs.com), [MongoDB](https://www.mongodb.com/), [Redis](https://redis.io/), [Docker](https://www.docker.com/), [Docker-compose](https://docs.docker.com/compose/), [Nginx](https://nginx.org/), [Kubernetes](https://kubernetes.io/), [Helm](https://helm.sh), [Terraform](https://www.terraform.io/).
 
