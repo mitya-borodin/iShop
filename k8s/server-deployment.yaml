@@ -41,12 +41,12 @@ spec:
           ports:
             - containerPort: 10000
             - containerPort: 10001
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "256m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
+          # resources:
+          #   requests:
+          #     memory: "256Mi"
+          #     cpu: "256m"
+          #   limits:
+          #     memory: "512Mi"
+          #     cpu: "500m"
 
 

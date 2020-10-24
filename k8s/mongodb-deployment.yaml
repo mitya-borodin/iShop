@@ -25,10 +25,10 @@ spec:
             - name: mongodb-storage
               mountPath: /data/db
               subPath: mongodb
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "256m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
+          # resources:
+          #   requests:
+          #     memory: "256Mi"
+          #     cpu: "256m"
+          #   limits:
+          #     memory: "512Mi"
+          #     cpu: "500m"
