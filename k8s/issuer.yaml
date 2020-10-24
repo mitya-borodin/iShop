@@ -17,3 +17,6 @@ spec:
     - http01:
         ingress:
           class: nginx
+      domains:
+        - e-commerce-nodejs.ru
+        - www.e-commerce-nodejs.ru

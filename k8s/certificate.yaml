@@ -1,4 +1,4 @@
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: e-commerce-nodejs-ru-tls
@@ -11,10 +11,3 @@ spec:
   dnsNames:
     - e-commerce-nodejs.ru
     - www.e-commerce-nodejs.ru
-  acme: 
-    config:
-      - http01: 
-          ingressClass: nginx
-        domains:
-          - e-commerce-nodejs.ru
-          - www.e-commerce-nodejs.ru
