@@ -26,6 +26,14 @@ npm run bootstrap
 
 ## Develop mode
 
+Before launch the next command you need to create self signed certificate.
+
+```bash
+cd nginx
+mkdir ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./server.key -out ./server.crt
+```
+
 For launch dev mode you need run only once command.
 
 ```bash
