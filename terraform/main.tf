@@ -47,6 +47,12 @@ resource "google_container_cluster" "primary" {
 
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
+
+  master_auth {
+    client_certificate_config {
+      issue_client_certificate = true
+    }
+  }
 }
 
 # Separately Managed Node Pool
@@ -74,7 +80,31 @@ resource "google_container_node_pool" "primary_nodes" {
   }
 }
 
-provider "helm" {
+output "endpoint" {
+  value = google_container_cluster.primary.endpoint
+}
+
+output "username" {
+  value = google_container_cluster.primary.master_auth[0].username
+}
+
+output "password" {
+  value = google_container_cluster.primary.master_auth[0].password
+}
+
+output "client_certificate" {
+  value = base64decode(google_container_cluster.primary.master_auth[0].client_certificate)
+}
+
+output "client_key" {
+  value = base64decode(google_container_cluster.primary.master_auth[0].client_key)
+}
+
+output "cluster_ca_certificate" {
+  value = base64decode(google_container_cluster.primary.master_auth[0].cluster_ca_certificate)
+}
+
+ provider "helm" {
   version = "1.3.2"
 
   debug = true
@@ -83,12 +113,10 @@ provider "helm" {
     load_config_file = false
 
     host     = google_container_cluster.primary.endpoint
-    username = google_container_cluster.primary.master_auth[0].username
-    password = google_container_cluster.primary.master_auth[0].password
 
-    client_certificate     = google_container_cluster.primary.master_auth.0.client_certificate
-    client_key             = google_container_cluster.primary.master_auth.0.client_key
-    cluster_ca_certificate = google_container_cluster.primary.master_auth.0.cluster_ca_certificate
+    client_certificate     = base64decode(google_container_cluster.primary.master_auth[0].client_certificate)
+    client_key             = base64decode(google_container_cluster.primary.master_auth[0].client_key)
+    cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth[0].cluster_ca_certificate)
   }
 }
 
