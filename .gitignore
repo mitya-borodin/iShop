@@ -123,3 +123,5 @@ uploadedFiles
 ssl
 *.key
 *.crt
+credentials
+.terraform
