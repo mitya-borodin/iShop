@@ -23,26 +23,10 @@ provider "google" {
   zone    = var.zone
 }
 
-provider "helm" {
-  version = "1.3.2"
-}
-
-provider "kubernetes" {
-  load_config_file = false
-
-  host     = google_container_cluster.primary.endpoint
-#  username = var.gke_username
-#  password = var.gke_password
-
-  client_certificate     = google_container_cluster.primary.master_auth.0.client_certificate
-  client_key             = google_container_cluster.primary.master_auth.0.client_key
-  cluster_ca_certificate = google_container_cluster.primary.master_auth.0.cluster_ca_certificate
-}
-
 # VPC
 resource "google_compute_network" "vpc" {
   name                    = "${var.project}-vpc"
- auto_create_subnetworks = "false"
+  auto_create_subnetworks = "false"
 }
 
 # Subnet
@@ -57,7 +41,7 @@ resource "google_compute_subnetwork" "subnet" {
 resource "google_container_cluster" "primary" {
   name     = "${var.project}-gke"
   location = var.region
-  
+
   remove_default_node_pool = true
   initial_node_count       = 1
 
@@ -77,7 +61,7 @@ resource "google_container_node_pool" "primary_nodes" {
     machine_type = "e2-micro"
     disk_size_gb = 10
     tags         = ["gke-node", "${var.project}-gke"]
-    metadata     = {
+    metadata = {
       disable-legacy-endpoints = "true"
     }
     labels = {
@@ -90,3 +74,35 @@ resource "google_container_node_pool" "primary_nodes" {
   }
 }
 
+provider "helm" {
+  version = "1.3.2"
+
+  debug = true
+
+  kubernetes {
+    load_config_file = false
+
+    host     = google_container_cluster.primary.endpoint
+    username = google_container_cluster.primary.master_auth[0].username
+    password = google_container_cluster.primary.master_auth[0].password
+
+    client_certificate     = google_container_cluster.primary.master_auth.0.client_certificate
+    client_key             = google_container_cluster.primary.master_auth.0.client_key
+    cluster_ca_certificate = google_container_cluster.primary.master_auth.0.cluster_ca_certificate
+  }
+}
+
+resource "helm_release" "ingress-nginx" {
+  name       = "my-ingress-nginx"
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  chart      = "ingress-nginx"
+  version    = "3.7.1"
+}
+
+resource "helm_release" "cert-manager" {
+  name       = "my-cert-manager"
+  repository = "https://charts.jetstack.io"
+  chart      = "cert-manager"
+  version    = "1.0.4"
+  namespace  = "cert-manager"
+}

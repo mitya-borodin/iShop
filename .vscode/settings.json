@@ -22,6 +22,9 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[terraform]": {
+    "editor.formatOnSave": true
+  },
   "diffEditor.ignoreTrimWhitespace": true,
   "search.exclude": {
     "**/node_modules": true,
@@ -55,7 +58,11 @@
   "eslint.enable": true,
   "eslint.validate": ["javascript", "typescript"],
   "eslint.packageManager": "npm",
-  "eslint.workingDirectories": ["./packages/frontend", "./packages/backend", "./packages/shared"],
+  "eslint.workingDirectories": [
+    "./packages/frontend",
+    "./packages/backend",
+    "./packages/shared"
+  ],
   "stylusSupremacy.insertBraces": false,
   "stylusSupremacy.insertColons": false,
   "stylusSupremacy.insertSemicolons": false,
@@ -66,11 +73,6 @@
   "workbench.colorTheme": "One Dark Pro",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.revealIfOpen": true,
-  "cSpell.words": [
-    "borodindmitriy",
-    "kubectl",
-    "rtcts",
-    "Линковка"
-  ],
+  "cSpell.words": ["borodindmitriy", "kubectl", "rtcts", "Линковка"],
   "cSpell.language": "en,ru"
 }

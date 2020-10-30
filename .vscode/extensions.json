@@ -14,6 +14,8 @@
     "christian-kohler.npm-intellisense",
     "ms-azuretools.vscode-docker",
     "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "technosophos.vscode-helm",
+    "tim-koehler.helm-intellisense",
     "ms-vscode.azure-account",
     "vscoss.vscode-ansible",
     "mikestead.dotenv",
