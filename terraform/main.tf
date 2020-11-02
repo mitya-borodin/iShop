@@ -48,6 +48,8 @@ resource "google_container_cluster" "primary" {
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
 
+  enable_legacy_abac = true
+
   master_auth {
     client_certificate_config {
       issue_client_certificate = true
@@ -79,32 +81,7 @@ resource "google_container_node_pool" "primary_nodes" {
     ]
   }
 }
-
-output "endpoint" {
-  value = google_container_cluster.primary.endpoint
-}
-
-output "username" {
-  value = google_container_cluster.primary.master_auth[0].username
-}
-
-output "password" {
-  value = google_container_cluster.primary.master_auth[0].password
-}
-
-output "client_certificate" {
-  value = base64decode(google_container_cluster.primary.master_auth[0].client_certificate)
-}
-
-output "client_key" {
-  value = base64decode(google_container_cluster.primary.master_auth[0].client_key)
-}
-
-output "cluster_ca_certificate" {
-  value = base64decode(google_container_cluster.primary.master_auth[0].cluster_ca_certificate)
-}
-
- provider "helm" {
+provider "helm" {
   version = "1.3.2"
 
   debug = true
@@ -112,7 +89,7 @@ output "cluster_ca_certificate" {
   kubernetes {
     load_config_file = false
 
-    host     = google_container_cluster.primary.endpoint
+    host = google_container_cluster.primary.endpoint
 
     client_certificate     = base64decode(google_container_cluster.primary.master_auth[0].client_certificate)
     client_key             = base64decode(google_container_cluster.primary.master_auth[0].client_key)
@@ -128,9 +105,10 @@ resource "helm_release" "ingress-nginx" {
 }
 
 resource "helm_release" "cert-manager" {
-  name       = "my-cert-manager"
-  repository = "https://charts.jetstack.io"
-  chart      = "cert-manager"
-  version    = "1.0.4"
-  namespace  = "cert-manager"
+  name             = "my-cert-manager"
+  repository       = "https://charts.jetstack.io"
+  chart            = "cert-manager"
+  version          = "1.0.4"
+  create_namespace = true
+  namespace        = "cert-manager"
 }
