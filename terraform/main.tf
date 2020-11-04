@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">= 0.13"
   required_providers {
     google = {
       source = "hashicorp/google"
@@ -14,13 +14,60 @@ terraform {
 }
 
 provider "google" {
-  version = "3.5.0"
+  version = "3.46.0"
 
   credentials = file(var.credentials_file)
 
   project = var.project
   region  = var.region
   zone    = var.zone
+}
+
+// Enable Cloud Resource Manager API on a fresh project
+// (required for doing the destroy)
+resource "google_project_service" "cloudresourcemanager" {
+  project = var.project
+  service = "cloudresourcemanager.googleapis.com"
+
+  disable_on_destroy = false
+}
+
+// Enable Container API on a fresh project
+resource "google_project_service" "container" {
+  project = var.project
+  service = "container.googleapis.com"
+
+  disable_on_destroy = false
+}
+
+// Enable Cloud Build
+resource "google_project_service" "cloudbuild" {
+  project = var.project
+  service = "cloudbuild.googleapis.com"
+
+  disable_on_destroy = false
+}
+
+// Enable Compute Engine API on a fresh project
+resource "google_project_service" "compute" {
+  project = var.project
+  service = "compute.googleapis.com"
+
+  disable_on_destroy = false
+}
+
+// Add Project Editor role to the Cloud Build service account
+// (required to be able to work with Kube and with any other project resources)
+resource "google_project_iam_member" "cloudbuild_sa_editor" {
+  depends_on = [google_project_service.cloudbuild]
+
+  project = var.project
+  role    = "roles/editor"
+  member  = "serviceAccount:${data.google_project.this.number}@cloudbuild.gserviceaccount.com"
+}
+
+data "google_project" "this" {
+  project_id = var.project
 }
 
 # VPC
@@ -55,6 +102,33 @@ resource "google_container_cluster" "primary" {
       issue_client_certificate = true
     }
   }
+
+  provisioner "local-exec" {
+    command = <<EOT
+      export KUBECONFIG=$(pwd)/.kube/config && \
+      mkdir -p .kube && \
+      echo ${base64decode(google_container_cluster.primary.master_auth[0].client_certificate)}​​​​​​​​ | base64 -D > .kube/ca.crt && \
+      echo ${base64decode(google_container_cluster.primary.master_auth[0].cluster_ca_certificate)}​​​​​​​​ | base64 -D > .kube/client.crt && \
+      echo ${base64decode(google_container_cluster.primary.master_auth[0].client_key)}​​​​​​​​ | base64 -D > .kube/client.key && \
+      kubectl config set-cluster default \
+       --server=https://${google_container_cluster.primary.endpoint}​​​​​​​​ \
+       --certificate-authority=.kube/ca.crt \
+       --embed-certs && \
+      kubectl config set-credentials default \
+       --certificate-authority=.kube/ca.crt \
+       --client-key=.kube/client.key \
+       --client-certificate=.kube/client.crt \
+       --embed-certs && \
+      kubectl config set-context default --cluster=default --user=default && \
+      kubectl config use-context default && \
+      echo '#!/bin/sh' > kubectl && \
+      echo 'KUBECONFIG=.kube/config kubectl "$@"' >> kubectl && \
+      chmod a+x ./kubectl && \
+      echo '#!/bin/sh' > helm && \
+      echo 'KUBECONFIG=.kube/config helm "$@"' >> helm && \
+      chmod a+x ./helm
+    EOT
+  }
 }
 
 # Separately Managed Node Pool
@@ -81,6 +155,7 @@ resource "google_container_node_pool" "primary_nodes" {
     ]
   }
 }
+
 provider "helm" {
   version = "1.3.2"
 

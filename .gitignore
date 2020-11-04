@@ -125,3 +125,6 @@ ssl
 *.crt
 credentials
 .terraform
+.kube
+kubectl
+helm
