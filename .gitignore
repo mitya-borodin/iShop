@@ -128,3 +128,5 @@ credentials
 .kube
 kubectl
 helm
+terraform.tfstate
+terraform.tfstate.backup
