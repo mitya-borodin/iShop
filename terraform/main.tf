@@ -70,18 +70,17 @@ data "google_project" "this" {
   project_id = var.project
 }
 
-# VPC
-resource "google_compute_network" "vpc" {
-  name                    = "${var.project}-vpc"
-  auto_create_subnetworks = "false"
-}
+resource "google_compute_firewall" "vpc_filrewall" {
+  name          = "to-all-vms-on-network"
+  network       = "default"
+  source_ranges = ["10.0.0.0/8"]
 
-# Subnet
-resource "google_compute_subnetwork" "subnet" {
-  name          = "${var.project}-subnet"
-  region        = var.region
-  network       = google_compute_network.vpc.name
-  ip_cidr_range = "10.10.0.0/24"
+  allow { protocol = "icmp" }
+  allow { protocol = "tcp" }
+  allow { protocol = "udp" }
+  allow { protocol = "esp" }
+  allow { protocol = "ah" }
+  allow { protocol = "sctp" }
 }
 
 # GKE cluster
@@ -92,14 +91,9 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = google_compute_network.vpc.name
-  subnetwork = google_compute_subnetwork.subnet.name
-
   enable_legacy_abac = true
 
   master_auth {
-    username = "${var.project}-user"
-
     client_certificate_config {
       issue_client_certificate = true
     }
@@ -133,8 +127,6 @@ resource "google_container_node_pool" "primary_nodes" {
 
 provider "helm" {
   version = "1.3.2"
-
-  debug = true
 
   kubernetes {
     load_config_file = false
@@ -171,17 +163,17 @@ resource "null_resource" "generate_local_kubectl" {
       echo ${google_container_cluster.primary.master_auth[0].cluster_ca_certificate}​​​​​​​​ | base64 -D > .kube/ca.crt && \
       echo ${google_container_cluster.primary.master_auth[0].client_certificate}​​​​​​​​ | base64 -D > .kube/client.crt && \
       echo ${google_container_cluster.primary.master_auth[0].client_key}​​​​​​​​ | base64 -D > .kube/client.key && \
-      kubectl config set-cluster ${google_container_cluster.primary.name} \
+      kubectl config set-cluster default \
         --server=https://${google_container_cluster.primary.endpoint}​​​​​​​​ \
         --certificate-authority=.kube/ca.crt \
         --embed-certs && \
-      kubectl config set-credentials ${google_container_cluster.primary.master_auth[0].username} \
+      kubectl config set-credentials default \
         --certificate-authority=.kube/ca.crt \
         --client-certificate=.kube/client.crt \
         --client-key=.kube/client.key \
         --embed-certs && \
-      kubectl config set-context default-context --cluster=${google_container_cluster.primary.name} --user=${google_container_cluster.primary.master_auth[0].username} && \
-      kubectl config use-context default-context && \
+      kubectl config set-context default --cluster=default --user=default && \
+      kubectl config use-context default && \
       echo '#!/bin/sh' > kubectl && \
       echo 'KUBECONFIG=.kube/config kubectl "$@"' >> kubectl && \
       chmod a+x ./kubectl && \
