@@ -93,9 +93,14 @@ resource "google_compute_firewall" "default_filrewall" {
 resource "google_container_cluster" "primary" {
   depends_on = [google_compute_firewall.default_filrewall]
 
-  name               = var.cluster_name
-  location           = var.region
-  initial_node_count = var.machines
+  name     = var.cluster_name
+  location = var.region
+
+  # We can't create a cluster with no node pool defined, but we want to only use
+  # separately managed node pools. So we create the smallest possible default
+  # node pool and immediately delete it.
+  remove_default_node_pool = true
+  initial_node_count       = 1
 
   enable_legacy_abac = true
 
@@ -114,10 +119,12 @@ resource "google_container_node_pool" "primary_nodes" {
   node_count = var.machines
 
   node_config {
+    preemptible  = true
     machine_type = var.machine_type
     disk_size_gb = 10
     tags         = [var.cluster_name, "kube"]
     oauth_scopes = [
+      "https://www.googleapis.com/auth/cloud-platform",
       "https://www.googleapis.com/auth/compute",
       "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/logging.write",

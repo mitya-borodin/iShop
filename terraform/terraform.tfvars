@@ -1,6 +1,6 @@
 project = "ec-project-294719"
-region = "europe-north1"
-zone = "europe-north1-b"
+region = "us-central1"
+zone = "us-central1-b"
 credentials_file = "../credentials/ec-project-294719-9aa0b8952e64.json"
 cluster_name = "default"
 cluster_node_pool_name = "default"
