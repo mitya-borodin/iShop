@@ -1,5 +1,8 @@
-project = "e-com-node-js"
-credentials_file = "../credentials/e-com-node-js-8862c2f6b006.json"
+project = "ec-project-294719"
 region = "europe-north1"
 zone = "europe-north1-b"
-gke_num_nodes = 1
+credentials_file = "../credentials/ec-project-294719-9aa0b8952e64.json"
+cluster_name = "default"
+cluster_node_pool_name = "default"
+machines = 1
+machine_type = "e2-micro"

@@ -70,14 +70,20 @@ data "google_project" "this" {
   project_id = var.project
 }
 
-resource "google_compute_firewall" "vpc_filrewall" {
+resource "google_compute_firewall" "default_filrewall" {
   name          = "to-all-vms-on-network"
   network       = "default"
   source_ranges = ["10.0.0.0/8"]
 
   allow { protocol = "icmp" }
-  allow { protocol = "tcp" }
-  allow { protocol = "udp" }
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443"]
+  }
+  allow {
+    protocol = "udp"
+    ports    = ["80", "443"]
+  }
   allow { protocol = "esp" }
   allow { protocol = "ah" }
   allow { protocol = "sctp" }
@@ -85,11 +91,11 @@ resource "google_compute_firewall" "vpc_filrewall" {
 
 # GKE cluster
 resource "google_container_cluster" "primary" {
-  name     = "${var.project}-gke"
-  location = var.region
+  depends_on = [google_compute_firewall.default_filrewall]
 
-  remove_default_node_pool = true
-  initial_node_count       = 1
+  name               = var.cluster_name
+  location           = var.region
+  initial_node_count = var.machines
 
   enable_legacy_abac = true
 
@@ -102,23 +108,18 @@ resource "google_container_cluster" "primary" {
 
 # Separately Managed Node Pool
 resource "google_container_node_pool" "primary_nodes" {
-  name       = "${google_container_cluster.primary.name}-node-pool"
+  name       = var.cluster_node_pool_name
   location   = var.region
   cluster    = google_container_cluster.primary.name
-  node_count = var.gke_num_nodes
+  node_count = var.machines
 
   node_config {
-    preemptible  = true
-    machine_type = "e2-micro"
+    machine_type = var.machine_type
     disk_size_gb = 10
-    tags         = ["gke-node", "${var.project}-gke"]
-    metadata = {
-      disable-legacy-endpoints = "true"
-    }
-    labels = {
-      env = var.project
-    }
+    tags         = [var.cluster_name, "kube"]
     oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
     ]
@@ -163,7 +164,7 @@ resource "null_resource" "generate_local_kubectl" {
       echo ${google_container_cluster.primary.master_auth[0].cluster_ca_certificate}​​​​​​​​ | base64 -D > .kube/ca.crt && \
       echo ${google_container_cluster.primary.master_auth[0].client_certificate}​​​​​​​​ | base64 -D > .kube/client.crt && \
       echo ${google_container_cluster.primary.master_auth[0].client_key}​​​​​​​​ | base64 -D > .kube/client.key && \
-      kubectl config set-cluster default \
+      kubectl config set-cluster ${google_container_cluster.primary.name} \
         --server=https://${google_container_cluster.primary.endpoint}​​​​​​​​ \
         --certificate-authority=.kube/ca.crt \
         --embed-certs && \
@@ -172,7 +173,7 @@ resource "null_resource" "generate_local_kubectl" {
         --client-certificate=.kube/client.crt \
         --client-key=.kube/client.key \
         --embed-certs && \
-      kubectl config set-context default --cluster=default --user=default && \
+      kubectl config set-context default --cluster=${google_container_cluster.primary.name} --user=default && \
       kubectl config use-context default && \
       echo '#!/bin/sh' > kubectl && \
       echo 'KUBECONFIG=.kube/config kubectl "$@"' >> kubectl && \
