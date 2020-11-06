@@ -56,6 +56,11 @@ resource "google_project_service" "compute" {
   disable_on_destroy = false
 }
 
+data "google_project" "this" {
+  project_id = var.project
+}
+
+
 // Add Project Editor role to the Cloud Build service account
 // (required to be able to work with Kube and with any other project resources)
 resource "google_project_iam_member" "cloudbuild_sa_editor" {
@@ -66,33 +71,8 @@ resource "google_project_iam_member" "cloudbuild_sa_editor" {
   member  = "serviceAccount:${data.google_project.this.number}@cloudbuild.gserviceaccount.com"
 }
 
-data "google_project" "this" {
-  project_id = var.project
-}
-
-resource "google_compute_firewall" "default_filrewall" {
-  name          = "to-all-vms-on-network"
-  network       = "default"
-  source_ranges = ["10.0.0.0/8"]
-
-  allow { protocol = "icmp" }
-  allow {
-    protocol = "tcp"
-    ports    = ["80", "443"]
-  }
-  allow {
-    protocol = "udp"
-    ports    = ["80", "443"]
-  }
-  allow { protocol = "esp" }
-  allow { protocol = "ah" }
-  allow { protocol = "sctp" }
-}
-
 # GKE cluster
 resource "google_container_cluster" "primary" {
-  depends_on = [google_compute_firewall.default_filrewall]
-
   name     = var.cluster_name
   location = var.region
 
@@ -109,6 +89,52 @@ resource "google_container_cluster" "primary" {
       issue_client_certificate = true
     }
   }
+
+  provisioner "local-exec" {
+    command = <<EOT
+      export KUBECONFIG=$(pwd)/.kube/config && \
+      mkdir -p .kube && \
+      echo ${google_container_cluster.primary.master_auth[0].cluster_ca_certificate}​​​​​​​​ | base64 -D > .kube/ca.crt && \
+      echo ${google_container_cluster.primary.master_auth[0].client_certificate}​​​​​​​​ | base64 -D > .kube/client.crt && \
+      echo ${google_container_cluster.primary.master_auth[0].client_key}​​​​​​​​ | base64 -D > .kube/client.key && \
+      kubectl config set-cluster ${google_container_cluster.primary.name} \
+        --server=https://${google_container_cluster.primary.endpoint}​​​​​​​​ \
+        --certificate-authority=.kube/ca.crt \
+        --embed-certs && \
+      kubectl config set-credentials default \
+        --certificate-authority=.kube/ca.crt \
+        --client-certificate=.kube/client.crt \
+        --client-key=.kube/client.key \
+        --embed-certs && \
+      kubectl config set-context default --cluster=${google_container_cluster.primary.name} --user=default && \
+      kubectl config use-context default && \
+      echo '#!/bin/sh' > kubectl && \
+      echo 'KUBECONFIG=.kube/config kubectl "$@"' >> kubectl && \
+      chmod a+x ./kubectl && \
+      echo '#!/bin/sh' > helm && \
+      echo 'KUBECONFIG=.kube/config helm "$@"' >> helm && \
+      chmod a+x ./helm
+    EOT
+  }
+
+  provisioner "local-exec" {
+    command = <<EOT
+      export KUBECONFIG=$(pwd)/.kube/config_gcloud && \
+      export CLOUDSDK_CORE_DISABLE_PROMPTS=1 && \
+      mkdir -p .kube && \
+      gcloud components update kubectl && \
+      gcloud auth activate-service-account --key-file ${var.credentials_file} && \
+      gcloud config set project ${var.project} && \
+      gcloud config set compute/zone ${var.region} && \
+      gcloud container clusters get-credentials ${var.cluster_name} && \
+      echo '#!/bin/sh' > kubectl_g && \
+      echo 'KUBECONFIG=.kube/config_gcloud kubectl "$@"' >> kubectl_g && \
+      chmod a+x ./kubectl_g && \
+      echo '#!/bin/sh' > helm_g && \
+      echo 'KUBECONFIG=.kube/config_gcloud helm "$@"' >> helm_g && \
+      chmod a+x ./helm_g
+    EOT
+  }
 }
 
 # Separately Managed Node Pool
@@ -119,7 +145,6 @@ resource "google_container_node_pool" "primary_nodes" {
   node_count = var.machines
 
   node_config {
-    preemptible  = true
     machine_type = var.machine_type
     disk_size_gb = 10
     tags         = [var.cluster_name, "kube"]
@@ -148,6 +173,8 @@ provider "helm" {
 }
 
 resource "helm_release" "ingress-nginx" {
+  depends_on = [google_container_node_pool.primary_nodes]
+
   name       = "my-ingress-nginx"
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
@@ -155,39 +182,17 @@ resource "helm_release" "ingress-nginx" {
 }
 
 resource "helm_release" "cert-manager" {
+  depends_on = [google_container_node_pool.primary_nodes]
+
   name             = "my-cert-manager"
   repository       = "https://charts.jetstack.io"
   chart            = "cert-manager"
-  version          = "1.0.4"
+  version          = "1.1.0-alpha.1"
   create_namespace = true
   namespace        = "cert-manager"
-}
 
-resource "null_resource" "generate_local_kubectl" {
-  provisioner "local-exec" {
-    command = <<EOT
-      export KUBECONFIG=$(pwd)/.kube/config && \
-      mkdir -p .kube && \
-      echo ${google_container_cluster.primary.master_auth[0].cluster_ca_certificate}​​​​​​​​ | base64 -D > .kube/ca.crt && \
-      echo ${google_container_cluster.primary.master_auth[0].client_certificate}​​​​​​​​ | base64 -D > .kube/client.crt && \
-      echo ${google_container_cluster.primary.master_auth[0].client_key}​​​​​​​​ | base64 -D > .kube/client.key && \
-      kubectl config set-cluster ${google_container_cluster.primary.name} \
-        --server=https://${google_container_cluster.primary.endpoint}​​​​​​​​ \
-        --certificate-authority=.kube/ca.crt \
-        --embed-certs && \
-      kubectl config set-credentials default \
-        --certificate-authority=.kube/ca.crt \
-        --client-certificate=.kube/client.crt \
-        --client-key=.kube/client.key \
-        --embed-certs && \
-      kubectl config set-context default --cluster=${google_container_cluster.primary.name} --user=default && \
-      kubectl config use-context default && \
-      echo '#!/bin/sh' > kubectl && \
-      echo 'KUBECONFIG=.kube/config kubectl "$@"' >> kubectl && \
-      chmod a+x ./kubectl && \
-      echo '#!/bin/sh' > helm && \
-      echo 'KUBECONFIG=.kube/config helm "$@"' >> helm && \
-      chmod a+x ./helm
-    EOT
+  set {
+    name  = "installCRDs"
+    value = true
   }
 }

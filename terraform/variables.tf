@@ -1,11 +1,11 @@
 variable "project" {}
 
 variable "region" {
-  default = "us-central1"
+  default = "asia-east1"
 }
 
 variable "zone" {
-  default = "us-central1-c"
+  default = "asia-east1-a"
 }
 
 variable "credentials_file" {}
@@ -21,10 +21,10 @@ variable "cluster_node_pool_name" {
 }
 
 variable "machines" {
-  default     = 1
+  default     = 2
   description = "number of gke nodes"
 }
 
 variable "machine_type" {
-  default = "e2-micro"
+  default = "e2-standard-2"
 }

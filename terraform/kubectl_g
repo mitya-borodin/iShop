@@ -1,0 +1,2 @@
+#!/bin/sh
+KUBECONFIG=.kube/config_gcloud kubectl "$@"
