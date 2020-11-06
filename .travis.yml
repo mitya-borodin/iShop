@@ -15,9 +15,9 @@ before_install:
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
-  - gcloud config set project e-commerce-293418
-  - gcloud config set compute/zone europe-north1-a
-  - gcloud container clusters get-credentials e-commerce-claster
+  - gcloud config set project ec-project-294719
+  - gcloud config set compute/zone asia-east1
+  - gcloud container clusters get-credentials default
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 script:
