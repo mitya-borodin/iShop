@@ -25,20 +25,20 @@ provider "google" {
 
 // Enable Cloud Resource Manager API on a fresh project
 // (required for doing the destroy)
-resource "google_project_service" "cloudresourcemanager" {
-  project = var.project
-  service = "cloudresourcemanager.googleapis.com"
-
-  disable_on_destroy = false
-}
+#resource "google_project_service" "cloudresourcemanager" {
+#  project = var.project
+#  service = "cloudresourcemanager.googleapis.com"
+#
+#  disable_on_destroy = false
+#}
 
 // Enable Container API on a fresh project
-resource "google_project_service" "container" {
-  project = var.project
-  service = "container.googleapis.com"
-
-  disable_on_destroy = false
-}
+#resource "google_project_service" "container" {
+#  project = var.project
+#  service = "container.googleapis.com"
+#
+#  disable_on_destroy = false
+#}
 
 // Enable Cloud Build
 resource "google_project_service" "cloudbuild" {
@@ -190,6 +190,9 @@ resource "helm_release" "cert-manager" {
   version          = "1.1.0-alpha.1"
   create_namespace = true
   namespace        = "cert-manager"
+
+  max_history = 5
+  wait        = true
 
   set {
     name  = "installCRDs"
