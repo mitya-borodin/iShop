@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.com/mitya-borodin/e-commerce-nodejs.svg?branch=master)](https://travis-ci.com/mitya-borodin/e-commerce-nodejs)
 
-e-commerce-nodejs which is powered by modern technology. I selected method for testing technology interested for me through create e-commerce software. I will use [Svelte](https://svelte.dev), [Tailwind](https://tailwindcss.com), [Snowpack](https://www.snowpack.dev/), [Mobx](https://mobx.js.org/README.html), [RTCTS](https://github.com/mitya-borodin/rtcts), [NodeJS](https://nodejs.org/en/), [KoaJS](https://koajs.com), [MongoDB](https://www.mongodb.com/), [Redis](https://redis.io/), [Docker](https://www.docker.com/), [Docker-compose](https://docs.docker.com/compose/), [Nginx](https://nginx.org/), [Kubernetes](https://kubernetes.io/), [Helm](https://helm.sh), [Terraform](https://www.terraform.io/).
+e-commerce-nodejs which is powered by modern technology. I selected method for testing technology interested for me through create e-commerce software. I will use [Svelte](https://svelte.dev), [Tailwind](https://tailwindcss.com), [Snowpack](https://www.snowpack.dev/), [Mobx](https://mobx.js.org/README.html), [RTCTS](https://github.com/mitya-borodin/rtcts), [NodeJS](https://nodejs.org/en/), [KoaJS](https://koajs.com), [MongoDB](https://www.mongodb.com/), [Redis](https://redis.io/), [Docker](https://www.docker.com/), [Docker-compose](https://docs.docker.com/compose/), [Nginx](https://nginx.org/), [Kubernetes](https://kubernetes.io/), [Ingress-nginx](https://kubernetes.github.io/ingress-nginx), [Cert-manager](https://cert-manager.io), [Helm](https://helm.sh), [Terraform](https://www.terraform.io/).
 
 ## @rtcts/ishop-shared
 
@@ -98,3 +98,16 @@ Before deploy to GCP you need to install
 3. Move to `./terraform` and launch `terraform init` and `terraform apply`
 4. After finish terraform work launch `./kubectl_g create secret generic data-base --from-literal=JWT_SECRET_KEY=some_secret_string --from-literal=DB_NAME=your_own_database_name`
 5. After create secret you need to apply configs to cloud k8s `./kubectl_g apply -f ../k8s`
+
+## CI/CD
+
+For authorize in gcloud within travis-ci you need to encrypt `credentials/account.json` by travis tools.
+
+For getting environment for travis-ci tools you need to install ruby:2.4, for avoid installation to you host system we will work inside docker container.
+
+- Launch docker container `docker run -it -v $(pwd):/app ruby:2.4 sh`
+- Move to app directory `cd ./app`
+- Install travis `gem install travis`
+- Login to travis `travis login --com`
+- Encrypt `travis encrypt-file credentials/account.json -r mitya-borodin/e-commerce-nodejs --com`
+- Add `openssl aes-256-cbc -K $encrypted_XXXXXXX_key -iv $encrypted_XXXXXXX_iv -in account.json.enc -out credentials/account.json -d` to `.travis.yml` as first item into `before_install`.
