@@ -128,5 +128,7 @@ credentials
 .kube
 kubectl
 helm
+kubectl_g
+helm_g
 terraform.tfstate
 terraform.tfstate.backup
