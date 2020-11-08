@@ -16,7 +16,7 @@ before_install:
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
   - gcloud config set project ec-project-294719
-  - gcloud config set compute/zone asia-east1
+  - gcloud config set compute/zone us-east1-d
   - gcloud container clusters get-credentials ec-project-294719
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
