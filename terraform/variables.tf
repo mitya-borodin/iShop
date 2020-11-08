@@ -1,30 +1,34 @@
-variable "project" {}
-
-variable "region" {
-  default = "asia-east1"
+variable "project" {
+  description = "Project ID"
+  type        = string
 }
 
 variable "zone" {
-  default = "asia-east1-a"
+  description = "Zone to create resources in (must be located within 'region' variable)"
+  type        = string
+  default     = "us-east1-d"
 }
 
-variable "credentials_file" {}
-
-variable "cluster_name" {
-  default     = "default"
-  description = "number of gke cluster"
+variable "credentials_file" {
+  description = "Service Account credentials for google"
+  type        = string
+  default     = "../credentials/account.json"
 }
 
-variable "cluster_node_pool_name" {
-  default     = "default"
-  description = "name of gke nodes pool"
+variable "name" {
+  description = "Environment name (same as project name by default)"
+  type        = string
+  default     = "" // var.project is used if name is empty
 }
 
-variable "machines" {
-  default     = 2
-  description = "number of gke nodes"
-}
-
-variable "machine_type" {
-  default = "e2-standard-2"
+variable "kube" {
+  description = "Kubernetes cluster configuration. Machine type and the amount of machines to create."
+  type = object({
+    machine_type = string
+    machines     = number
+  })
+  default = {
+    machine_type = "n1-standard-4"
+    machines     = 1
+  }
 }

@@ -1,8 +1,3 @@
 project = "ec-project-294719"
-region = "asia-east1"
-zone = "asia-east1-a"
+zone = "us-east1-d"
 credentials_file = "../credentials/account.json"
-cluster_name = "default"
-cluster_node_pool_name = "default"
-machines = 1
-machine_type = "e2-standard-2"

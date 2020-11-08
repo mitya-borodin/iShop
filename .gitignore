@@ -125,11 +125,9 @@ ssl
 *.crt
 credentials
 .terraform
-.kube
-kubectl
-helm
-kubectl_g
-helm_g
 terraform.tfstate
 terraform.tfstate.backup
 terraform_startupjs
+terraform/.kube
+terraform/helm
+terraform/kubectl
