@@ -175,19 +175,19 @@ provider "helm" {
 resource "helm_release" "ingress-nginx" {
   depends_on = [google_container_node_pool.primary_nodes]
 
-  name       = "my-ingress-nginx"
+  name       = "e-commerce-nodejs-ingress-nginx"
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
-  version    = "3.7.1"
+  version    = "3.8.0"
 }
 
 resource "helm_release" "cert-manager" {
   depends_on = [google_container_node_pool.primary_nodes]
 
-  name             = "my-cert-manager"
+  name             = "e-commerce-nodejs-cert-manager"
   repository       = "https://charts.jetstack.io"
   chart            = "cert-manager"
-  version          = "1.1.0-alpha.1"
+  version          = "1.0.4"
   create_namespace = true
   namespace        = "cert-manager"
 
