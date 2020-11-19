@@ -1,0 +1,53 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingressName }}
+  annotations:
+    kubernetes.io/ingress.class: "{{ .Values.ingressClass }}"
+    cert-manager.io/cluster-issuer: "{{ .Values.clusterIssuerName }}"
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ .Values.sslRedirect }}"
+spec:
+  tls:
+    - hosts:
+        - "{{ .Values.domain }}"
+        - "www.{{ .Values.domain }}"
+      secretName: "secretName-{{ .Values.domain | replace "." "-" }}"
+  rules:
+    - host: {{ .Values.domain }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /static
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10000
+          - path: /api
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10000
+          - path: /ws
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10001
+    - host: "www.{{ .Values.domain }}"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /static
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10000
+          - path: /api
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10000
+          - path: /ws
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 10001

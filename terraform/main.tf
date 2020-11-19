@@ -19,8 +19,24 @@ module "kube" {
   machines     = var.kube.machines
 }
 
+module "secrets" {
+  source = "./modules/secrets"
+
+  depends_on = [module.kube]
+
+  project_id = local.name
+  secret_id  = "data-base"
+
+  secret_data = {
+    jwtSecretKey = uuid()
+    dbName       = "e-commerce-nodejs"
+  }
+}
+
 module "kubectl" {
   source = "./modules/kubectl"
+
+  depends_on = [module.kube]
 
   cluster_ca_certificate = module.kube.cluster_ca_certificate
   client_certificate     = module.kube.client_certificate
@@ -55,3 +71,20 @@ resource "helm_release" "cert-manager" {
     value = true
   }
 }
+
+#resource "helm_release" "application" {
+#  depends_on = [module.secrets, helm_release.ingress-nginx, helm_release.cert-manager]
+#  name       = "e-commerce-nodejs"
+#  repository = null
+#  chart      = "${path.module}/../helm"
+#
+#  version    = "1.0.0"
+#
+#  max_history = 5
+#  wait        = true
+#
+#  set {
+#    name  = "gitSha"
+#    value = "latest"
+#  }
+#}

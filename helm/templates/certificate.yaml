@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "certificate-name-{{ .Values.domain | replace "." "-" }}-tls"
+spec:
+  secretName: "secretName-{{ .Values.domain | replace "." "-" }}"
+  issuerRef: 
+    name: {{ .Values.clusterIssuerName }}
+    kind: ClusterIssuer
+  commonName: {{ .Values.domain }}
+  dnsNames:
+    - {{ .Values.domain }}
+    - "www.{{ .Values.domain }}"

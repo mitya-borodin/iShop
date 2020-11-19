@@ -55,7 +55,6 @@
   "typescript.updateImportsOnFileMove.enabled": "never",
   "typescript.referencesCodeLens.enabled": true,
   "eslint.alwaysShowStatus": true,
-  "eslint.enable": true,
   "eslint.validate": ["javascript", "typescript"],
   "eslint.packageManager": "npm",
   "eslint.workingDirectories": [

@@ -127,6 +127,7 @@ credentials
 .terraform
 terraform.tfstate
 terraform.tfstate.backup
+.terraform.tfstate.lock.info
 terraform_startupjs
 terraform/.kube
 terraform/helm

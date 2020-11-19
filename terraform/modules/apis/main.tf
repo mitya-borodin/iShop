@@ -44,3 +44,11 @@ resource "google_project_iam_member" "cloudbuild_sa_editor" {
   role    = "roles/editor"
   member  = "serviceAccount:${data.google_project.this.number}@cloudbuild.gserviceaccount.com"
 }
+
+// Enable Secrete manager
+resource "google_project_service" "secrete_manager" {
+  project = var.project
+  service = "secretmanager.googleapis.com"
+
+  disable_on_destroy = false
+}

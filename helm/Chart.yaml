@@ -1,0 +1,29 @@
+apiVersion: v2
+name: "e-commerce-nodejs"
+version: "1.0.0"
+description: "e-commerce-nodejs which is powered by modern technology. I selected method for testing technology interested for me through create e-commerce software. I will use Svelte, Tailwind, Snowpack, Mobx, RTCTS, NodeJS, KoaJS, MongoDB, Redis, Docker, Docker-compose, Nginx, Kubernetes, Helm, Terraform."
+type: "application"
+keywords:
+  - "Svelte"
+  - "Tailwind"
+  - "Snowpack"
+  - "Mobx"
+  - "RTCTS"
+  - "NodeJS"
+  - "KoaJS"
+  - "MongoDB"
+  - "Redis"
+  - "Docker"
+  - "Docker-compose"
+  - "Nginx"
+  - "Kubernetes"
+  - "Helm"
+  - "Terraform"
+home: e-commerce-nodejs.ru
+sources:
+  - https://github.com/mitya-borodin/e-commerce-nodejs
+maintainers:
+  - name: Dmitriy Borodin
+    email: dmitriy@borodin.site
+    url: "https://borodin.site"
+appVersion: "1.0.0"

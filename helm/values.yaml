@@ -1,0 +1,9 @@
+domain: "e-commerce-nodejs.ru"
+clusterIssuerName: "letsencrypt-cluster-issuer-name"
+email: "dmitriy@borodin.site"
+letsencryptServer: "https://acme-v02.api.letsencrypt.org/directory"
+letsencryptSecretName: "letsencrypt-cluster-issuer-secrets"
+ingressClass: "nginx"
+ingressName: "ingress-service"
+sslRedirect: true
+gitSha: "latest"

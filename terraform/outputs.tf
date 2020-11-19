@@ -17,3 +17,16 @@ output "host" {
   value       = "https://${module.kube.endpoint}"
   description = "Kube cluster hostname"
 }
+output "secret_data" {
+  value       = module.secrets.secret_data
+  description = "Secrete data"
+}
+output "secret_name" {
+  value       = module.secrets.secret_name
+  description = "Secrete name"
+}
+
+output "secret_enabled" {
+  value       = module.secrets.secret_enabled
+  description = "Secrete enabled"
+}

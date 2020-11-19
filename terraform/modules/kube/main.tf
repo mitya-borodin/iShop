@@ -31,13 +31,14 @@ resource "google_container_node_pool" "this" {
     tags         = [var.name, "kube"]
 
     disk_type    = "pd-ssd"
-    disk_size_gb = 5
+    disk_size_gb = 10
 
     oauth_scopes = [
       "https://www.googleapis.com/auth/compute",
       "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
+      "https://www.googleapis.com/auth/cloud-platform"
     ]
   }
 }
