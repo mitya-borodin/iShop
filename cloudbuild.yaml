@@ -100,3 +100,26 @@ steps:
     args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+
+  # This step deploys the new version of our container image
+  # in the ec-project-294719 Kubernetes Engine cluster.
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: deploy-front-end
+    args:
+      - 'set'
+      - 'image'
+      - 'deployments/client-deployment'
+      - 'client=gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+    env:
+      - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: deploy-back-end
+    args:
+      - 'set'
+      - 'image'
+      - 'deployments/server-deployment'
+      - 'server=gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+    env:
+      - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'

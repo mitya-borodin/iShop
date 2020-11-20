@@ -24,7 +24,17 @@ resource "google_project_iam_member" "cloudbuild_sa_editor" {
   depends_on = [google_project_service.cloudbuild]
 
   project = var.project
-  role    = "roles/editor"
+  role    = "roles/container.developer"
+  member  = "serviceAccount:${data.google_project.this.number}@cloudbuild.gserviceaccount.com"
+}
+
+// Add Secrete Accessor role to the Cloud Build service account
+// (required to be able to work with Secrete Manager and read sensitive data)
+resource "google_project_iam_member" "cloudbuild_sa_editor" {
+  depends_on = [google_project_service.cloudbuild]
+
+  project = var.project
+  role    = "roles/secretmanager.secretAccessor"
   member  = "serviceAccount:${data.google_project.this.number}@cloudbuild.gserviceaccount.com"
 }
 
@@ -37,6 +47,7 @@ resource "google_project_service" "containeranalysis" {
 }
 
 // Enable Secrete Manager
+// (required to be able to save and read sensitive data)
 resource "google_project_service" "secrete_manager" {
   project = var.project
   service = "secretmanager.googleapis.com"
