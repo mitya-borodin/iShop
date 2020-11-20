@@ -48,7 +48,8 @@
     "frontend",
     "dependecies",
     "all",
-    "deployment"
+    "deployment",
+    "Fix ids"
   ],
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",

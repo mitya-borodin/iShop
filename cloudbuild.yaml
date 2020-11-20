@@ -23,7 +23,7 @@ steps:
 
   # This steps run the fmt, lint, test, build  for front-end.
   - name: 'gcr.io/cloud-builders/docker'
-    id: FmtFrontEnd
+    id: RunFmtFrontEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
@@ -31,7 +31,7 @@ steps:
       - 'run'
       - 'fmt'
   - name: 'gcr.io/cloud-builders/docker'
-    id: LintFrontEnd
+    id: RunLintFrontEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
@@ -39,7 +39,7 @@ steps:
       - 'run'
       - 'lint'
   - name: 'gcr.io/cloud-builders/docker'
-    id: TestFrontEnd
+    id: RunTestFrontEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
@@ -47,7 +47,7 @@ steps:
       - 'run'
       - 'test'
   - name: 'gcr.io/cloud-builders/docker'
-    id: BuildFrontEnd
+    id: RunBuildFrontEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
@@ -57,7 +57,7 @@ steps:
 
   # This steps run the fmt, lint, test, build for back-end.
   - name: 'gcr.io/cloud-builders/docker'
-    id: FmtFrontEnd
+    id: RunFmtFrontEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
@@ -65,7 +65,7 @@ steps:
       - 'run'
       - 'fmt'
   - name: 'gcr.io/cloud-builders/docker'
-    id: LintFrontEnd
+    id: RunLintFrontEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
@@ -73,7 +73,7 @@ steps:
       - 'run'
       - 'lint'
   - name: 'gcr.io/cloud-builders/docker'
-    id: TestFrontEnd
+    id: RunTestFrontEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
@@ -81,7 +81,7 @@ steps:
       - 'run'
       - 'test'
   - name: 'gcr.io/cloud-builders/docker'
-    id: BuildFrontEnd
+    id: RunBuildBackEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
@@ -91,12 +91,12 @@ steps:
 
   # This step pushes the image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    id: Push
+    id: PushFrontEnd
     args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
   - name: 'gcr.io/cloud-builders/docker'
-    id: Push
+    id: PushBackEnd
     args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
