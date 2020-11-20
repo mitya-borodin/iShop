@@ -19,20 +19,6 @@ module "kube" {
   machines     = var.kube.machines
 }
 
-module "secrets" {
-  source = "./modules/secrets"
-
-  depends_on = [module.kube]
-
-  project_id = local.name
-  secret_id  = "data-base"
-
-  secret_data = {
-    jwtSecretKey = uuid()
-    dbName       = "e-commerce-nodejs"
-  }
-}
-
 module "kubectl" {
   source = "./modules/kubectl"
 
@@ -43,6 +29,20 @@ module "kubectl" {
   client_key             = module.kube.client_key
   endpoint               = module.kube.endpoint
 }
+
+#module "secrets" {
+#  source = "./modules/secrets"
+#
+#  depends_on = [module.kube]
+#
+#  project_id = local.name
+#  secret_id  = "data-base"
+#
+#  secret_data = {
+#    jwtSecretKey = uuid()
+#    dbName       = "e-commerce-nodejs"
+#  }
+#}
 
 resource "helm_release" "ingress-nginx" {
   depends_on = [module.kube]
@@ -72,19 +72,8 @@ resource "helm_release" "cert-manager" {
   }
 }
 
-#resource "helm_release" "application" {
-#  depends_on = [module.secrets, helm_release.ingress-nginx, helm_release.cert-manager]
-#  name       = "e-commerce-nodejs"
-#  repository = null
-#  chart      = "${path.module}/../helm"
-#
-#  version    = "1.0.0"
-#
-#  max_history = 5
-#  wait        = true
-#
-#  set {
-#    name  = "gitSha"
-#    value = "latest"
-#  }
-#}
+module "app" {
+  source = "./modules/app"
+
+  depends_on = [module.secrets, module.kube, helm_release.ingress-nginx, helm_release.cert-manager]
+}
