@@ -1,0 +1,102 @@
+steps:
+  # The PROJECT_ID and SHORT_SHA variables are automatically
+  # replaced by Cloud Build.
+  # This steps builds the container image for front-end and back-end.
+  - name: 'gcr.io/cloud-builders/docker'
+    id: BuildFrontEnd
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+      - '-f'
+      - './packages/frontend/Dockerfile.dev'
+      - './packages/frontend'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: BuildBackEnd
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+      - '-f'
+      - './packages/backend/Dockerfile.dev'
+      - './packages/backend'
+
+  # This steps run the fmt, lint, test, build  for front-end.
+  - name: 'gcr.io/cloud-builders/docker'
+    id: FmtFrontEnd
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'fmt'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: LintFrontEnd
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'lint'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: TestFrontEnd
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'test'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: BuildFrontEnd
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'build'
+
+  # This steps run the fmt, lint, test, build for back-end.
+  - name: 'gcr.io/cloud-builders/docker'
+    id: FmtFrontEnd
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'fmt'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: LintFrontEnd
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'lint'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: TestFrontEnd
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'test'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: BuildFrontEnd
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'build'
+
+  # This step pushes the image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    id: Push
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: Push
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'

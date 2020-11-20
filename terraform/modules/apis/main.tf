@@ -1,20 +1,3 @@
-// Enable Cloud Resource Manager API on a fresh project
-// (required for doing the destroy)
-resource "google_project_service" "cloudresourcemanager" {
-  project = var.project
-  service = "cloudresourcemanager.googleapis.com"
-
-  disable_on_destroy = false
-}
-
-// Enable Compute Engine API on a fresh project
-resource "google_project_service" "compute" {
-  project = var.project
-  service = "compute.googleapis.com"
-
-  disable_on_destroy = false
-}
-
 data "google_project" "this" {
   project_id = var.project
 }
@@ -45,10 +28,35 @@ resource "google_project_iam_member" "cloudbuild_sa_editor" {
   member  = "serviceAccount:${data.google_project.this.number}@cloudbuild.gserviceaccount.com"
 }
 
-// Enable Secrete manager
+// Enable Сontainer Analysis
+resource "google_project_service" "containeranalysis" {
+  project = var.project
+  service = "containeranalysis.googleapis.com"
+
+  disable_on_destroy = false
+}
+
+// Enable Secrete Manager
 resource "google_project_service" "secrete_manager" {
   project = var.project
   service = "secretmanager.googleapis.com"
 
   disable_on_destroy = false
 }
+
+// Enable Cloud Resource Manager API on a fresh project
+// (required for doing the destroy)
+#resource "google_project_service" "cloudresourcemanager" {
+#  project = var.project
+#  service = "cloudresourcemanager.googleapis.com"
+#
+#  disable_on_destroy = false
+#}
+
+// Enable Compute Engine API on a fresh project
+# resource "google_project_service" "compute" {
+#   project = var.project
+#   service = "compute.googleapis.com"
+# 
+#   disable_on_destroy = false
+# }
