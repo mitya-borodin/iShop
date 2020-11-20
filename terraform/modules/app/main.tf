@@ -10,12 +10,12 @@ resource "helm_release" "application" {
 
   set {
     name  = "JWT_SECRET_KEY"
-    value = uuid()
+    value = base64encode(uuid())
   }
-  
+
   set {
     name  = "DB_NAME"
-    value = var.dbName
+    value = base64encode(var.dbName)
   }
   set {
     name  = "domain"

@@ -75,5 +75,5 @@ resource "helm_release" "cert-manager" {
 module "app" {
   source = "./modules/app"
 
-  depends_on = [module.secrets, module.kube, helm_release.ingress-nginx, helm_release.cert-manager]
+  depends_on = [module.kube, helm_release.ingress-nginx, helm_release.cert-manager]
 }
