@@ -57,7 +57,7 @@ steps:
 
   # This steps run the fmt, lint, test, build for back-end.
   - name: 'gcr.io/cloud-builders/docker'
-    id: RunFmtFrontEnd
+    id: RunFmtBackEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
@@ -65,7 +65,7 @@ steps:
       - 'run'
       - 'fmt'
   - name: 'gcr.io/cloud-builders/docker'
-    id: RunLintFrontEnd
+    id: RunLintBackEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
@@ -73,7 +73,7 @@ steps:
       - 'run'
       - 'lint'
   - name: 'gcr.io/cloud-builders/docker'
-    id: RunTestFrontEnd
+    id: RunTestBackEnd
     args:
       - 'run'
       - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
