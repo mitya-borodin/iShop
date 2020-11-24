@@ -30,7 +30,7 @@ resource "google_project_iam_member" "cloudbuild_sa_editor" {
 
 // Add Secrete Accessor role to the Cloud Build service account
 // (required to be able to work with Secrete Manager and read sensitive data)
-resource "google_project_iam_member" "cloudbuild_sa_editor" {
+resource "google_project_iam_member" "cloudbuild_sa_secretAccessor" {
   depends_on = [google_project_service.cloudbuild]
 
   project = var.project
