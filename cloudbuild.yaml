@@ -112,23 +112,34 @@ steps:
   #    - 'e-commerce-nodejs-env-prod'
 
   - name: 'gcr.io/cloud-builders/gcloud'
+    id: getting-secret-data
     entrypoint: /bin/bash
     args: ["-c", "gcloud secrets versions access latest --secret=e-commerce-nodejs-env-prod > secret.json"]
   
   - name: 'node:lts-alpine'
+    id: convert-secret-data
     args: ["node", "./jsonToEnv.js", "secret.json", "--out=secret.env"]
   
   - name: 'gcr.io/cloud-builders/kubectl'
+    id: create-config-for-secret-update
     entrypoint: /bin/bash
-    args: ["-c", "kubectl create secret generic e-commerce-nodejs-env-prod --type=Opaque --from-env-file=secret.env --dry-run -o yaml | kubectl apply -f -"]
+    args: ["-c", "kubectl create secret generic e-commerce-nodejs-env-prod --type=Opaque --from-env-file=secret.env --dry-run -o yaml > secret.yml"]
+  
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: apply-secret-config
+    args:
+      - "apply"
+      - "-f"
+      - "secret.yml"
     env:
       - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
   
   - name: 'gcr.io/cloud-builders/gcloud'
+    id: remove-secret-env-file
     entrypoint: /bin/bash
-    args: ["-c", "rm secret.env"]
-    
+    args: ["-c", "rm secret.env secret.yml"]
+
   #- name: 'gcr.io/cloud-builders/kubectl'
   #  id: deploy-front-end
   #  args:
