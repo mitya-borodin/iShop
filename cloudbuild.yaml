@@ -101,16 +101,6 @@ steps:
       - 'push'
       - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
 
-  # This step deploys the new version of our container image
-  # in the ec-project-294719 Kubernetes Engine cluster.
-  - name: 'gcr.io/cloud-builders/kubectl'
-    id: deploy-back-end
-    args:
-      - 'create'
-      - 'secret'
-      - 'generic'
-      - 'e-commerce-nodejs-env-prod'
-
   - name: 'gcr.io/cloud-builders/gcloud'
     id: getting-secret-data
     entrypoint: /bin/bash
@@ -135,6 +125,13 @@ steps:
       - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
 
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: remove-secret-env-file
+    entrypoint: /bin/bash
+    args: ["-c", "rm secret.env secret.yml"]
+
+  # This step deploys the new version of our container image
+  # in the ec-project-294719 Kubernetes Engine cluster.
   - name: 'gcr.io/cloud-builders/kubectl'
     id: deploy-front-end
     args:
@@ -157,7 +154,3 @@ steps:
       - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    id: remove-secret-env-file
-    entrypoint: /bin/bash
-    args: ["-c", "rm secret.env secret.yml"]
