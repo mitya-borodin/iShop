@@ -2,114 +2,114 @@ steps:
   # The PROJECT_ID and SHORT_SHA variables are automatically
   # replaced by Cloud Build.
   # This steps builds the container image for front-end and back-end.
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: build-front-end
-  #  args:
-  #    - 'build'
-  #    - '-t'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
-  #    - '-f'
-  #    - './packages/frontend/Dockerfile.dev'
-  #    - './packages/frontend'
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: build-back-end
-  #  args:
-  #    - 'build'
-  #    - '-t'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
-  #    - '-f'
-  #    - './packages/backend/Dockerfile.dev'
-  #    - './packages/backend'
-#
+  - name: 'gcr.io/cloud-builders/docker'
+    id: build-front-end
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+      - '-f'
+      - './packages/frontend/Dockerfile.dev'
+      - './packages/frontend'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: build-back-end
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+      - '-f'
+      - './packages/backend/Dockerfile.dev'
+      - './packages/backend'
+
   ## This steps run the fmt, lint, test, build  for front-end.
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: run-fmt-front-end
-  #  args:
-  #    - 'run'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
-  #    - 'npm'
-  #    - 'run'
-  #    - 'fmt'
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: run-lint-front-end
-  #  args:
-  #    - 'run'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
-  #    - 'npm'
-  #    - 'run'
-  #    - 'lint'
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: run-test-front-end
-  #  args:
-  #    - 'run'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
-  #    - 'npm'
-  #    - 'run'
-  #    - 'test'
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: run-build-front-end
-  #  args:
-  #    - 'run'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
-  #    - 'npm'
-  #    - 'run'
-  #    - 'build'
-#
-  ## This steps run the fmt, lint, test, build for back-end.
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: run-fmt-back-end
-  #  args:
-  #    - 'run'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
-  #    - 'npm'
-  #    - 'run'
-  #    - 'fmt'
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: run-lint-back-end
-  #  args:
-  #    - 'run'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
-  #    - 'npm'
-  #    - 'run'
-  #    - 'lint'
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: run-test-back-end
-  #  args:
-  #    - 'run'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
-  #    - 'npm'
-  #    - 'run'
-  #    - 'test'
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: run-build-back-end
-  #  args:
-  #    - 'run'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
-  #    - 'npm'
-  #    - 'run'
-  #    - 'build'
-#
+  - name: 'gcr.io/cloud-builders/docker'
+    id: run-fmt-front-end
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'fmt'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: run-lint-front-end
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'lint'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: run-test-front-end
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'test'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: run-build-front-end
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'build'
+
+  # This steps run the fmt, lint, test, build for back-end.
+  - name: 'gcr.io/cloud-builders/docker'
+    id: run-fmt-back-end
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'fmt'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: run-lint-back-end
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'lint'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: run-test-back-end
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'test'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: run-build-back-end
+    args:
+      - 'run'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+      - 'npm'
+      - 'run'
+      - 'build'
+
   ## This step pushes the image to Container Registry
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: push-front-end
-  #  args:
-  #    - 'push'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  id: push-back-end
-  #  args:
-  #    - 'push'
-  #    - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: push-front-end
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+  - name: 'gcr.io/cloud-builders/docker'
+    id: push-back-end
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
 
   # This step deploys the new version of our container image
   # in the ec-project-294719 Kubernetes Engine cluster.
-  #- name: 'gcr.io/cloud-builders/kubectl'
-  #  id: deploy-back-end
-  #  args:
-  #    - 'create'
-  #    - 'secret'
-  #    - 'generic'
-  #    - 'e-commerce-nodejs-env-prod'
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: deploy-back-end
+    args:
+      - 'create'
+      - 'secret'
+      - 'generic'
+      - 'e-commerce-nodejs-env-prod'
 
   - name: 'gcr.io/cloud-builders/gcloud'
     id: getting-secret-data
@@ -134,31 +134,30 @@ steps:
     env:
       - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
-  
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: deploy-front-end
+    args:
+      - 'set'
+      - 'image'
+      - 'deployments/client-deployment'
+      - 'client=gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
+    env:
+      - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: deploy-back-end
+    args:
+      - 'set'
+      - 'image'
+      - 'deployments/server-deployment'
+      - 'server=gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
+    env:
+      - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
+
   - name: 'gcr.io/cloud-builders/gcloud'
     id: remove-secret-env-file
     entrypoint: /bin/bash
     args: ["-c", "rm secret.env secret.yml"]
-
-  #- name: 'gcr.io/cloud-builders/kubectl'
-  #  id: deploy-front-end
-  #  args:
-  #    - 'set'
-  #    - 'image'
-  #    - 'deployments/client-deployment'
-  #    - 'client=gcr.io/$PROJECT_ID/e-commerce-front:$SHORT_SHA'
-  #  env:
-  #    - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
-  #    - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
-  #- name: 'gcr.io/cloud-builders/kubectl'
-  #  id: deploy-back-end
-  #  args:
-  #    - 'set'
-  #    - 'image'
-  #    - 'deployments/server-deployment'
-  #    - 'server=gcr.io/$PROJECT_ID/e-commerce-back:$SHORT_SHA'
-  #  env:
-  #    - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
-  #    - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
-
-
