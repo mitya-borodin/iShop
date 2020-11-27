@@ -1,4 +1,19 @@
+locals {
+  secrete_id = "${var.prefix}-env-${var.postfix}"
+}
+
+module "secrets" {
+  source = "../secrets"
+
+  project_id = var.project_id
+  secret_id  = local.secrete_id
+
+  secret_data = var.secret_data
+}
+
 resource "helm_release" "application" {
+  depends_on = [module.secrets]
+
   name       = var.name
   repository = null
   chart      = "${path.module}/helm"
@@ -8,49 +23,19 @@ resource "helm_release" "application" {
   max_history = 5
   wait        = true
 
-  set {
-    name  = "JWT_SECRET_KEY"
-    value = base64encode(uuid())
-  }
-
-  set {
-    name  = "DB_NAME"
-    value = base64encode(var.dbName)
-  }
-  set {
-    name  = "domain"
-    value = var.domain
-  }
-  set {
-    name  = "email"
-    value = var.email
-  }
-  set {
-    name  = "letsencryptServer"
-    value = var.letsencryptServer
-  }
-  set {
-    name  = "clusterIssuerName"
-    value = var.clusterIssuerName
-  }
-  set {
-    name  = "letsencryptSecretName"
-    value = var.letsencryptSecretName
-  }
-  set {
-    name  = "ingressClass"
-    value = var.ingressClass
-  }
-  set {
-    name  = "ingressName"
-    value = var.ingressName
-  }
-  set {
-    name  = "sslRedirect"
-    value = var.sslRedirect
-  }
-  set {
-    name  = "gitSha"
-    value = var.gitSha
-  }
+  values = [
+    yamlencode({
+      secrete_id = local.secrete_id
+      domain = var.domain
+      email = var.email
+      letsencryptServer = var.letsencryptServer
+      clusterIssuerName = var.clusterIssuerName
+      letsencryptSecretName = var.letsencryptSecretName
+      ingressClass = var.ingressClass
+      ingressName = var.ingressName
+      sslRedirect = var.sslRedirect
+      gitSha = var.gitSha
+      env = module.secrets.secret_data
+    })
+  ]
 }

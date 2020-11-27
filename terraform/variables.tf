@@ -1,4 +1,4 @@
-variable "project" {
+variable "project_id" {
   description = "Project ID"
   type        = string
 }
@@ -15,12 +15,6 @@ variable "credentials_file" {
   default     = "../credentials/account.json"
 }
 
-variable "name" {
-  description = "Environment name (same as project name by default)"
-  type        = string
-  default     = "" // var.project is used if name is empty
-}
-
 variable "kube" {
   description = "Kubernetes cluster configuration. Machine type and the amount of machines to create."
   type = object({
@@ -30,5 +24,14 @@ variable "kube" {
   default = {
     machine_type = "n1-standard-4"
     machines     = 1
+  }
+}
+
+variable "secret_data" {
+  description = "Secret data"
+  type = any
+  default = {
+    JWT_SECRET_KEY = "JWT_SECRET_KEY"
+    DB_NAME       = "e-commerce-nodejs"
   }
 }

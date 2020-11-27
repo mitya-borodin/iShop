@@ -18,7 +18,7 @@ resource "google_secret_manager_secret_iam_member" "member" {
   member     = "serviceAccount:${data.google_client_openid_userinfo.me.email}"
 }
 
-resource "google_secret_manager_secret_version" "secret-version-basic" {
+resource "google_secret_manager_secret_version" "secret-initial" {
   depends_on = [google_secret_manager_secret.secret_basic, google_secret_manager_secret_iam_member.member]
 
   secret      = google_secret_manager_secret.secret_basic.id

@@ -1,13 +1,11 @@
+variable "project_id" {
+  description = "Project ID"
+  type        = string
+}
 variable "name" {
   description = "Application name"
   type        = string
   default     = "e-commerce-nodejs"
-}
-
-variable "dbName" {
-  description = "Database name"
-  type        = string
-  default     = "e-commerce-nodejs-data-base"
 }
 
 variable "domain" {
@@ -20,6 +18,27 @@ variable "email" {
   description = "Email for getting certificate from letsencrypt"
   type        = string
   default     = "dmitriy@borodin.site"
+}
+
+variable "prefix" {
+  description = "Prefix for environment variables"
+  type        = string
+  default     = "prefix"
+}
+
+variable "postfix" {
+  description = "Postfix for environment variables"
+  type        = string
+  default     = "postfix"
+}
+
+variable "secret_data" {
+  description = "Secret data"
+  type = any
+  default = {
+    JWT_SECRET_KEY = "JWT_SECRET_KEY"
+    DB_NAME       = "e-commerce-nodejs"
+  }
 }
 
 variable "letsencryptServer" {

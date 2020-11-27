@@ -5,7 +5,7 @@ data "google_secret_manager_secret_version" "basic" {
 }
 
 output "secret_data" {
-  value = data.google_secret_manager_secret_version.basic.secret_data
+  value = jsondecode(data.google_secret_manager_secret_version.basic.secret_data)
 }
 
 output "secret_name" {

@@ -7,3 +7,7 @@ ingressClass: "nginx"
 ingressName: "ingress-service"
 sslRedirect: true
 gitSha: "latest"
+secrete_id: "secrete_id"
+env:
+  JWT_SECRET_KEY: "JWT_SECRET_KEY"
+  DB_NAME: "e-commerce-nodejs"

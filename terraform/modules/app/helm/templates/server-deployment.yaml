@@ -19,25 +19,25 @@ spec:
             - name: JWT_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: data-base
+                  name: {{ .Values.secrete_id }}
                   key: JWT_SECRET_KEY
             - name: DB_URL
               value: mongodb://mongodb-cluster-ip-service:27017
             - name: DB
               valueFrom:
                 secretKeyRef:
-                  name: data-base
+                  name: {{ .Values.secrete_id }}
                   key: DB_NAME
             - name: SERVER_HOST
               value: "0.0.0.0"
             - name: SERVER_PORT
-              value: '10000'
+              value: "10000"
             - name: WS_HOST
               value: "0.0.0.0"
             - name: WS_PORT
-              value: '10001'
+              value: "10001"
             - name: NODE_ENV
-              value: 'development'
+              value: "development"
           ports:
             - containerPort: 10000
             - containerPort: 10001
@@ -48,5 +48,3 @@ spec:
           #   limits:
           #     memory: "512Mi"
           #     cpu: "500m"
-
-

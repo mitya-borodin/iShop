@@ -9,13 +9,10 @@ variable "secret_id" {
 }
 
 variable "secret_data" {
-  description = "Secret data"
-  type = object({
-    jwtSecretKey = string
-    dbName       = string
-  })
+  description = "Secret data map"
+  type = any
   default = {
-    jwtSecretKey = "jwtSecretKey"
-    dbName       = "e-commerce-nodejs"
+    JWT_SECRET_KEY = "JWT_SECRET_KEY"
+    DB_NAME       = "e-commerce-nodejs"
   }
 }

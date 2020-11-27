@@ -1,11 +1,7 @@
-locals {
-  name = var.name != "" ? var.name : var.project
-}
-
 module "apis" {
   source = "./modules/apis"
 
-  project = var.project
+  project_id = var.project_id
 }
 
 module "kube" {
@@ -13,7 +9,7 @@ module "kube" {
 
   depends_on = [module.apis]
 
-  name         = local.name
+  name         = var.project_id
   zone         = var.zone
   machine_type = var.kube.machine_type
   machines     = var.kube.machines
@@ -29,20 +25,6 @@ module "kubectl" {
   client_key             = module.kube.client_key
   endpoint               = module.kube.endpoint
 }
-
-#module "secrets" {
-#  source = "./modules/secrets"
-#
-#  depends_on = [module.kube]
-#
-#  project_id = local.name
-#  secret_id  = "data-base"
-#
-#  secret_data = {
-#    jwtSecretKey = uuid()
-#    dbName       = "e-commerce-nodejs"
-#  }
-#}
 
 resource "helm_release" "ingress-nginx" {
   depends_on = [module.kube]
@@ -75,5 +57,11 @@ resource "helm_release" "cert-manager" {
 module "app" {
   source = "./modules/app"
 
-  depends_on = [module.kube, helm_release.ingress-nginx, helm_release.cert-manager]
+  depends_on = [helm_release.ingress-nginx, helm_release.cert-manager]
+  
+  project_id = var.project_id
+
+  prefix = "e-commerce-nodejs"
+  postfix = "prod"
+  secret_data = var.secret_data
 }
