@@ -118,10 +118,17 @@ steps:
   - name: 'node:lts-alpine'
     args: ["node", "./jsonToEnv.js", "secret.json", "--out=secret.env"]
   
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/kubectl'
     entrypoint: /bin/bash
     args: ["-c", "kubectl create secret generic e-commerce-nodejs-env-prod --type=Opaque --from-env-file=secret.env --dry-run -o yaml | kubectl apply -f -"]
-
+    env:
+      - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
+  
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: /bin/bash
+    args: ["-c", "rm secret.env"]
+    
   #- name: 'gcr.io/cloud-builders/kubectl'
   #  id: deploy-front-end
   #  args:
@@ -143,6 +150,4 @@ steps:
   #    - 'CLOUDSDK_CONTAINER_CLUSTER=$PROJECT_ID'
   #    - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: /bin/bash
-    args: ["-c", "rm secret.env"]
+
