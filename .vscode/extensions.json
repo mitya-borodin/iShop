@@ -1,14 +1,12 @@
 {
   "recommendations": [
     "eamodio.gitlens",
-    "github.vscode-pull-request-github",
     "vivaxy.vscode-conventional-commits",
     "adam-bender.commit-message-editor",
     "zhuangtongfa.material-theme",
     "pkief.material-icon-theme",
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
-    "stylelint.vscode-stylelint",
     "redhat.vscode-yaml",
     "eg2.vscode-npm-script",
     "christian-kohler.npm-intellisense",
@@ -32,13 +30,13 @@
     "sysoev.language-stylus",
     "thisismanta.stylus-supremacy",
     "esbenp.prettier-vscode",
-    "hangxingliu.vscode-nginx-conf-hint",
     "davidanson.vscode-markdownlint",
     "yzhang.markdown-all-in-one",
     "aaron-bond.better-comments",
     "streetsidesoftware.code-spell-checker",
     "streetsidesoftware.code-spell-checker-russian",
-    "pnp.polacode"
+    "pnp.polacode",
+    "foxundermoon.shell-format"
   ],
   "unwantedRecommendations": [
     "felipecaputo.git-project-manager",

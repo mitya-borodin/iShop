@@ -25,6 +25,10 @@
   "[terraform]": {
     "editor.formatOnSave": true
   },
+  "terraform.languageServer": {
+    "external": true,
+    "args": ["serve"]
+  },
   "diffEditor.ignoreTrimWhitespace": true,
   "search.exclude": {
     "**/node_modules": true,
