@@ -108,7 +108,7 @@ steps:
   
   - name: 'node:lts-alpine'
     id: convert-secret-data
-    args: ["node", "./jsonToEnv.js", "secret.json", "--out=secret.env"]
+    args: ["node", "./jsonToEnv.js", "secret.json"]
   
   - name: 'gcr.io/cloud-builders/kubectl'
     id: create-config-for-secret-update
