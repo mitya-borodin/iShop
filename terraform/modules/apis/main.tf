@@ -4,12 +4,12 @@ data "google_project" "this" {
 
 // Enable Cloud Resource Manager API on a fresh project
 // (required for doing the destroy)
-#resource "google_project_service" "cloudresourcemanager" {
-#  project = var.project_id
-#  service = "cloudresourcemanager.googleapis.com"
-#
-#  disable_on_destroy = false
-#}
+resource "google_project_service" "cloudresourcemanager" {
+  project = var.project_id
+  service = "cloudresourcemanager.googleapis.com"
+
+  disable_on_destroy = false
+}
 
 // Enable Secrete Manager
 // (required to be able to save and read sensitive data)
@@ -65,9 +65,9 @@ resource "google_project_service" "cloudbuild" {
 }
 
 // Enable Compute Engine API on a fresh project
-# resource "google_project_service" "compute" {
-#   project = var.project_id
-#   service = "compute.googleapis.com"
-# 
-#   disable_on_destroy = false
-# }
+resource "google_project_service" "compute" {
+  project = var.project_id
+  service = "compute.googleapis.com"
+
+  disable_on_destroy = false
+}

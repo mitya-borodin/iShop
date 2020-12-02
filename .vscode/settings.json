@@ -54,7 +54,8 @@
     "all",
     "deployment",
     "Fix ids",
-    "CI"
+    "CI",
+    "terraform"
   ],
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
