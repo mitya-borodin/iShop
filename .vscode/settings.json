@@ -1,5 +1,6 @@
 {
   "window.zoomLevel": 0,
+
   "files.autoSave": "afterDelay",
   "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
@@ -11,6 +12,7 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -45,6 +47,7 @@
   },
   "search.followSymlinks": false,
   "terminal.integrated.rendererType": "canvas",
+
   "git.confirmSync": true,
   "git.autofetch": true,
   "git.enableSmartCommit": true,
@@ -52,22 +55,16 @@
   "git.enableStatusBarSync": true,
   "git.showProgress": true,
   "gitlens.views.repositories.files.layout": "tree",
+
   "conventionalCommits.scopes": [
-    "settings",
-    "shared",
-    "frontend",
-    "dependecies",
-    "all",
-    "deployment",
-    "Fix ids",
-    "CI",
-    "terraform",
-    "Lint"
+    "settings"
   ],
+
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.updateImportsOnFileMove.enabled": "never",
   "typescript.referencesCodeLens.enabled": true,
+
   "eslint.alwaysShowStatus": true,
   "eslint.validate": [
     "javascript",
@@ -81,16 +78,20 @@
     "./packages/backend",
     "./packages/shared"
   ],
+
   "stylusSupremacy.insertBraces": false,
   "stylusSupremacy.insertColons": false,
   "stylusSupremacy.insertSemicolons": false,
   "stylusSupremacy.selectorSeparator": "\n",
+
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
+
   "workbench.colorTheme": "One Dark Pro",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.revealIfOpen": true,
+
   "cSpell.words": [],
   "cSpell.language": "en,ru"
 }
