@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum sizeValueEnum {
   XXS = "XXS",
   XS = "XS",

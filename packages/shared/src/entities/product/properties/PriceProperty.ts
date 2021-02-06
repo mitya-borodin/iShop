@@ -2,6 +2,7 @@ import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/i
 import { Price, PriceData } from "../Price";
 
 export interface PricePropertyData {
+  [index: string]: any;
   type: "price";
   name?: string;
   group?: string;
@@ -11,6 +12,7 @@ export interface PricePropertyData {
 const stringFields: string[] = ["name", "group"];
 
 export class PriceProperty implements ValueObject {
+  [index: string]: any;
   type: "price";
   name?: string;
   group?: string;

@@ -2,6 +2,7 @@ import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/i
 import { sizeTypeEnum } from "../../enums/sizeTypeEnum";
 
 export interface ShoesSizeData {
+  [index: string]: any;
   readonly legendId?: string;
   readonly title?: string;
   readonly description?: string;
@@ -15,6 +16,7 @@ const stringFields: string[] = ["legendId", "title", "description"];
 const numberFields = ["sizeValue", "insoleLength", "insoleWidth"];
 
 export class ShoesSize implements ValueObject {
+  [index: string]: any;
   readonly legendId?: string;
   readonly title?: string;
   readonly description?: string;

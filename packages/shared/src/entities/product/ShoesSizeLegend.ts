@@ -3,6 +3,7 @@ import { isString } from "@rtcts/utils";
 import { SizeLegendItem } from "./SizeLegendItem";
 
 export interface ShoesSizeLegendData {
+  [index: string]: any;
   readonly id?: string;
 
   readonly title?: string;
@@ -16,6 +17,7 @@ const stringFields = ["title", "description"];
 const sizeLegendItemFields: string[] = ["insoleLength", "insoleWidth"];
 
 export class ShoesSizeLegend implements Entity {
+  [index: string]: any;
   readonly id?: string;
   readonly title?: string;
   readonly description?: string;

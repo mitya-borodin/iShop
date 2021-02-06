@@ -3,6 +3,7 @@ import { propertiesEnum } from "../../../enums/propertiesEnum";
 import { Color, ColorData } from "../Color";
 
 export interface ColorPropertyData {
+  [index: string]: any;
   type: propertiesEnum.color;
   name?: string;
   group?: string;
@@ -12,6 +13,7 @@ export interface ColorPropertyData {
 const stringFields: string[] = ["name", "group"];
 
 export class ColorProperty implements ValueObject {
+  [index: string]: any;
   type: propertiesEnum.color;
   name?: string;
   group?: string;

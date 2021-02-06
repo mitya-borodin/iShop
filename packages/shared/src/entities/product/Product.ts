@@ -9,6 +9,7 @@ import { ShoesSizeProperty } from "./properties/ShoesSizeProperty";
 import { StringProperty } from "./properties/StringProperty";
 
 export interface ProductData {
+  [index: string]: any;
   readonly id?: string;
   readonly tags?: string[];
   readonly properties?: Array<
@@ -22,6 +23,7 @@ export interface ProductData {
 }
 
 export class Product implements Entity {
+  [index: string]: any;
   readonly id?: string;
   readonly tags?: string[];
   readonly properties?: Array<
@@ -110,10 +112,10 @@ export class Product implements Entity {
         );
       }
 
-      if (!(property instanceof propertiesDictionary[property.type as string])) {
+      if (!(property instanceof propertiesDictionary[property.type])) {
         throw new Error(
           `${this.constructor.name}.properties[${index}] should be instance of ${
-            propertiesDictionary[property.type as string].name
+            propertiesDictionary[property.type].name
           }`,
         );
       }

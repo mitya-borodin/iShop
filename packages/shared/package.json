@@ -1,4 +1,11 @@
 {
+  "name": "@rtcts/ishop-shared",
+  "description": "Entities, enums, sets for ishop project",
+  "author": "Dmitriy Borodin <dmitriy@borodin.site> (http://borodin.site)",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "version": "1.2.1",
   "license": "MIT",
   "main": "dist/index.js",
@@ -13,15 +20,19 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "tsdx build --tsconfig tsconfig.build.json",
     "test": "tsdx test",
     "test:coverage": "tsdx test --coverage",
     "test:watch": "tsdx test --watch",
-    "lint": "tsdx lint src",
-    "lint:fix": "tsdx lint src --fix",
-    "lint:report": "tsdx lint src --report-file report.json",
-    "fmt": "prettier --write **/*.{js,ts}",
-    "prepare": "tsdx build"
+    "lint": "tsdx lint src test",
+    "lint:fix": "tsdx lint src test --fix",
+    "lint:report": "tsdx lint src test --report-file report.json",
+    "fmt": "prettier --write **/*.{js,ts,json}",
+    "prepare": "tsdx build --tsconfig tsconfig.build.json",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "outdated": "npm-check-updates",
+    "upgrade": "npm-check-updates -u --target minor"
   },
   "peerDependencies": {
     "@rtcts/isomorphic": "^1.5.8",
@@ -31,42 +42,46 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint src"
+      "pre-commit": "tsdx lint src test"
     }
   },
   "lint-staged": {
     "*.(ts|json)": [
       "npm run fmt",
-      "git add"
-    ],
-    "*.ts": [
       "npm run lint:fix",
       "git add"
     ]
   },
-  "name": "@rtcts/ishop-shared",
-  "description": "Entities, enums, sets for ishop project",
-  "author": "Dmitriy Borodin <dmitriy@borodin.site> (http://borodin.site)",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
+  "size-limit": [
+    {
+      "path": "dist/ishop-shared.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/ishop-shared.esm.js",
+      "limit": "10 KB"
+    }
+  ],
   "devDependencies": {
     "@rtcts/isomorphic": "^1.5.8",
     "@rtcts/utils": "^1.5.2",
-    "@typescript-eslint/eslint-plugin": "^4.4.1",
-    "@typescript-eslint/parser": "^4.4.1",
-    "eslint": "^7.11.0",
-    "eslint-config-prettier": "^6.12.0",
-    "eslint-plugin-jest": "^24.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
+    "@size-limit/preset-small-lib": "^4.9.2",
+    "@typescript-eslint/eslint-plugin": "^4.14.2",
+    "@typescript-eslint/parser": "^4.14.2",
+    "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-jest": "^24.1.3",
+    "eslint-plugin-prettier": "^3.3.1",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
-    "prettier": "^2.1.2",
+    "npm-check-updates": "^11.1.1",
+    "prettier": "^2.2.1",
+    "size-limit": "^4.9.2",
+    "ts-standard": "^10.0.0",
     "tsdx": "^0.14.1",
-    "tslib": "^2.0.3",
-    "typescript": "^4.0.3"
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.3"
   }
 }

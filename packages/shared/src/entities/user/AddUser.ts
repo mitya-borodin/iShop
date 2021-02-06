@@ -2,6 +2,7 @@ import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/i
 import { isString } from "@rtcts/utils";
 
 export interface AddUserData {
+  [index: string]: any;
   readonly login?: string;
   readonly group?: string;
   readonly password?: string;
@@ -11,6 +12,7 @@ export interface AddUserData {
 const fields: string[] = ["login", "group", "password", "passwordConfirm"];
 
 export class AddUser implements ValueObject {
+  [index: string]: any;
   readonly login?: string;
   readonly group?: string;
   readonly password?: string;

@@ -3,6 +3,7 @@ import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/i
 import { isString } from "@rtcts/utils";
 
 export interface ChangePasswordData {
+  [index: string]: any;
   readonly password?: string;
   readonly passwordConfirm?: string;
 }
@@ -10,6 +11,7 @@ export interface ChangePasswordData {
 const fields: string[] = ["password", "passwordConfirm"];
 
 export class ChangePassword implements ValueObject {
+  [index: string]: any;
   readonly password?: string;
   readonly passwordConfirm?: string;
 

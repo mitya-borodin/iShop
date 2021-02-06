@@ -6,7 +6,9 @@ import { ShoesSizeProperty } from "../entities/product/properties/ShoesSizePrope
 import { StringProperty } from "../entities/product/properties/StringProperty";
 import { propertiesEnum } from "../enums/propertiesEnum";
 
-export const propertiesDictionary = Object.freeze({
+export const propertiesDictionary: {
+  [index: string]: any;
+} = Object.freeze({
   [propertiesEnum.string]: StringProperty,
   [propertiesEnum.number]: NumberProperty,
   [propertiesEnum.price]: PriceProperty,

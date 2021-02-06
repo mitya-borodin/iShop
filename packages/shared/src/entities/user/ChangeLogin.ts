@@ -2,12 +2,14 @@ import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/i
 import { isString } from "@rtcts/utils";
 
 export interface ChangeLoginData {
+  [index: string]: any;
   readonly login?: string;
 }
 
 const fields: string[] = ["login"];
 
 export class ChangeLogin implements ValueObject {
+  [index: string]: any;
   readonly login?: string;
 
   // The check in the constructor ensures that the correct noSecureFields will be written into the object

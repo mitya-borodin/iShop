@@ -4,6 +4,7 @@
   "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "file",
+  "editor.formatOnPaste": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": true,
     "source.fixAll": true,
@@ -17,6 +18,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[html]": {
@@ -44,7 +51,6 @@
   "git.showPushSuccessNotification": true,
   "git.enableStatusBarSync": true,
   "git.showProgress": true,
-  "gitlens.views.search.files.layout": "tree",
   "gitlens.views.repositories.files.layout": "tree",
   "conventionalCommits.scopes": [
     "settings",
@@ -55,14 +61,20 @@
     "deployment",
     "Fix ids",
     "CI",
-    "terraform"
+    "terraform",
+    "Lint"
   ],
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.updateImportsOnFileMove.enabled": "never",
   "typescript.referencesCodeLens.enabled": true,
   "eslint.alwaysShowStatus": true,
-  "eslint.validate": ["javascript", "typescript"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "eslint.packageManager": "npm",
   "eslint.workingDirectories": [
     "./packages/frontend",
@@ -79,6 +91,6 @@
   "workbench.colorTheme": "One Dark Pro",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.revealIfOpen": true,
-  "cSpell.words": ["borodindmitriy", "kubectl", "rtcts", "Линковка"],
+  "cSpell.words": [],
   "cSpell.language": "en,ru"
 }

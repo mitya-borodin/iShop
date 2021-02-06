@@ -5,6 +5,7 @@ import { SizeValueType } from "../../types/SizeType";
 import { SizeLegendItem } from "./SizeLegendItem";
 
 export interface ClothesSizeData {
+  [index: string]: any;
   readonly legendId?: string;
   readonly title?: string;
   readonly description?: string;
@@ -31,6 +32,7 @@ const numberFields = [
 ];
 
 export class ClothesSize implements ValueObject {
+  [index: string]: any;
   readonly legendId?: string;
   readonly title?: string;
   readonly description?: string;

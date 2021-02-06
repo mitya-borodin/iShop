@@ -2,6 +2,7 @@ import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/i
 import { propertiesEnum } from "../../../enums/propertiesEnum";
 
 export interface NumberPropertyData {
+  [index: string]: any;
   type: propertiesEnum.number;
   name?: string;
   group?: string;
@@ -11,6 +12,7 @@ export interface NumberPropertyData {
 const stringFields: string[] = ["name", "group"];
 const numberFields: string[] = ["value"];
 export class NumberProperty implements ValueObject {
+  [index: string]: any;
   type: propertiesEnum.number;
   name?: string;
   group?: string;

@@ -1,21 +1,6 @@
 # don't ever lint node_modules
 node_modules
-
-# /node_modules/* in the project root is ignored by default
-# build artefacts
+# don't lint build output (make sure it's set to your correct build folder name)
 dist
-build
-.build
+# don't lint nyc coverage output
 coverage
-
-# data definition files
-**/*.d.ts
-
-# 3rd party libs
-/src/public
-
-# custom definition files
-/src/types
-
-jest.config.js
-jest.setup.js

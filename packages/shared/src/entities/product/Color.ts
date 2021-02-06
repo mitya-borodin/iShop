@@ -1,6 +1,7 @@
 import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/isomorphic";
 
 export interface ColorData {
+  [index: string]: any;
   name?: string;
   value?: string;
   images?: string;
@@ -10,6 +11,7 @@ export interface ColorData {
 const stringFields: string[] = ["name", "value", "images", "productId"];
 
 export class Color implements ValueObject {
+  [index: string]: any;
   name?: string;
   value?: string;
   images?: string;

@@ -7,6 +7,7 @@ import { priceSet } from "../../sets/priceSet";
 const numberFields: string[] = ["amount", "discount"];
 
 export interface PriceData {
+  [index: string]: any;
   readonly type?: priceEnum.wholesale | priceEnum.retail | priceEnum.special;
   readonly currency?: currencyEnum.RUB | currencyEnum.USD | currencyEnum.EUR;
   readonly amount?: number;
@@ -14,6 +15,7 @@ export interface PriceData {
 }
 
 export class Price implements ValueObject {
+  [index: string]: any;
   readonly type?: priceEnum.wholesale | priceEnum.retail | priceEnum.special;
   readonly currency?: currencyEnum.RUB | currencyEnum.USD | currencyEnum.EUR;
   readonly amount?: number;

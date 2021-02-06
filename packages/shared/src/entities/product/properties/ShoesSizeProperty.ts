@@ -3,6 +3,7 @@ import { propertiesEnum } from "../../../enums/propertiesEnum";
 import { ShoesSize, ShoesSizeData } from "../ShoesSize";
 
 export interface ShoesSizePropertyData {
+  [index: string]: any;
   type: propertiesEnum.shoesSize;
   name?: string;
   group?: string;
@@ -12,6 +13,7 @@ export interface ShoesSizePropertyData {
 const stringFields: string[] = ["name", "group"];
 
 export class ShoesSizeProperty implements ValueObject {
+  [index: string]: any;
   type: propertiesEnum.shoesSize;
   name?: string;
   group?: string;

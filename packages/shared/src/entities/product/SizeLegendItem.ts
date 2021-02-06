@@ -3,11 +3,13 @@ import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/i
 const stringFields: string[] = ["name", "collection"];
 
 export interface SizeLegendItemData {
+  [index: string]: any;
   title?: string;
   description?: string;
 }
 
 export class SizeLegendItem implements ValueObject {
+  [index: string]: any;
   title?: string;
   description?: string;
 

@@ -2,12 +2,14 @@ import { logTypeEnum, Validation, ValidationResult, ValueObject } from "@rtcts/i
 import { isString } from "@rtcts/utils";
 
 export interface PasswordRecoveryData {
+  [index: string]: any;
   readonly login?: string;
 }
 
 const fields: string[] = ["login"];
 
 export class PasswordRecovery implements ValueObject {
+  [index: string]: any;
   readonly login?: string;
 
   constructor(data: Partial<PasswordRecoveryData>) {
