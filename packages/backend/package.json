@@ -21,6 +21,13 @@
   "lint-staged": {
     "*.(ts|js|json)": [
       "pretty-quick --staged --pattern **/*.{ts,js,json} --verbose --bail",
+      "git add"
+    ],
+    "src/**/*.(ts|js)": [
+      "npm run lint",
+      "git add"
+    ],
+    "test/**/*.(ts|js)": [
       "npm run lint",
       "git add"
     ]
