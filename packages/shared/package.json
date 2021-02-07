@@ -19,7 +19,7 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch",
+    "start": "tsdx watch --tsconfig tsconfig.build.json",
     "fmt": "prettier --write **/*.{ts,js,json}",
     "lint": "tsdx lint src test --fix",
     "test": "tsdx test",
@@ -32,7 +32,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint src test"
+      "pre-commit": "lint-staged --verbose"
     }
   },
   "lint-staged": {
