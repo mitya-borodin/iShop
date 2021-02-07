@@ -1,0 +1,15 @@
+{
+  // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
+  "extends": "./tsconfig.json",
+  "exclude": ["**/test/**/*.ts", "**/types/**/*.ts"],
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "module": "ESNext",
+    "outDir": "dist",
+    // output .d.ts declaration files for consumers
+    "declaration": false,
+    // output .js.map sourcemap files for consumers
+    "sourceMap": false
+  }
+}

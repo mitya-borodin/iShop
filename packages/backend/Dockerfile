@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 10000
 EXPOSE 10001
 
-CMD ["node", "./dist/entry.js"]
+CMD ["node", "./dist/src/entry.js"]

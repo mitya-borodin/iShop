@@ -9,7 +9,9 @@ const stat = promisify(fs.stat);
 
 export const staticFilesMiddleware = (
   contentBases: string[],
-  aliases = {},
+  aliases: {
+    [index: string]: any;
+  } = {},
   paramKey = "0",
 ): Middleware => {
   return async (ctx: Context, next: Next): Promise<void> => {
