@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "fmt": "prettier --write **/*.{js,ts,json}",
+    "fmt": "prettier --write **/*.{ts,js,json}",
     "lint": "tsdx lint src test --fix",
     "test": "tsdx test",
     "build": "tsdx build --tsconfig tsconfig.build.json",
@@ -30,34 +30,41 @@
     "outdated": "npm-check-updates",
     "upgrade": "npm-check-updates -u --target minor"
   },
-  "peerDependencies": {
-    "@rtcts/isomorphic": "^1.5.8",
-    "@rtcts/utils": "^1.5.2",
-    "lodash.omit": "^4.5.0",
-    "lodash.pick": "^4.4.0"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "tsdx lint src test"
     }
   },
   "lint-staged": {
-    "*.(ts|json)": [
-      "npm run fmt",
-      "npm run lint:fix",
+    "*.(ts|js|json)": [
+      "pretty-quick --staged --pattern **/*.{ts,js,json} --verbose --bail",
+      "git add"
+    ],
+    "src/**/*.(ts|js)": [
+      "npm run lint",
+      "git add"
+    ],
+    "test/**/*.(ts|js)": [
+      "npm run lint",
       "git add"
     ]
   },
   "size-limit": [
     {
       "path": "dist/ishop-shared.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "20 KB"
     },
     {
       "path": "dist/ishop-shared.esm.js",
-      "limit": "10 KB"
+      "limit": "20 KB"
     }
   ],
+  "peerDependencies": {
+    "@rtcts/isomorphic": "^1.5.8",
+    "@rtcts/utils": "^1.5.2",
+    "lodash.omit": "^4.5.0",
+    "lodash.pick": "^4.4.0"
+  },
   "devDependencies": {
     "@rtcts/isomorphic": "^1.5.8",
     "@rtcts/utils": "^1.5.2",
