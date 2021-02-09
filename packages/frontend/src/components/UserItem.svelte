@@ -15,24 +15,25 @@
     <p class="text-gray-900 font-bold text-xl mb-2 mt-1">{name}</p>
     <div>
       <p
-        on:click={() => onClick(id || '')}
+        on:click={() => onClick(id || "")}
         class={`
             inline-block
             rounded-full
             px-3
             py-1
-            ${checked ? 'bg-indigo-500' : 'bg-gray-200'}
+            ${checked ? "bg-indigo-500" : "bg-gray-200"}
             text-sm
             font-semibold
-            ${checked ? 'text-white' : 'text-gray-700'}
+            ${checked ? "text-white" : "text-gray-700"}
             cursor-pointer
-        `}>
+        `}
+      >
         {group}
       </p>
     </div>
   </div>
   <div class="flex justify-end mr-3">
-    <Button type="link" onClick={() => onRemove(id || '')}>Remove</Button>
+    <Button type="link" onClick={() => onRemove(id || "")}>Remove</Button>
     <Button type="link">
       <Link href="/system-admin/edit-password/{id}">Change password</Link>
     </Button>

@@ -1,9 +1,9 @@
 import { UserRepository as UserRepositoryBase, WSClient } from "@rtcts/browser";
 import { User, userGroupEnum } from "@rtcts/ishop-shared";
-import Eventemitter from "eventemitter3";
+import type Eventemitter from "eventemitter3";
 import { computed } from "mobx";
 import { browserHistory } from "../../shared/browserHistory";
-import { UserHttpTransport } from "./UserHttpTransport";
+import type { UserHttpTransport } from "./UserHttpTransport";
 
 export class UserRepository extends UserRepositoryBase<
   UserHttpTransport,

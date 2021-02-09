@@ -1,10 +1,9 @@
 import { ValueObjectFormStore } from "@rtcts/browser";
-import { PasswordRecovery } from "@rtcts/ishop-shared";
 import type { PasswordRecoveryData } from "@rtcts/ishop-shared";
-import { ValidationResult } from "@rtcts/isomorphic";
-import { computed } from "mobx";
+import { PasswordRecovery } from "@rtcts/ishop-shared";
+import type { ValidationResult } from "@rtcts/isomorphic";
 import { browserHistory } from "../../shared/browserHistory";
-import { UserRepository } from "./UserRepository";
+import type { UserRepository } from "./UserRepository";
 
 export class PasswordRecoveryFormStore extends ValueObjectFormStore<
   PasswordRecovery,
@@ -17,8 +16,6 @@ export class PasswordRecoveryFormStore extends ValueObjectFormStore<
 
     this.repository = repository;
   }
-
-  @computed({ name: "PasswordRecoveryFormStore.externalValidationResult" })
   get externalValidationResult(): ValidationResult {
     return this.repository.validationResult;
   }

@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { onMount, setContext } from "svelte";
-  import { router } from "./router";
-  import { browserHistory } from "./shared/browserHistory";
+  import { onMount,setContext } from "svelte";
+import { router } from "./router";
+import { browserHistory } from "./shared/browserHistory";
+
 
   setContext("browserHistory", browserHistory);
 
@@ -36,12 +37,12 @@
   });
 </script>
 
+<div>
+  <svelte:component this={component} />
+</div>
+
 <style global>
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
 </style>
-
-<div>
-  <svelte:component this={component} />
-</div>

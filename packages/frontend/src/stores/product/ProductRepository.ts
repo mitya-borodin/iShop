@@ -1,7 +1,7 @@
 import { Repository, WSClient } from "@rtcts/browser";
-import { Product } from "@rtcts/ishop-shared";
-import Eventemitter from "eventemitter3";
-import { ProductHttpTransport } from "./ProductHttpTransport";
+import type { Product } from "@rtcts/ishop-shared";
+import type Eventemitter from "eventemitter3";
+import type { ProductHttpTransport } from "./ProductHttpTransport";
 
 export class ProductRepository extends Repository<
   ProductHttpTransport,

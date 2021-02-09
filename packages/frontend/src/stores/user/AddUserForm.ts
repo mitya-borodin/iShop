@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { ValueObjectFormStore } from "@rtcts/browser";
-import { AddUser } from "@rtcts/ishop-shared";
 import type { AddUserData } from "@rtcts/ishop-shared";
-import { ValidationResult, logTypeEnum } from "@rtcts/isomorphic";
-import { computed } from "mobx";
-import { UserRepository } from "./UserRepository";
+import { AddUser } from "@rtcts/ishop-shared";
+import { logTypeEnum, ValidationResult } from "@rtcts/isomorphic";
 import { browserHistory } from "../../shared/browserHistory";
+import type { UserRepository } from "./UserRepository";
 
 export class AddUserFormStore extends ValueObjectFormStore<AddUser, AddUserData> {
   protected readonly repository: UserRepository;
@@ -16,7 +15,6 @@ export class AddUserFormStore extends ValueObjectFormStore<AddUser, AddUserData>
     this.repository = repository;
   }
 
-  @computed({ name: "AddUserFormStore.externalValidationResult" })
   get externalValidationResult(): ValidationResult {
     return this.repository.validationResult;
   }

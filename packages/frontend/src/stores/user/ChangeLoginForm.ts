@@ -1,11 +1,10 @@
 import { ValueObjectFormStore } from "@rtcts/browser";
-import { ChangeLogin } from "@rtcts/ishop-shared";
 import type { ChangeLoginData } from "@rtcts/ishop-shared";
-import { ValidationResult, logTypeEnum } from "@rtcts/isomorphic";
-import { computed } from "mobx";
-import { UserRepository } from "./UserRepository";
+import { ChangeLogin } from "@rtcts/ishop-shared";
+import { logTypeEnum, ValidationResult } from "@rtcts/isomorphic";
 import { browserHistory } from "../../shared/browserHistory";
 import { getParams } from "../routeInfo";
+import type { UserRepository } from "./UserRepository";
 
 export class ChangeLoginFormStore extends ValueObjectFormStore<ChangeLogin, ChangeLoginData> {
   protected readonly repository: UserRepository;
@@ -16,7 +15,6 @@ export class ChangeLoginFormStore extends ValueObjectFormStore<ChangeLogin, Chan
     this.repository = repository;
   }
 
-  @computed({ name: "ChangeLoginFormStore.externalValidationResult" })
   get externalValidationResult(): ValidationResult {
     return this.repository.validationResult;
   }

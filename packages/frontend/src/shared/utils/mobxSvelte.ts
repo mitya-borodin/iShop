@@ -1,5 +1,6 @@
-import { autorun } from "mobx";
+/* eslint-disable no-unused-vars */
 import type { IReactionDisposer } from "mobx";
+import { autorun } from "mobx";
 import { onDestroy } from "svelte";
 
 type Autorun = (view: () => void) => void;

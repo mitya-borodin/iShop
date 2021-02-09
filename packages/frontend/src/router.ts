@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-import UniversalRouter from "universal-router";
 import type { RouteContext } from "universal-router";
-import { userRepository } from "./stores/user";
+import UniversalRouter from "universal-router";
 import { setRouteContext } from "./stores/routeInfo";
+import { userRepository } from "./stores/user";
 
 const getSecureComponent = async (importModule: any, context: RouteContext): Promise<any> => {
   setRouteContext(context);

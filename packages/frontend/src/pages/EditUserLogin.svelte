@@ -67,7 +67,8 @@
         required
         value={loginValue}
         error={loginError}
-        onInput={onLogin} />
+        onInput={onLogin}
+      />
     </div>
     <div class="flex justify-end mb-6">
       <Link href="/system-admin">

@@ -28,7 +28,7 @@
       shadow 
       appearance-none
       border
-      ${error ? 'border-red-500' : ''}
+      ${error ? "border-red-500" : ""}
       rounded 
       w-full 
       py-2 
@@ -38,7 +38,8 @@
       leading-tight
       focus:outline-none
       ${className}`}
-    on:input={(event) => onInput(event.target.value, event)} />
+    on:input={(event) => onInput(event.target.value, event)}
+  />
   {#if error}
     <p class="text-red-500 text-xs italic">{error}</p>
   {/if}

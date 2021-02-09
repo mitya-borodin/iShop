@@ -52,7 +52,8 @@
         placeholder="Email"
         type="email"
         label="Email"
-        onInput={onLogin} />
+        onInput={onLogin}
+      />
       <Input
         id="password"
         name="password"
@@ -62,7 +63,8 @@
         placeholder="******************"
         type="password"
         label="Password"
-        onInput={onPassword} />
+        onInput={onPassword}
+      />
       <div class="flex items-center justify-end">
         <Button type="primary" onClick={onSignIn}>Sign In</Button>
       </div>

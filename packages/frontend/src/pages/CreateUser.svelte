@@ -76,7 +76,8 @@
         required
         value={loginValue}
         error={loginError}
-        onInput={onLogin} />
+        onInput={onLogin}
+      />
       <Select className="mb-6" value={groupValue} error={groupError} onInput={onGroup}>
         <option value="Manager">Manager</option>
         <option value="Observer">Observer</option>
@@ -90,7 +91,8 @@
         required
         value={passwordValue}
         error={passwordError}
-        onInput={onPassword} />
+        onInput={onPassword}
+      />
       <Input
         id="passwordConfirm"
         label="Confirm password"
@@ -99,7 +101,8 @@
         required
         value={passwordConfirmValue}
         error={passwordConfirmError}
-        onInput={onPasswordConfirm} />
+        onInput={onPasswordConfirm}
+      />
     </div>
     <div class="flex justify-end mb-6">
       <Link href="/system-admin">

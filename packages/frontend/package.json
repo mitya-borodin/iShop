@@ -1,11 +1,16 @@
 {
+  "name": "e-commerce-front",
+  "private": true,
   "version": "1.1.2",
+  "license": "MIT",
   "scripts": {
     "start": "snowpack dev",
-    "build": "snowpack build --verbose",
-    "test": "jest --no-cache",
+    "fmt": "prettier --write \"**/*.{ts,js,json}\"",
     "lint": "eslint . --ext .ts --fix",
-    "fmt": "prettier --write **/*.{js,ts,svelte}"
+    "test": "web-test-runner \"src/**/*.test.ts\"",
+    "build": "snowpack build --verbose",
+    "outdated": "npm-check-updates",
+    "upgrade": "npm-check-updates -u --target minor"
   },
   "browserslist": ">0.75%, not ie 11, not UCAndroid >0, not OperaMini all",
   "dependencies": {
@@ -18,8 +23,8 @@
     "history": "^5.0.0",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
-    "mobx": "^5.15.7",
-    "svelte": "^3.32.1",
+    "mobx": "^6.1.5",
+    "svelte": "^3.32.2",
     "universal-router": "^9.0.1"
   },
   "husky": {
@@ -29,43 +34,48 @@
   },
   "lint-staged": {
     "*.(ts|json|svelte)": [
-      "npm run fmt",
-      "git add"
+      "npm run fmt"
     ],
-    "*.ts": [
-      "npm run lint",
-      "git add"
+    "src/**/*.(ts|js)": [
+      "npm run lint"
+    ],
+    "test/**/*.(ts|js)": [
+      "npm run lint"
     ]
   },
-  "name": "e-commerce-front",
-  "private": true,
-  "license": "MIT",
   "devDependencies": {
-    "@babel/preset-typescript": "^7.12.13",
-    "@snowpack/app-scripts-svelte": "^1.9.2",
+    "@snowpack/plugin-dotenv": "^2.0.5",
+    "@snowpack/plugin-run-script": "^2.3.0",
+    "@snowpack/plugin-svelte": "^3.5.2",
+    "@snowpack/plugin-typescript": "^1.2.1",
     "@snowpack/plugin-webpack": "^2.3.0",
-    "@testing-library/jest-dom": "^5.11.9",
+    "@snowpack/web-test-runner-plugin": "^0.2.1",
     "@testing-library/svelte": "^3.0.3",
-    "@types/jest": "^26.0.20",
+    "@types/chai": "^4.2.14",
     "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.25",
-    "@typescript-eslint/eslint-plugin": "^3.10.1",
-    "@typescript-eslint/parser": "^3.10.1",
+    "@types/snowpack-env": "^2.3.3",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "@web/test-runner": "^0.12.15",
+    "chai": "^4.3.0",
     "eslint": "^7.19.0",
-    "eslint-plugin-svelte3": "^2.7.3",
-    "husky": "^4.3.8",
-    "jest": "^26.6.3",
+    "eslint-plugin-svelte3": "^3.0.0",
+    "eslint-watch": "^7.0.0",
+    "http-proxy": "^1.18.1",
+    "husky": "^5.0.9",
     "lint-staged": "^10.5.4",
-    "postcss": "^7.0.35",
+    "npm-check-updates": "^11.1.1",
+    "postcss": "^8.2.5",
     "prettier": "^2.2.1",
-    "prettier-plugin-svelte": "^1.4.2",
-    "snowpack": "^2.18.5",
+    "prettier-plugin-svelte": "^2.1.3",
+    "snowpack": "^3.0.11",
     "stylelint": "^13.9.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recommended": "^3.0.0",
     "svelte-preprocess": "^4.6.6",
-    "tailwindcss": "^1.9.6",
-    "typescript": "^3.9.7",
-    "webpack-bundle-analyzer": "^3.9.0"
+    "tailwindcss": "^2.0.3",
+    "typescript": "^4.1.4",
+    "webpack-bundle-analyzer": "^4.4.0"
   }
 }

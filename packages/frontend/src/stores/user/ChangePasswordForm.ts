@@ -1,11 +1,10 @@
 import { ValueObjectFormStore } from "@rtcts/browser";
-import { ChangePassword } from "@rtcts/ishop-shared";
 import type { ChangePasswordData } from "@rtcts/ishop-shared";
+import { ChangePassword } from "@rtcts/ishop-shared";
 import { logTypeEnum, ValidationResult } from "@rtcts/isomorphic";
-import { computed } from "mobx";
 import { browserHistory } from "../../shared/browserHistory";
 import { getParams } from "../routeInfo";
-import { UserRepository } from "./UserRepository";
+import type { UserRepository } from "./UserRepository";
 
 export class ChangePasswordFormStore extends ValueObjectFormStore<
   ChangePassword,
@@ -19,7 +18,6 @@ export class ChangePasswordFormStore extends ValueObjectFormStore<
     this.repository = repository;
   }
 
-  @computed({ name: "ChangePasswordFormStore.externalValidationResult" })
   get externalValidationResult(): ValidationResult {
     return this.repository.validationResult;
   }

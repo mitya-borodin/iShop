@@ -1,10 +1,9 @@
 import { ValueObjectFormStore } from "@rtcts/browser";
-import { SignUp, userGroupEnum } from "@rtcts/ishop-shared";
 import type { SignUpData } from "@rtcts/ishop-shared";
-import { ValidationResult } from "@rtcts/isomorphic";
-import { computed } from "mobx";
+import { SignUp, userGroupEnum } from "@rtcts/ishop-shared";
+import type { ValidationResult } from "@rtcts/isomorphic";
 import { browserHistory } from "../../shared/browserHistory";
-import { UserRepository } from "./UserRepository";
+import type { UserRepository } from "./UserRepository";
 
 export class SignUpFormStore extends ValueObjectFormStore<SignUp, SignUpData> {
   protected readonly repository: UserRepository;
@@ -15,7 +14,6 @@ export class SignUpFormStore extends ValueObjectFormStore<SignUp, SignUpData> {
     this.repository = repository;
   }
 
-  @computed({ name: "SignUpFormStore.externalValidationResult" })
   get externalValidationResult(): ValidationResult {
     return this.repository.validationResult;
   }

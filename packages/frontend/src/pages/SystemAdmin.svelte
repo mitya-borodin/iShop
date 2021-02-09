@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { User } from "@rtcts/ishop-shared";
+  import type { User } from "@rtcts/ishop-shared";
+import Button from "../components/Button.svelte";
+import Link from "../components/Link.svelte";
+import Select from "../components/Select.svelte";
+import UserItem from "../components/UserItem.svelte";
+import { connect } from "../shared/utils/mobxSvelte";
+import { userRepository } from "../stores/user";
 
-  import Button from "../components/Button.svelte";
-  import Link from "../components/Link.svelte";
-  import Select from "../components/Select.svelte";
-  import UserItem from "../components/UserItem.svelte";
-  import { connect } from "../shared/utils/mobxSvelte";
-  import { userRepository } from "../stores/user";
 
   const { autorun } = connect();
 
@@ -39,15 +39,16 @@
   };
 </script>
 
-<div class="h-screen bg-gray-100 overflow-hidden flex flex-col">
-  <header class="mb-6 flex flex-shrink-0 items-end bg-white border-b border-solid border-gray-300">
+<div class="flex flex-col h-screen overflow-hidden bg-gray-100">
+  <header class="flex items-end flex-shrink-0 mb-6 bg-white border-b border-gray-300 border-solid">
     <div class="flex flex-col justify-center w-full px-6 pb-3">
-      <h1 class="font-bold text-4xl">iShop Admin</h1>
+      <h1 class="text-4xl font-bold">iShop Admin</h1>
       <Select
         className="mt-3"
         disabled={selectedUsers.size === 0}
         value={selectedGroup}
-        onInput={onChangeGroup}>
+        onInput={onChangeGroup}
+      >
         <option>Client</option>
         <option>Manager</option>
         <option>Admin</option>
@@ -68,7 +69,8 @@
         {group}
         onClick={onSelecteUser}
         {onRemove}
-        checked={selectedUsers.has(id || '')} />
+        checked={selectedUsers.has(id || "")}
+      />
     {/each}
   </ul>
 </div>

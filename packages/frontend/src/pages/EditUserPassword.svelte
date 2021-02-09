@@ -61,7 +61,8 @@
         required
         value={passwordValue}
         error={passwordError}
-        onInput={onPassword} />
+        onInput={onPassword}
+      />
       <Input
         id="passwordConfirm"
         label="Confirm password"
@@ -70,7 +71,8 @@
         required
         value={passwordConfirmValue}
         error={passwordConfirmError}
-        onInput={onPasswordConfirm} />
+        onInput={onPasswordConfirm}
+      />
     </div>
     <div class="flex justify-end mb-6">
       <Link href="/system-admin">

@@ -1,41 +1,57 @@
-// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const httpProxy = require("http-proxy");
+const apiProxy = httpProxy.createServer({
+  target: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/api`,
+});
+const wsProxy = httpProxy.createServer({
+  target: `http://${process.env.WS_HOST}:${process.env.WS_PORT}/ws`,
+  ws: true,
+});
 
+/** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
-  extends: "@snowpack/app-scripts-svelte",
-  install: ["tslib"],
-  installOptions: {
-    sourceMap: true,
-    treeshake: true,
+  mount: {
+    public: { url: "/", static: true },
+    src: { url: "/_dist_" },
   },
-  devOptions: {
-    open: "none",
-  },
-  buildOptions: {
-    clean: true,
-  },
+  routes: [
+    {
+      src: "/api",
+      dest: (req, res) => apiProxy.web(req, res),
+    },
+    {
+      src: "/ws",
+      dest: (req, res) => wsProxy.ws(req, res),
+    },
+  ],
   plugins: [
-    ["@snowpack/plugin-dotenv"],
-    [
-      "@snowpack/plugin-webpack",
-      {
-        extendConfig: (config) => {
-          // config.plugins.push(new BundleAnalyzerPlugin());
-
-          return config;
-        },
-      },
-    ],
-    ["@snowpack/plugin-run-script", { cmd: "tsc --noEmit", watch: "$1 --watch" }],
+    "@snowpack/plugin-svelte",
+    "@snowpack/plugin-dotenv",
+    "@snowpack/plugin-typescript",
+    "@snowpack/plugin-webpack",
     [
       "@snowpack/plugin-run-script",
-      { cmd: "eslint 'src/**/*.{js,jsx,ts,tsx}'", watch: 'watch "$1" src' },
+      {
+        cmd: "eslint src --ext .js,jsx,.ts,.tsx",
+        // Optional: Use npm package "eslint-watch" to run on every file change
+        watch: "esw -w --clear src --ext .js,jsx,.ts,.tsx",
+      },
     ],
   ],
-  proxy: {
-    "/api": `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/api`,
-    "/ws": {
-      target: `http://${process.env.WS_HOST}:${process.env.WS_PORT}/ws`,
-      ws: true,
-    },
+  routes: [
+    /* Enable an SPA Fallback in development: */
+    // {"match": "routes", "src": ".*", "dest": "/index.html"},
+  ],
+  optimize: {
+    /* Example: Bundle your final build: */
+    // "bundle": true,
+  },
+  packageOptions: {
+    /* ... */
+  },
+  devOptions: {
+    /* ... */
+  },
+  buildOptions: {
+    sourcemap: true,
   },
 };

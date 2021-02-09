@@ -57,7 +57,8 @@
   "gitlens.views.repositories.files.layout": "tree",
 
   "conventionalCommits.scopes": [
-    "settings"
+    "settings",
+    "frontend"
   ],
 
   "javascript.preferences.importModuleSpecifier": "relative",
