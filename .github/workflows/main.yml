@@ -1,7 +1,7 @@
 name: CI
 on: [push]
 jobs:
-  CI_CD:
+  CI:
     runs-on: ubuntu-latest
     steps:
       - name: Begin CI...
@@ -55,9 +55,3 @@ jobs:
 
       - name: Build back-end image
         run: docker build -t borodindmitriy/e-commerce-back -f ./packages/backend/Dockerfile.dev ./packages/backend
-
-      - name: Build code for front-end
-        run: docker run borodindmitriy/e-commerce-front npm run build
-
-      - name: Build code for back-end
-        run: docker run borodindmitriy/e-commerce-back npm run build
