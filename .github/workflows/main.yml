@@ -1,43 +1,7 @@
 name: CI
 on: [push]
 jobs:
-  docker_validation:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Begin CI...
-        uses: actions/checkout@v2
-
-      - name: Build front-end image
-        run: docker build -t borodindmitriy/e-commerce-front -f ./packages/frontend/Dockerfile.dev ./packages/frontend
-
-      - name: Build back-end image
-        run: docker build -t borodindmitriy/e-commerce-back -f ./packages/backend/Dockerfile.dev ./packages/backend
-
-      - name: Checking code formatting  for front-end
-        run: docker run borodindmitriy/e-commerce-front npm run fmt
-
-      - name: Linting code for front-end
-        run: docker run borodindmitriy/e-commerce-front npm run lint
-
-      - name: Testing code for front-end
-        run: docker run borodindmitriy/e-commerce-front npm run test
-
-      - name: Build code for front-end
-        run: docker run borodindmitriy/e-commerce-front npm run build
-
-      - name: Checking code formatting  for back-end
-        run: docker run borodindmitriy/e-commerce-back npm run fmt
-
-      - name: Linting code for back-end
-        run: docker run borodindmitriy/e-commerce-back npm run lint
-
-      - name: Testing code for back-end
-        run: docker run borodindmitriy/e-commerce-back npm run test
-
-      - name: Build code for back-end
-        run: docker run borodindmitriy/e-commerce-back npm run build
-
-  nodejs_validation:
+  CI_CD:
     runs-on: ubuntu-latest
     steps:
       - name: Begin CI...
@@ -85,3 +49,15 @@ jobs:
         run: npm run build
         env:
           CI: true
+
+      - name: Build front-end image
+        run: docker build -t borodindmitriy/e-commerce-front -f ./packages/frontend/Dockerfile.dev ./packages/frontend
+
+      - name: Build back-end image
+        run: docker build -t borodindmitriy/e-commerce-back -f ./packages/backend/Dockerfile.dev ./packages/backend
+
+      - name: Build code for front-end
+        run: docker run borodindmitriy/e-commerce-front npm run build
+
+      - name: Build code for back-end
+        run: docker run borodindmitriy/e-commerce-back npm run build

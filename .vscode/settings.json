@@ -61,7 +61,8 @@
     "frontend",
     "dependencies",
     "DX",
-    "test"
+    "test",
+    "CI"
   ],
 
   "javascript.preferences.importModuleSpecifier": "relative",
