@@ -1,13 +1,18 @@
 const httpProxy = require("http-proxy");
 require("dotenv").config();
 
-const apiProxy = httpProxy.createServer({
-  target: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
-});
-const wsProxy = httpProxy.createServer({
-  target: `ws://${process.env.WS_HOST}:${process.env.WS_PORT}`,
-  ws: true,
-});
+let apiProxy;
+let wsProxy;
+
+if (process.env.DOCKER) {
+  apiProxy = httpProxy.createServer({
+    target: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
+  });
+  wsProxy = httpProxy.createServer({
+    target: `ws://${process.env.WS_HOST}:${process.env.WS_PORT}`,
+    ws: true,
+  });
+}
 
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
@@ -16,18 +21,22 @@ module.exports = {
     src: { url: "/_dist_" },
   },
   routes: [
-    {
-      src: "/api/.*",
-      dest: (req, res) => apiProxy.web(req, res),
-    },
-    {
-      src: "/ws",
-      dest: (req, res) => {
-        console.log(req.url.includes("ws"));
+    ...(process.env.DOCKER
+      ? [
+          {
+            src: "/api/.*",
+            dest: (req, res) => apiProxy.web(req, res),
+          },
+          {
+            src: "/ws",
+            dest: (req, res) => {
+              console.log(req.url.includes("ws"));
 
-        return wsProxy.ws(req, res.socket);
-      },
-    },
+              return wsProxy.ws(req, res.socket);
+            },
+          },
+        ]
+      : []),
     { match: "routes", src: ".*", dest: "/index.html" },
   ],
   plugins: [

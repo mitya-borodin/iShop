@@ -3,8 +3,8 @@ services:
   nginx:
     restart: always
     build:
-     context: "./nginx"
-     dockerfile: "Dockerfile.dev"
+      context: "./nginx"
+      dockerfile: "Dockerfile.dev"
     ports:
       - "127.0.0.1:3050:443"
     environment:
@@ -21,10 +21,10 @@ services:
       - backend
     networks:
       - e-commerce-nodejs-network
-      
+
   frontend:
     restart: always
-    build: 
+    build:
       context: "./packages/frontend"
       dockerfile: "Dockerfile.dev"
     volumes:
@@ -36,6 +36,7 @@ services:
       SERVER_PORT: 10000
       WS_HOST: backend
       WS_PORT: 10001
+      DOCKER: "true"
     depends_on:
       - backend
     networks:
@@ -43,7 +44,7 @@ services:
 
   backend:
     restart: "always"
-    build: 
+    build:
       context: "./packages/backend"
       dockerfile: "Dockerfile.dev"
     ports:
