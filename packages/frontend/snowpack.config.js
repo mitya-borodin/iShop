@@ -14,14 +14,15 @@ module.exports = {
     src: { url: "/_dist_" },
   },
   routes: [
-    {
-      src: "/api",
+/*     {
+      src: "/api/.*",
       dest: (req, res) => apiProxy.web(req, res),
     },
     {
       src: "/ws",
       dest: (req, res) => wsProxy.ws(req, res),
-    },
+    }, */
+    { match: "routes", src: ".*", dest: "/index.html" },
   ],
   plugins: [
     "@snowpack/plugin-svelte",

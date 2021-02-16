@@ -56,10 +56,7 @@
   "git.showProgress": true,
   "gitlens.views.repositories.files.layout": "tree",
 
-  "conventionalCommits.scopes": [
-    "settings",
-    "frontend"
-  ],
+  "conventionalCommits.scopes": ["settings", "frontend", "dependencies"],
 
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
@@ -67,18 +64,9 @@
   "typescript.referencesCodeLens.enabled": true,
 
   "eslint.alwaysShowStatus": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "eslint.packageManager": "npm",
-  "eslint.workingDirectories": [
-    "./packages/frontend",
-    "./packages/backend",
-    "./packages/shared"
-  ],
+  "eslint.workingDirectories": ["./packages/frontend", "./packages/backend", "./packages/shared"],
 
   "stylusSupremacy.insertBraces": false,
   "stylusSupremacy.insertColons": false,

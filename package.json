@@ -11,20 +11,21 @@
     "test": "lerna run test",
     "build": "lerna run build",
     "outdated": "lerna exec \"npm-check-updates --timeout 120000\"",
-    "upgrade": "lerna exec \"npm-check-updates --timeout 120000 -u --target minor\""
+    "upgrade": "lerna exec \"npm-check-updates --timeout 120000 -u\"",
+    "upgrade:minor": "lerna exec \"npm-check-updates --timeout 120000 -u --target minor\""
   },
   "name": "e-commerce-nodejs",
   "license": "MIT",
   "devDependencies": {
-    "lerna": "^3.22.1",
-    "concurrently": "^5.3.0",
-    "del-cli": "^3.0.1",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
+    "concurrently": "^5.3.0",
+    "del-cli": "^3.0.1",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-jest": "^24.1.3",
     "eslint-plugin-prettier": "^3.3.1",
+    "lerna": "^3.22.1",
     "npm-check-updates": "^11.1.1",
     "prettier": "^2.2.1",
     "typescript": "^4.1.3"
