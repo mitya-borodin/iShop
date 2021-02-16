@@ -1,9 +1,11 @@
 const httpProxy = require("http-proxy");
+require("dotenv").config();
+
 const apiProxy = httpProxy.createServer({
-  target: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/api`,
+  target: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
 });
 const wsProxy = httpProxy.createServer({
-  target: `http://${process.env.WS_HOST}:${process.env.WS_PORT}/ws`,
+  target: `ws://${process.env.WS_HOST}:${process.env.WS_PORT}`,
   ws: true,
 });
 
@@ -14,14 +16,18 @@ module.exports = {
     src: { url: "/_dist_" },
   },
   routes: [
-/*     {
+    {
       src: "/api/.*",
       dest: (req, res) => apiProxy.web(req, res),
     },
     {
       src: "/ws",
-      dest: (req, res) => wsProxy.ws(req, res),
-    }, */
+      dest: (req, res) => {
+        console.log(req.url.includes("ws"));
+
+        return wsProxy.ws(req, res.socket);
+      },
+    },
     { match: "routes", src: ".*", dest: "/index.html" },
   ],
   plugins: [
@@ -37,10 +43,6 @@ module.exports = {
         watch: "esw -w --clear src --ext .js,jsx,.ts,.tsx",
       },
     ],
-  ],
-  routes: [
-    /* Enable an SPA Fallback in development: */
-    // {"match": "routes", "src": ".*", "dest": "/index.html"},
   ],
   optimize: {
     /* Example: Bundle your final build: */

@@ -56,7 +56,12 @@
   "git.showProgress": true,
   "gitlens.views.repositories.files.layout": "tree",
 
-  "conventionalCommits.scopes": ["settings", "frontend", "dependencies"],
+  "conventionalCommits.scopes": [
+    "settings",
+    "frontend",
+    "dependencies",
+    "DX"
+  ],
 
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",

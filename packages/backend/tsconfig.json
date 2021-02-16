@@ -2,9 +2,7 @@
   // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
   "include": ["**/src/**/*.ts", "**/test/**/*.ts", "**/types/**/*.ts"],
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "lib": ["ESNext"],
+    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
     "importHelpers": true,
     // output .d.ts declaration files for consumers
     "declaration": true,

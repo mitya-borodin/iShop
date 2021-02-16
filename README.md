@@ -45,11 +45,19 @@ docker-compose up
 
 You will have access to web page through `https://localhost:3050`
 
+If you want to run separately MongoDB, Backend, Frontend processes, you should run:
+`docker-compose -f ./docker-compose-db.yml up -d`
+`npm run start:backend`
+`npm run start:frontend`
+
 ### Debugging through VSCode
 
 There is need to create `./vscode/launch.json` which contains:
 
-``` json
+For debugging node as docker container you should launch `Remote` config.
+For debugging node as process on host machine you should launch `Nodemon` config, an choose process which run `src/entry.ts` file.
+
+```json
 {
   "version": "1.0.0",
   "configurations": [
@@ -72,7 +80,6 @@ There is need to create `./vscode/launch.json` which contains:
     }
   ]
 }
-
 ```
 
 ## Deployment
@@ -85,15 +92,15 @@ Before deploy to GCP you need to install
 1. Create a new project on GCP and write down the `Project ID` of it.
 2. Generate a service account key:
 
-    1. Go here: <https://console.cloud.google.com/apis/credentials/serviceaccountkey>
-    2. Make sure your new project is selected in the top bar
-    3. In **Service account** select `New service account`
-    4. **Service account name**: `devops-owner`
-    5. **Role**: `Project` -> `Owner`
-    6. **Key type**: `JSON`
-    7. Hit `Create` button
-    8. Wait a bit and it will automatically download a *service account key file*.
-    9. Save this file as `credentials/account.json`. If you don't want to save it to your git repo, add it to `.gitignore`. Keep in mind that this file gives full ownership access to the specific google project, so be careful whom you are sharing it with.
+   1. Go here: <https://console.cloud.google.com/apis/credentials/serviceaccountkey>
+   2. Make sure your new project is selected in the top bar
+   3. In **Service account** select `New service account`
+   4. **Service account name**: `devops-owner`
+   5. **Role**: `Project` -> `Owner`
+   6. **Key type**: `JSON`
+   7. Hit `Create` button
+   8. Wait a bit and it will automatically download a _service account key file_.
+   9. Save this file as `credentials/account.json`. If you don't want to save it to your git repo, add it to `.gitignore`. Keep in mind that this file gives full ownership access to the specific google project, so be careful whom you are sharing it with.
 
 3. Move to `./terraform` and launch `terraform init` and `terraform apply`
 4. After finish terraform work launch `./kubectl_g create secret generic data-base --from-literal=JWT_SECRET_KEY=some_secret_string --from-literal=DB_NAME=your_own_database_name`

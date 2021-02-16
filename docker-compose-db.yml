@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  mongoDB:
+    restart: "always"
+    image: mongo:4.2.3
+    ports:
+      - "127.0.0.1:27021:27017"
+    volumes:
+      - ./data/db:/data/db

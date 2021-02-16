@@ -1,13 +1,12 @@
 {
+  "restartable": "rs",
+  "ignore": [".git", "node_modules/", "dist/", "coverage/"],
+  "watch": ["src/"],
+  "execMap": {
+    "ts": "node --trace-warnings -r ts-node/register"
+  },
   "env": {
     "NODE_ENV": "development"
   },
-  "execMap": {
-    "ts": "node --require ts-node/register"
-  },
-  "ext": "js,json,ts",
-  "ignore": [".git", "node_modules/**/node_modules"],
-  "restartable": "rs",
-  "verbose": true,
-  "watch": ["src/"]
+  "ext": "js,json,ts"
 }
