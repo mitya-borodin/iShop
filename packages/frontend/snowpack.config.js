@@ -4,7 +4,16 @@ require("dotenv").config();
 let apiProxy;
 let wsProxy;
 
-if (process.env.DOCKER) {
+console.log(!process.env.DOCKER);
+console.log({
+  target: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
+});
+console.log({
+  target: `ws://${process.env.WS_HOST}:${process.env.WS_PORT}`,
+  ws: true,
+});
+
+if (!process.env.DOCKER) {
   apiProxy = httpProxy.createServer({
     target: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
   });
@@ -21,18 +30,23 @@ module.exports = {
     src: { url: "/_dist_" },
   },
   routes: [
-    ...(process.env.DOCKER
+    ...(!process.env.DOCKER
       ? [
           {
             src: "/api/.*",
-            dest: (req, res) => apiProxy.web(req, res),
+            dest: (req, res) => {
+              console.log("HTTP_REQUEST");
+
+              apiProxy.web(req, res);
+            },
           },
           {
+            match: "routes",
             src: "/ws",
             dest: (req, res) => {
-              console.log(req.url.includes("ws"));
+              console.log("WS_REQUEST");
 
-              return wsProxy.ws(req, res.socket);
+              wsProxy.ws(req, res.socket);
             },
           },
         ]
