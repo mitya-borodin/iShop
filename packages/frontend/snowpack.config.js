@@ -75,7 +75,8 @@ module.exports = {
     /* ... */
   },
   devOptions: {
-    /* ... */
+    port: 5000,
+    hmrPort: 5001,
   },
   buildOptions: {
     sourcemap: true,
