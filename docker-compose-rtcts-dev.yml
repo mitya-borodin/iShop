@@ -30,6 +30,7 @@ services:
     volumes:
       - ./packages/frontend:/app
       - /app/node_modules
+      - /Users/borodin/programming/rtcts/packages:/app/node_modules/@rtcts
       - ./packages/shared:/app/node_modules/@rtcts/ishop-shared
     environment:
       SERVER_NAME: e-commerce-nodejs.ru
@@ -54,6 +55,7 @@ services:
       - ./packages/backend:/app
       - ./uploadedFiles:/app/uploadedFiles
       - /app/node_modules
+      - /Users/borodin/programming/rtcts/packages:/app/node_modules/@rtcts
       - ./packages/shared:/app/node_modules/@rtcts/ishop-shared
     environment:
       JWT_SECRET_KEY: xtoLhZqKfmXU2MVjHuu74AvYUeBsswsWFXxzsbNJ4U3iinJjGs9RAxmzcrU3UrHR
