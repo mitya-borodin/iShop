@@ -33,20 +33,20 @@ module.exports = {
     ...(!process.env.DOCKER
       ? [
           {
-            src: "/api/.*",
-            dest: (req, res) => {
-              console.log("HTTP_REQUEST");
-
-              apiProxy.web(req, res);
-            },
-          },
-          {
             match: "all",
             src: "/ws",
             dest: (req, res) => {
               console.log("WS_REQUEST");
 
               wsProxy.ws(req, res.socket);
+            },
+          },
+          {
+            src: "/api/.*",
+            dest: (req, res) => {
+              console.log("HTTP_REQUEST");
+
+              apiProxy.web(req, res);
             },
           },
         ]
