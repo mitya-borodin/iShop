@@ -41,7 +41,7 @@ module.exports = {
             },
           },
           {
-            match: "routes",
+            match: "all",
             src: "/ws",
             dest: (req, res) => {
               console.log("WS_REQUEST");
